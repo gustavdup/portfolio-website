@@ -1,12 +1,12 @@
 ---
 company: "Edublox Reading and Learning Clinic"
 title: "IT Manager and Business Coach"
-timeframe: "2012 - 2015"
+timeframe: "Jul 2012 – Dec 2015"
 location: "South Africa"
 order: 6
-context: ["Technology Manager", "IT", "Process Improvement", "Coaching"]
+context: []
 responsibilities:
-  - Built and launched a comprehensive Excel (VBA) business management tool for 40+ franchisees.
-  - Facilitated monthly coaching sessions and performance analysis for franchisees.
-  - Led implementation and improvement of business processes and ICT tools.
+  - Contributed to key strategic decisions that supported the franchise network's growth to 40+ locations across Southern Africa.
+  - Facilitated monthly coaching sessions with over 15 franchisees, providing business guidance, performance reviews, and profitability strategies.
+  - Led the implementation and optimisation of internal business processes, ICT tools, and support systems in collaboration with developers and consultants.
 ---

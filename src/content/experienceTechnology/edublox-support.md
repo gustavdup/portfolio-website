@@ -1,12 +1,12 @@
 ---
 company: "Edublox Reading and Learning Clinic"
-title: "IT Support Consultant"
-timeframe: "2010 - 2011"
+title: "IT Manager and Business Coach"
+timeframe: "Jul 2012 – Dec 2015"
 location: "South Africa"
 order: 7
-context: ["Technology Manager", "IT", "Support", "Training"]
+context: []
 responsibilities:
-  - Delivered Excel-based tools for client, invoicing, and learner progress management.
-  - Managed CRM activities and monthly client newsletter.
-  - Designed and implemented IT support and training procedures for the franchise network.
+  - Contributed to key strategic decisions that supported the franchise network's growth to 40+ locations across Southern Africa.
+  - Facilitated monthly coaching sessions with over 15 franchisees, providing business guidance, performance reviews, and profitability strategies.
+  - Led the implementation and optimisation of internal business processes, ICT tools, and support systems in collaboration with developers and consultants.
 ---

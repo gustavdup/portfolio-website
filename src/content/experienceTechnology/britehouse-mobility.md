@@ -1,15 +1,16 @@
 ---
 company: "Britehouse Mobility"
-title: "Technology Manager | Product Owner"
+title: "Product Manager | Product Owner"
 timeframe: "2023 – Present"
 location: "Remote"
 order: 1
 context: ["Tech Manager", "Product Owner", "Strategy", "UX"]
 responsibilities:
-  - Built and led a cross-functional, remote-first technology team, improving collaboration and onboarding.
-  - Owned and delivered multiple B2B technology streams in healthcare, logistics, retail, and field services.
-  - Maintained and enhanced an enterprise healthcare incident management system with 6,000+ users.
-  - Planned and launched a governance and compliance platform, reducing report preparation time by 80%.
-  - Launched a major version of a field services SaaS platform, improving scalability and reducing load times by 50%.
-  - Delivered real-time dashboards and automated reporting, cutting turnaround times by 90%.
+  - Lead a cross-functional product team across four B2B software verticals—field services, healthcare, retail, and governance—delivering scalable solutions aligned with client and market needs.
+  - Directed end-to-end product delivery, while also supporting system architecture decisions with DevOps and technical leads, including infrastructure trade-offs, cloud hosting, and design for future integration flexibility.
+  - Scoped budgets and resource needs for multiple streams, prepared business cases for client proposals, and defined pricing models for new products and services.
+  - Oversaw all SAP integration workstreams for a high-volume logistics client—processing more than one job per minute—ensuring robust data sync and error handling across the Field Services platform.
+  - Led implementation of enterprise reporting pipelines using Metabase and Carbone, reducing report turnaround time by up to 90% and enabling automated document generation aligned with operational workflows.
+  - Collaborated with an internal IoT and machine vision team to integrate smart triggers (e.g., fuel sensors) into job scheduling—bridging hardware events with real-world service execution.
+  - Managed a remote team of 5–7 direct contributors across engineering, QA, and product design, and contributed to agile delivery standards, onboarding, and cross-stream planning.
 ---
