@@ -23,13 +23,13 @@ const { Content } = await post.render();
   <!-- Integrated breadcrumb header -->
   <div class="flex items-center gap-4 mb-8">
     <div class="flex items-center gap-2 text-sm">
-      <a href="/blog" class="text-zinc-600 dark:text-zinc-400 hover:text-primary transition-colors uppercase tracking-wider font-medium">Articles</a>
+      <a href="/blog" class="text-gray-600 dark:text-gray-400 hover:text-primary transition-colors uppercase tracking-wider font-medium">Articles</a>
       <svg class="w-4 h-4 text-gray-400 dark:text-gray-500" fill="currentColor" viewBox="0 0 20 20">
         <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
       </svg>
       <span class="text-text-light dark:text-text-dark font-medium">{post.data.title}</span>
     </div>
-    <div class="flex-1 h-[1px] bg-zinc-200 dark:bg-zinc-800"></div>
+    <div class="flex-1 h-[1px] bg-gray-200 dark:bg-gray-800"></div>
   </div>
   
   <article class="prose max-w-none">

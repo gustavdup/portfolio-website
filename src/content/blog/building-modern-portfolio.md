@@ -16,6 +16,8 @@ This portfolio showcases my experience across product management and technology 
 - **TailwindCSS** - For modern, responsive design
 - **Markdown/MDX** - For content management
 
+Built following [Astro best practices](https://docs.astro.build/en/guides/best-practices/) for performance and scalability.
+
 ## Key Features
 
 - Role-based experience filtering

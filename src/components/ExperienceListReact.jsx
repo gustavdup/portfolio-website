@@ -64,7 +64,7 @@ export default function ExperienceList({
     <div>
       {/* Description without main title */}
       <div className="mb-6 mt-6">
-        <p className="text-zinc-600 dark:text-zinc-400 text-base leading-relaxed max-w-4xl">
+        <p className="text-gray-600 dark:text-gray-400 text-base leading-relaxed max-w-4xl">
           Each role highlights a different strength. Explore my experience from the perspective that matters most to you — product, technology, strategy, UX, or leadership.
         </p>
       </div>
@@ -73,8 +73,8 @@ export default function ExperienceList({
         {/* Section Header with tabs integrated */}
         <div className="mb-8">
           <div className="flex items-center gap-4 mb-4">
-            <h2 className="text-sm font-medium tracking-wider uppercase text-zinc-600 dark:text-zinc-400">Select Perspective</h2>
-            <div className="flex-1 h-[1px] bg-zinc-200 dark:bg-zinc-800"></div>
+            <h2 className="text-sm font-medium tracking-wider uppercase text-gray-600 dark:text-gray-400">Select Perspective</h2>
+            <div className="flex-1 h-[1px] bg-gray-200 dark:bg-gray-800"></div>
           </div>
           
           {/* Tab Navigation */}
@@ -85,8 +85,8 @@ export default function ExperienceList({
                 onClick={() => handleRoleChange(role)}
                 className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
                   selectedRole === role
-                    ? 'bg-primary text-white shadow-sm'
-                    : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-primary hover:text-white border border-gray-200 dark:border-gray-700'
+                    ? 'bg-secondary text-white shadow-sm'
+                    : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-secondary hover:text-white border border-gray-200 dark:border-gray-700'
                 }`}
               >
                 {role === 'UX' ? 'UX & Onboarding' : role}
@@ -96,19 +96,19 @@ export default function ExperienceList({
         </div>
         
         {/* Role Description Section - More integrated */}
-        <div className={`mb-8 p-6 rounded-xl bg-gradient-to-br from-zinc-50 to-zinc-100/50 dark:from-zinc-900/50 dark:to-zinc-900/30 border border-zinc-200 dark:border-zinc-800 transition-all duration-300 ${isTransitioning ? 'opacity-50' : 'opacity-100'}`}>
+        <div className={`mb-8 p-6 rounded-xl bg-gradient-to-br from-gray-50 to-gray-100/50 dark:from-gray-900/50 dark:to-gray-900/30 border border-gray-200 dark:border-gray-800 transition-all duration-300 ${isTransitioning ? 'opacity-50' : 'opacity-100'}`}>
           <div className="flex items-start justify-between gap-4 mb-3">
-            <h3 className="text-lg font-medium text-zinc-900 dark:text-zinc-100">{currentRole.title}</h3>
-            <span className="text-xs text-zinc-500 dark:text-zinc-400 font-medium px-2 py-1 bg-zinc-200 dark:bg-zinc-800 rounded-full whitespace-nowrap">
+            <h3 className="text-lg font-medium text-gray-900 dark:text-gray-100">{currentRole.title}</h3>
+            <span className="text-xs text-gray-500 dark:text-gray-400 font-medium px-2 py-1 bg-gray-200 dark:bg-gray-800 rounded-full whitespace-nowrap">
               {experiences.length} {experiences.length === 1 ? 'role' : 'roles'}
             </span>
           </div>
-          <p className="text-zinc-600 dark:text-zinc-400 text-sm mb-4 leading-relaxed">{currentRole.description}</p>
+          <p className="text-gray-600 dark:text-gray-400 text-sm mb-4 leading-relaxed">{currentRole.description}</p>
           <div className="flex flex-wrap gap-2">
             {currentRole.skills.map((skill, idx) => (
               <span 
                 key={idx}
-                className="px-2 py-1 text-xs rounded-full bg-white dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 border border-zinc-300 dark:border-zinc-700 shadow-sm"
+                className="px-2 py-1 text-xs rounded-full bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-700 shadow-sm"
               >
                 {skill}
               </span>
@@ -132,22 +132,22 @@ export default function ExperienceList({
             })
             .map(exp => (
               <div
-                className="exp-card p-6 rounded-xl bg-white dark:bg-zinc-900/40 border border-zinc-200 dark:border-zinc-800 transition-all duration-200 hover:shadow-md hover:border-zinc-300 dark:hover:border-zinc-700 hover:-translate-y-0.5"
+                className="exp-card p-6 rounded-xl bg-white dark:bg-gray-900/40 border border-gray-200 dark:border-gray-800 transition-all duration-200 hover:shadow-md hover:border-gray-300 dark:hover:border-gray-700 hover:-translate-y-0.5"
                 key={exp.id}
               >
                 <div className="flex items-start justify-between mb-3 gap-4">
                   <div>
-                    <h4 className="font-medium text-lg text-zinc-900 dark:text-zinc-100 mb-1">
+                    <h4 className="font-medium text-lg text-gray-900 dark:text-gray-100 mb-1">
                       {exp.data.title}
                     </h4>
-                    <p className="text-zinc-600 dark:text-zinc-400 font-medium">
+                    <p className="text-gray-600 dark:text-gray-400 font-medium">
                       {exp.data.company}
                     </p>
                   </div>
                   <div className="text-right flex-shrink-0">
-                    <span className="text-sm text-zinc-500 dark:text-zinc-400 font-medium block">{exp.data.timeframe}</span>
+                    <span className="text-sm text-gray-500 dark:text-gray-400 font-medium block">{exp.data.timeframe}</span>
                     {exp.data.location && (
-                      <div className="text-xs text-zinc-500 dark:text-zinc-400 flex items-center gap-1 mt-1 justify-end">
+                      <div className="text-xs text-gray-500 dark:text-gray-400 flex items-center gap-1 mt-1 justify-end">
                         <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
                           <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
                         </svg>
@@ -163,7 +163,7 @@ export default function ExperienceList({
                     {exp.data.context.map((tag, idx) => (
                       <span 
                         key={idx}
-                        className="px-2 py-1 text-xs rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 border border-zinc-300 dark:border-zinc-700"
+                        className="px-2 py-1 text-xs rounded bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-700"
                       >
                         {tag}
                       </span>
@@ -175,8 +175,8 @@ export default function ExperienceList({
                 {exp.data.responsibilities && exp.data.responsibilities.length > 0 && (
                   <ul className="space-y-2">
                     {exp.data.responsibilities.map((item, idx) => (
-                      <li key={idx} className="text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed flex items-start gap-2">
-                        <span className="text-zinc-400 dark:text-zinc-500 mt-1.5 flex-shrink-0">•</span>
+                      <li key={idx} className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed flex items-start gap-2">
+                        <span className="text-gray-400 dark:text-gray-500 mt-1.5 flex-shrink-0">•</span>
                         <span>{item}</span>
                       </li>
                     ))}

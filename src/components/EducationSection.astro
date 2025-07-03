@@ -33,7 +33,7 @@ const hasExpandableContent = nonFeaturedEntriesRendered.length > 0;
     {hasExpandableContent && (
       <button 
         id="education-toggle"
-        class="text-sm text-gray-600 dark:text-gray-400 hover:text-primary transition-colors flex items-center gap-1"
+        class="text-sm text-gray-600 dark:text-gray-400 hover-accent transition-colors flex items-center gap-1"
         aria-label="Toggle education details"
       >
         <span id="education-toggle-text">Show all</span>
@@ -55,20 +55,22 @@ const hasExpandableContent = nonFeaturedEntriesRendered.length > 0;
       <div class="space-y-4">
         <!-- Featured entries (always visible) -->
         {featuredEntriesRendered.map((entry) => (
-          <div class="education-entry featured border-b border-gray-200 dark:border-gray-700 pb-4" data-entry-id={entry.id}>
-            <div class="flex justify-between items-baseline">
-              <h3 class="font-medium text-text-light dark:text-text-dark text-base leading-tight">{entry.data.title}</h3>
-              <span class="text-sm text-gray-600 dark:text-gray-400 whitespace-nowrap ml-4 flex-shrink-0">{entry.data.period}</span>
-            </div>
-            <p class="text-gray-600 dark:text-gray-400 text-sm mb-3 -mt-1">
-              {entry.data.institution}
-              {entry.data.status && <span class="text-gray-500 dark:text-gray-500"> • {entry.data.status}</span>}
-            </p>
-            {entry.rendered && (
-              <div class="text-gray-700 dark:text-gray-300 text-sm prose prose-gray dark:prose-invert max-w-none">
-                <entry.rendered.Content />
+          <div class="education-entry featured pb-4" data-entry-id={entry.id}>
+            <div class="pl-3 border-l-2 border-secondary">
+              <div class="flex justify-between items-baseline">
+                <h3 class="font-medium text-text-light dark:text-text-dark text-base leading-tight">{entry.data.title}</h3>
+                <span class="text-sm text-gray-600 dark:text-gray-400 whitespace-nowrap ml-4 flex-shrink-0">{entry.data.period}</span>
               </div>
-            )}
+              <p class="text-gray-600 dark:text-gray-400 text-sm mb-3 -mt-1">
+                {entry.data.institution}
+                {entry.data.status && <span class="text-secondary font-medium"> • {entry.data.status}</span>}
+              </p>
+              {entry.rendered && (
+                <div class="text-gray-700 dark:text-gray-300 text-sm prose prose-gray dark:prose-invert max-w-none">
+                  <entry.rendered.Content />
+                </div>
+              )}
+            </div>
           </div>
         ))}
         
@@ -76,20 +78,22 @@ const hasExpandableContent = nonFeaturedEntriesRendered.length > 0;
         {hasExpandableContent && (
           <div id="education-expandable" class="space-y-4" style="display: none;">
             {nonFeaturedEntriesRendered.map((entry) => (
-              <div class="education-entry non-featured border-b border-gray-200 dark:border-gray-700 pb-4" data-entry-id={entry.id}>
-                <div class="flex justify-between items-baseline">
-                  <h3 class="font-medium text-text-light dark:text-text-dark text-base leading-tight">{entry.data.title}</h3>
-                  <span class="text-sm text-gray-600 dark:text-gray-400 whitespace-nowrap ml-4 flex-shrink-0">{entry.data.period}</span>
-                </div>
-                <p class="text-gray-600 dark:text-gray-400 text-sm mb-3 -mt-1">
-                  {entry.data.institution}
-                  {entry.data.status && <span class="text-gray-500 dark:text-gray-500"> • {entry.data.status}</span>}
-                </p>
-                {entry.rendered && (
-                  <div class="text-gray-700 dark:text-gray-300 text-sm prose prose-gray dark:prose-invert max-w-none">
-                    <entry.rendered.Content />
+              <div class="education-entry non-featured pb-4" data-entry-id={entry.id}>
+                <div class="pl-3 border-l-2 border-secondary">
+                  <div class="flex justify-between items-baseline">
+                    <h3 class="font-medium text-text-light dark:text-text-dark text-base leading-tight">{entry.data.title}</h3>
+                    <span class="text-sm text-gray-600 dark:text-gray-400 whitespace-nowrap ml-4 flex-shrink-0">{entry.data.period}</span>
                   </div>
-                )}
+                  <p class="text-gray-600 dark:text-gray-400 text-sm mb-3 -mt-1">
+                    {entry.data.institution}
+                    {entry.data.status && <span class="text-gray-500 dark:text-gray-500"> • {entry.data.status}</span>}
+                  </p>
+                  {entry.rendered && (
+                    <div class="text-gray-700 dark:text-gray-300 text-sm prose prose-gray dark:prose-invert max-w-none">
+                      <entry.rendered.Content />
+                    </div>
+                  )}
+                </div>
               </div>
             ))}
           </div>

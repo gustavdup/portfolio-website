@@ -11,6 +11,18 @@ const blog = defineCollection({
   }),
 });
 
+const bio = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    role: z.string().optional(),
+    location: z.string().optional(),
+    description: z.string().optional(),
+    image: z.string().optional(),
+    email: z.string().optional(),
+  }),
+});
+
 const projects = defineCollection({
   type: 'content',
   schema: z.object({
@@ -104,9 +116,23 @@ const education = defineCollection({
   }),
 });
 
+const currentRoles = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    company: z.string(),
+    roleType: z.string(), // Full-time, Contractor, Freelance, etc.
+    timeframe: z.string(),
+    location: z.string().optional(),
+    visible: z.boolean().default(true),
+    order: z.number().optional(),
+  }),
+});
+
 // Export collections for Astro to pick up
 export const collections = {
   blog,
+  bio,
   projects,
   experienceProduct,
   experienceTechnology,
@@ -114,4 +140,5 @@ export const collections = {
   experienceUX,
   experienceLeadership,
   education,
+  currentRoles,
 };

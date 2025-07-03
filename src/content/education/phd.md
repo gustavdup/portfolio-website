@@ -8,4 +8,4 @@ featured: true
 order: 1
 ---
 
-Research focused on enhancing user onboarding and change readiness through behavioural models and interventions to support successful enterprise software adoption.
+- Research focused on enhancing user onboarding and change readiness through behavioural models and interventions to support successful enterprise software adoption.

@@ -14,16 +14,16 @@ const sortedBlog = blog.sort((a, b) => {
 <section class="mt-6">
   <!-- Articles Description -->
   <div class="mb-6">
-    <p class="text-zinc-600 dark:text-zinc-400 text-base leading-relaxed max-w-4xl">
+    <p class="text-gray-600 dark:text-gray-400 text-base leading-relaxed max-w-4xl">
       Insights on product, technology, strategy, and change — drawn from real-world experience, research, and reflection.
     </p>
   </div>
   
   <div class="flex items-center gap-4 mb-6">
     <div class="flex items-center gap-2">
-      <h2 class="text-sm font-medium tracking-wider uppercase text-zinc-600 dark:text-zinc-400">Articles</h2>
+      <h2 class="text-sm font-medium tracking-wider uppercase text-gray-600 dark:text-gray-400">Articles</h2>
     </div>
-    <div class="flex-1 h-[1px] bg-zinc-200 dark:bg-zinc-800"></div>
+    <div class="flex-1 h-[1px] bg-gray-200 dark:bg-gray-800"></div>
   </div>
   
   {sortedBlog.length > 0 ? (
@@ -32,22 +32,22 @@ const sortedBlog = blog.sort((a, b) => {
         <li class="group transition-all duration-200">
           <a 
             href={`/blog/${post.slug}`}
-            class="block py-5 px-6 rounded-xl bg-zinc-50 dark:bg-zinc-900/30 border border-zinc-200 dark:border-zinc-800 transition-all duration-200 hover:bg-zinc-100 dark:hover:bg-zinc-900/50 hover:border-primary/30 hover:shadow-md"
+            class="block py-5 px-6 rounded-xl bg-gray-50 dark:bg-gray-900/30 border border-gray-200 dark:border-gray-800 transition-all duration-200 hover:bg-gray-100 dark:hover:bg-gray-900/50 hover:border-accent/30 hover:shadow-md"
           >
             <div class="flex items-center justify-between mb-1">
-              <h3 class="font-medium text-base text-zinc-900 dark:text-zinc-100 group-hover:text-primary transition-colors duration-200">{post.data.title}</h3>
+              <h3 class="font-medium text-base text-gray-900 dark:text-gray-100 group-hover-accent transition-colors duration-200">{post.data.title}</h3>
               <div class="flex items-center gap-2">
                 {post.data.date && (
-                  <span class="text-xs text-zinc-500 dark:text-zinc-400">{post.data.date}</span>
+                  <span class="text-xs text-gray-500 dark:text-gray-400">{post.data.date}</span>
                 )}
-                <svg class="w-4 h-4 text-zinc-400 group-hover:text-primary transition-colors duration-200" fill="currentColor" viewBox="0 0 20 20">
+                <svg class="w-4 h-4 text-gray-400 group-hover-accent transition-colors duration-200" fill="currentColor" viewBox="0 0 20 20">
                   <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
                 </svg>
               </div>
             </div>
             
             {post.data.description && (
-              <p class="text-sm text-zinc-700 dark:text-zinc-300 mb-3">{post.data.description}</p>
+              <p class="text-sm text-gray-700 dark:text-gray-300 mb-3">{post.data.description}</p>
             )}
             
             <!-- Tags Display -->
@@ -66,7 +66,7 @@ const sortedBlog = blog.sort((a, b) => {
     </ul>
   ) : (
     <div class="py-12 text-center">
-      <p class="text-zinc-600 dark:text-zinc-400">No blog posts available yet. Check back soon!</p>
+      <p class="text-gray-600 dark:text-gray-400">No blog posts available yet. Check back soon!</p>
     </div>
   )}
 </section>

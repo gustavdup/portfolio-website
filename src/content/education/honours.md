@@ -7,4 +7,4 @@ featured: false
 order: 3
 ---
 
-Graduated Cum Laude.
+- Graduated Cum Laude.
