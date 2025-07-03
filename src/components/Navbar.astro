@@ -1,0 +1,40 @@
+---
+import DarkModeToggle from './DarkModeToggle.astro';
+
+export interface Props {
+  currentPath: string;
+}
+
+const { currentPath } = Astro.props;
+
+// Function to check if a path is active
+const isActive = (path: string) => {
+  if (path === '/' && currentPath === '/') return true;
+  if (path !== '/' && currentPath.startsWith(path)) return true;
+  return false;
+};
+---
+
+<nav class="inline-flex w-full justify-center mt-6">
+  <div class="flex items-center gap-6 px-7 py-3 rounded-2xl text-zinc-800 dark:text-zinc-200 backdrop-blur-xl border border-zinc-200/80 dark:border-zinc-800/80 bg-white/90 dark:bg-zinc-900/90 shadow-xl">
+    <div class="flex items-center gap-6 text-sm">
+      <a class={`relative group font-medium transition-colors duration-200 px-2 ${isActive('/') ? 'text-zinc-900 dark:text-zinc-100' : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100'}`} href="/">Home
+        <span class={`absolute -bottom-0.5 left-0 h-[1.5px] bg-zinc-900 dark:bg-zinc-100 transition-all duration-300 ${isActive('/') ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
+      </a>
+      <a class={`relative group font-medium transition-colors duration-200 px-2 ${isActive('/blog') ? 'text-zinc-900 dark:text-zinc-100' : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100'}`} href="/blog">Blog
+        <span class={`absolute -bottom-0.5 left-0 h-[1.5px] bg-zinc-900 dark:bg-zinc-100 transition-all duration-300 ${isActive('/blog') ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
+      </a>
+      <a class={`relative group font-medium transition-colors duration-200 px-2 ${isActive('/projects') ? 'text-zinc-900 dark:text-zinc-100' : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100'}`} href="/projects">Projects
+        <span class={`absolute -bottom-0.5 left-0 h-[1.5px] bg-zinc-900 dark:bg-zinc-100 transition-all duration-300 ${isActive('/projects') ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
+      </a>
+      <a class={`relative group font-medium transition-colors duration-200 px-2 ${isActive('/experience') ? 'text-zinc-900 dark:text-zinc-100' : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100'}`} href="/experience">Experience
+        <span class={`absolute -bottom-0.5 left-0 h-[1.5px] bg-zinc-900 dark:bg-zinc-100 transition-all duration-300 ${isActive('/experience') ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
+      </a>
+      <a class={`relative group font-medium transition-colors duration-200 px-2 ${isActive('/contact') ? 'text-zinc-900 dark:text-zinc-100' : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100'}`} href="/contact">Contact
+        <span class={`absolute -bottom-0.5 left-0 h-[1.5px] bg-zinc-900 dark:bg-zinc-100 transition-all duration-300 ${isActive('/contact') ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
+      </a>
+    </div>
+    <div class="h-4 w-[1.5px] bg-zinc-300 dark:bg-zinc-700 mx-5"></div>
+    <DarkModeToggle />
+  </div>
+</nav>

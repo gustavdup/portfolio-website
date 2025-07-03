@@ -1,0 +1,22 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ExperienceListReact from '../components/ExperienceListReact.jsx';
+import { getCollection } from 'astro:content';
+
+const productExperiences = await getCollection('experienceProduct');
+const technologyExperiences = await getCollection('experienceTechnology');
+const strategyExperiences = await getCollection('experienceStrategy');
+const uxExperiences = await getCollection('experienceUX');
+const leadershipExperiences = await getCollection('experienceLeadership');
+---
+
+<Layout>
+  <ExperienceListReact 
+    client:load 
+    productExperiences={productExperiences} 
+    technologyExperiences={technologyExperiences}
+    strategyExperiences={strategyExperiences}
+    uxExperiences={uxExperiences}
+    leadershipExperiences={leadershipExperiences}
+  />
+</Layout>
