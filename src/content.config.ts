@@ -87,6 +87,13 @@ const experienceLeadership = defineCollection({
   }),
 });
 
+const education = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+  }),
+});
+
 // Export collections for Astro to pick up
 export const collections = {
   blog,
@@ -96,4 +103,5 @@ export const collections = {
   experienceStrategy,
   experienceUX,
   experienceLeadership,
+  education,
 };

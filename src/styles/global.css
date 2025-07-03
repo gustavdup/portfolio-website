@@ -2,6 +2,35 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Custom Portfolio Color System */
+@layer base {
+  :root {
+    /* Light mode colors */
+    --primary: #4B6EF5;
+    --secondary: #00C6A2;
+    --accent: #FFB454;
+    --bg-primary: #FAFAFA;
+    --bg-secondary: #FFFFFF;
+    --text-primary: #111827;
+    --text-secondary: #374151;
+    --text-muted: #6B7280;
+    --border: #E5E7EB;
+  }
+  
+  .dark {
+    /* Dark mode colors */
+    --primary: #4B6EF5;
+    --secondary: #00C6A2;
+    --accent: #FFB454;
+    --bg-primary: #121212;
+    --bg-secondary: #1A1A1A;
+    --text-primary: #E5E7EB;
+    --text-secondary: #D1D5DB;
+    --text-muted: #9CA3AF;
+    --border: #374151;
+  }
+}
+
 /* Custom global styles can go here */
 html {
   scroll-behavior: smooth;
@@ -9,4 +38,33 @@ html {
 
 body {
   font-family: theme('fontFamily.sans');
+}
+
+/* Education content styling */
+.education-content h2 {
+  @apply text-base font-medium text-zinc-900 dark:text-zinc-100 mb-2 mt-6 first:mt-0;
+}
+
+.education-content p {
+  @apply text-sm text-zinc-600 dark:text-zinc-400 mb-2;
+}
+
+.education-content strong {
+  @apply font-medium text-zinc-900 dark:text-zinc-100;
+}
+
+.education-content em {
+  @apply text-zinc-600 dark:text-zinc-400;
+}
+
+.education-content ul {
+  @apply space-y-1 mb-4;
+}
+
+.education-content li {
+  @apply text-sm text-zinc-700 dark:text-zinc-300;
+}
+
+.education-content hr {
+  @apply border-zinc-200 dark:border-zinc-800 my-6;
 }
