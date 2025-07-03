@@ -1,0 +1,119 @@
+---
+import { getCollection } from 'astro:content';
+import type { GetStaticPathsOptions } from 'astro';
+import Layout from '../../layouts/Layout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+  return projects.map((project) => ({
+    params: { slug: project.slug },
+    props: project,
+  }));
+}
+
+const project = Astro.props;
+const { Content } = await project.render();
+---
+
+<Layout 
+  title={`${project.data.title} | Portfolio | Gustav du Plessis`} 
+  description={project.data.summary || project.data.description || `${project.data.title} - Portfolio project by Gustav du Plessis`}
+>
+  <!-- Integrated breadcrumb header -->
+  <div class="flex items-center gap-4 mb-8">
+    <div class="flex items-center gap-2 text-sm">
+      <a href="/projects" class="text-zinc-600 dark:text-zinc-400 hover:text-primary transition-colors uppercase tracking-wider font-medium">Portfolio</a>
+      <svg class="w-4 h-4 text-gray-400 dark:text-gray-500" fill="currentColor" viewBox="0 0 20 20">
+        <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+      </svg>
+      <span class="text-text-light dark:text-text-dark font-medium">{project.data.title}</span>
+    </div>
+    <div class="flex-1 h-[1px] bg-zinc-200 dark:bg-zinc-800"></div>
+  </div>
+  
+  <article class="prose max-w-none">
+    <!-- Project Header -->
+    <div class="mb-8 pb-8 border-b border-gray-200 dark:border-gray-700">
+      <h1 class="text-4xl font-bold text-text-light dark:text-text-dark mb-4">
+        {project.data.title}
+      </h1>
+      
+      {project.data.summary && (
+        <p class="text-xl text-gray-600 dark:text-gray-400 mb-4">
+          {project.data.summary}
+        </p>
+      )}
+      
+      <div class="flex flex-wrap gap-4 text-sm">
+        {project.data.date && (
+          <div class="flex items-center gap-2">
+            <svg class="w-4 h-4 text-gray-500" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd" />
+            </svg>
+            <span class="text-gray-600 dark:text-gray-400">{project.data.date}</span>
+          </div>
+        )}
+        
+        {project.data.tags && project.data.tags.length > 0 && (
+          <div class="flex items-center gap-2">
+            <svg class="w-4 h-4 text-gray-500" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M17.707 9.293a1 1 0 010 1.414l-7 7a1 1 0 01-1.414 0l-7-7A.997.997 0 012 10V5a3 3 0 013-3h5c.256 0 .512.098.707.293l7 7zM5 6a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd" />
+            </svg>
+            <div class="flex flex-wrap gap-1">
+              {project.data.tags.map((tag) => (
+                <span class="px-2 py-1 text-xs rounded-full bg-primary/10 text-primary border border-primary/20">
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </div>
+        )}
+        
+        {project.data.tech && project.data.tech.length > 0 && (
+          <div class="flex items-center gap-2">
+            <svg class="w-4 h-4 text-gray-500" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+            </svg>
+            <div class="flex flex-wrap gap-1">
+              {project.data.tech.map((tech) => (
+                <span class="px-2 py-1 text-xs rounded-full bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700">
+                  {tech}
+                </span>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+    
+    <!-- Project Image -->
+    {project.data.image && (
+      <div class="mb-8">
+        <img 
+          src={project.data.image} 
+          alt={project.data.title}
+          class="w-full rounded-lg shadow-lg border border-gray-200 dark:border-gray-700"
+        />
+      </div>
+    )}
+    
+    <!-- Project Content -->
+    <div class="prose max-w-none">
+      <Content />
+    </div>
+    
+    <!-- Back to Portfolio Button -->
+    <div class="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
+      <a 
+        href="/projects" 
+        class="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 hover:bg-primary/20 text-primary rounded-lg transition-colors duration-200 border border-primary/20 hover:border-primary/30"
+      >
+        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
+        </svg>
+        Back to Portfolio
+      </a>
+    </div>
+  </article>
+</Layout>

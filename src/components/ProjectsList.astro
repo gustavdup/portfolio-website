@@ -1,26 +1,140 @@
 ---
 import { getCollection } from 'astro:content';
+
 const projects = await getCollection('projects');
+const sortedProjects = projects.sort((a, b) => (a.data.order || 999) - (b.data.order || 999));
+
+// Extract all unique tags and count occurrences
+const tagCounts = {};
+sortedProjects.forEach(project => {
+  project.data.tags?.forEach(tag => {
+    tagCounts[tag] = (tagCounts[tag] || 0) + 1;
+  });
+});
+
+// Sort tags alphabetically and create tab structure
+const sortedTags = Object.keys(tagCounts).sort();
+const allCount = sortedProjects.length;
 ---
 
-<section class="mt-12">
+<script is:inline client:load>
+  let selectedTag = 'All';
+  
+  function handleTagChange(tag) {
+    selectedTag = tag;
+    
+    // Update active tab styling
+    document.querySelectorAll('.tag-tab').forEach(tab => {
+      tab.classList.remove('bg-primary', 'text-white');
+      tab.classList.add('bg-gray-100', 'dark:bg-gray-800', 'text-gray-700', 'dark:text-gray-300');
+    });
+    
+    // Find and highlight the clicked tab
+    const clickedTab = document.querySelector(`[data-tag="${tag}"]`);
+    if (clickedTab) {
+      clickedTab.classList.remove('bg-gray-100', 'dark:bg-gray-800', 'text-gray-700', 'dark:text-gray-300');
+      clickedTab.classList.add('bg-primary', 'text-white');
+    }
+    
+    // Filter projects
+    document.querySelectorAll('.project-card').forEach(card => {
+      const cardTags = card.dataset.tags ? card.dataset.tags.split(',') : [];
+      const shouldShow = selectedTag === 'All' || cardTags.includes(selectedTag);
+      card.style.display = shouldShow ? '' : 'none';
+    });
+  }
+  
+  if (typeof window !== 'undefined') {
+    window.addEventListener('DOMContentLoaded', () => {
+      // Set initial active tab
+      handleTagChange('All');
+    });
+  }
+</script>
+
+<section class="mt-6">
+  <!-- Portfolio Description -->
+  <div class="mb-6">
+    <p class="text-zinc-600 dark:text-zinc-400 text-base leading-relaxed max-w-4xl">
+      A collection of products, projects, and experiments — spanning what I've built, led, or explored across roles and interests.
+    </p>
+  </div>
+  
   <div class="flex items-center gap-4 mb-6">
-    <h2 class="text-sm font-medium tracking-wider uppercase text-zinc-600 dark:text-zinc-400">Projects</h2>
+    <div class="flex items-center gap-2">
+      <h2 class="text-sm font-medium tracking-wider uppercase text-zinc-600 dark:text-zinc-400">Filter by Category</h2>
+    </div>
     <div class="flex-1 h-[1px] bg-zinc-200 dark:bg-zinc-800"></div>
   </div>
+  
+  <!-- Tag Filter Tabs -->
+  <div class="flex flex-wrap gap-2 mb-6">
+    <!-- All tab always first -->
+    <button 
+      class="tag-tab px-3 py-1 rounded-full text-sm font-medium transition-colors bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-primary hover:text-white"
+      data-tag="All"
+      onclick="handleTagChange('All')"
+    >
+      All ({allCount})
+    </button>
+    
+    <!-- Other tags sorted alphabetically -->
+    {sortedTags.map(tag => (
+      <button 
+        class="tag-tab px-3 py-1 rounded-full text-sm font-medium transition-colors bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-primary hover:text-white"
+        data-tag={tag}
+        onclick={`handleTagChange('${tag}')`}
+      >
+        {tag} ({tagCounts[tag]})
+      </button>
+    ))}
+  </div>
+  
+  <!-- Projects Grid -->
   <ul class="space-y-4">
-    {projects.map(project => (
-      <li key={project.id} class="py-5 px-6 rounded-xl bg-zinc-50 dark:bg-zinc-900/30 border border-zinc-200 dark:border-zinc-800 transition-all duration-200 hover:bg-zinc-100 dark:hover:bg-zinc-900/50">
-        <div class="flex items-center justify-between mb-1">
-          <h3 class="font-medium text-base text-zinc-900 dark:text-zinc-100">{project.data.title}</h3>
-          <span class="text-xs text-zinc-500 dark:text-zinc-400">{project.data.date}</span>
-        </div>
-        <p class="text-sm text-zinc-700 dark:text-zinc-300 mb-2">{project.data.summary}</p>
-        <div class="flex flex-wrap gap-2">
-          {project.data.tech?.map(tech => (
-            <span class="inline-block bg-zinc-200 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 text-xs px-2 py-1 rounded border border-zinc-300 dark:border-zinc-700">{tech}</span>
-          ))}
-        </div>
+    {sortedProjects.map(project => (
+      <li 
+        key={project.id} 
+        class="project-card group transition-all duration-200"
+        data-tags={project.data.tags?.join(',') || ''}
+      >
+        <a 
+          href={`/projects/${project.slug}`}
+          class="block py-5 px-6 rounded-xl bg-zinc-50 dark:bg-zinc-900/30 border border-zinc-200 dark:border-zinc-800 transition-all duration-200 hover:bg-zinc-100 dark:hover:bg-zinc-900/50 hover:border-primary/30 hover:shadow-md"
+        >
+          <div class="flex items-center justify-between mb-1">
+            <h3 class="font-medium text-base text-zinc-900 dark:text-zinc-100 group-hover:text-primary transition-colors duration-200">{project.data.title}</h3>
+            <div class="flex items-center gap-2">
+              <span class="text-xs text-zinc-500 dark:text-zinc-400">{project.data.date}</span>
+              <svg class="w-4 h-4 text-zinc-400 group-hover:text-primary transition-colors duration-200" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+              </svg>
+            </div>
+          </div>
+          <p class="text-sm text-zinc-700 dark:text-zinc-300 mb-3">{project.data.summary}</p>
+          
+          <!-- Tags Display -->
+          {project.data.tags && project.data.tags.length > 0 && (
+            <div class="flex flex-wrap gap-2 mb-2">
+              {project.data.tags.map(tag => (
+                <span class="inline-block bg-primary/10 text-primary text-xs px-2 py-1 rounded border border-primary/20">
+                  {tag}
+                </span>
+              ))}
+            </div>
+          )}
+          
+          <!-- Tech Stack -->
+          {project.data.tech && project.data.tech.length > 0 && (
+            <div class="flex flex-wrap gap-2">
+              {project.data.tech.map(tech => (
+                <span class="inline-block bg-zinc-200 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 text-xs px-2 py-1 rounded border border-zinc-300 dark:border-zinc-700">
+                  {tech}
+                </span>
+              ))}
+            </div>
+          )}
+        </a>
       </li>
     ))}
   </ul>

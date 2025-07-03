@@ -3,7 +3,7 @@ company: "Edublox Online Tutor"
 title: "Chief Product Officer (Consultant)"
 timeframe: "2017 - Present"
 location: "Remote"
-order: 4
+order: 3
 context: ["Tech Manager", "Product Manager", "Strategy", "UX"]
 responsibilities:
   - Led technical design and architecture for the SaaS platform, ensuring scalability and security.

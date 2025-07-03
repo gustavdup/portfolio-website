@@ -3,7 +3,7 @@ company: "MURAL"
 title: "Interim Senior Product Manager"
 timeframe: "2021 – 2022"
 location: "Remote"
-order: 1
+order: 3
 context: ["Product Manager", "Product Owner", "Tech Manager", "Strategy", "UX"]
 responsibilities:
   - Led a remote product team at a SaaS scale-up, delivering critical features on time and within scope.

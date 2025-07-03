@@ -3,7 +3,7 @@ company: "Iscann Group"
 title: "Product Manager"
 timeframe: "2021"
 location: "Remote"
-order: 3
+order: 4
 context: ["Product Manager", "Product Owner", "Tech Manager", "Strategy", "UX"]
 responsibilities:
   - Realigned product development between UK org and outsourced team, delivering MVP in five weeks.

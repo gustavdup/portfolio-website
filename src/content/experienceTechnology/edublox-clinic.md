@@ -3,7 +3,7 @@ company: "Edublox Reading and Learning Clinic"
 title: "Chief Information Officer | Co-owner"
 timeframe: "2016 – Present"
 location: "South Africa"
-order: 6
+order: 2
 context: ["Tech Manager", "Product Manager", "Strategy", "UX"]
 responsibilities:
   - Led technical development and scaling of internal education SaaS for franchisees and international clients.

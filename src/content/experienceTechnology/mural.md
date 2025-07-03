@@ -3,7 +3,7 @@ company: "MURAL"
 title: "Interim Senior Product Manager"
 timeframe: "2021 – 2022"
 location: "Remote"
-order: 1
+order: 4
 context: ["Tech Manager", "Product Manager", "Strategy", "UX"]
 responsibilities:
   - Led technical integration of acquired teams and content with minimal disruption.

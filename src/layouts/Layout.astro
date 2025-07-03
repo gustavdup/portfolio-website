@@ -2,6 +2,16 @@
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { 
+  title = "Gustav du Plessis - Portfolio", 
+  description = "Product Manager, Developer & UX Designer" 
+} = Astro.props;
 ---
 
 <html lang="en" class="scroll-smooth">
@@ -10,7 +20,8 @@ import '../styles/global.css';
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
-    <title>Gustav du Plessis - Portfolio</title>
+    <meta name="description" content={description} />
+    <title>{title}</title>
     <script is:inline>
       // Prevent flash of unstyled content (FOUC) for dark mode
       // Dark mode is the default
@@ -25,13 +36,61 @@ import '../styles/global.css';
         }
       })();
     </script>
+    
+    <script is:inline>
+      // Simple header scroll behavior
+      window.addEventListener('DOMContentLoaded', function() {
+        const headerSection = document.getElementById('header-section');
+        let stickyHeader = null;
+        let isSticky = false;
+        
+        function handleScroll() {
+          const scrollY = window.scrollY;
+          const shouldBeSticky = scrollY > 100;
+          
+          if (shouldBeSticky && !isSticky) {
+            // Create sticky header
+            isSticky = true;
+            stickyHeader = headerSection.cloneNode(true);
+            stickyHeader.id = 'sticky-header';
+            stickyHeader.className = 'fixed top-0 left-0 right-0 z-50 bg-bg-light/80 dark:bg-bg-dark/80 backdrop-blur-xl border-b border-gray-200/50 dark:border-gray-700/50 py-3 transition-all duration-300';
+            stickyHeader.style.transform = 'translateY(-100%)';
+            document.body.insertBefore(stickyHeader, document.body.firstChild);
+            
+            // Animate in
+            setTimeout(() => {
+              stickyHeader.style.transform = 'translateY(0)';
+            }, 10);
+            
+          } else if (!shouldBeSticky && isSticky) {
+            // Remove sticky header
+            isSticky = false;
+            if (stickyHeader) {
+              stickyHeader.style.transform = 'translateY(-100%)';
+              setTimeout(() => {
+                if (stickyHeader && stickyHeader.parentNode) {
+                  stickyHeader.parentNode.removeChild(stickyHeader);
+                }
+                stickyHeader = null;
+              }, 300);
+            }
+          }
+        }
+        
+        // Listen for scroll events
+        window.addEventListener('scroll', handleScroll);
+      });
+    </script>
   </head>
-  <body class="bg-white dark:bg-zinc-950 min-h-screen font-sans text-zinc-900 dark:text-zinc-100 flex flex-col transition-colors duration-300 ease-in-out">
+  <body class="bg-bg-light dark:bg-bg-dark min-h-screen font-sans text-text-light dark:text-text-dark transition-colors duration-300 ease-in-out">
+    <!-- Main Content -->
     <div class="relative min-h-screen overflow-x-hidden">
       <div class="max-w-4xl mx-auto p-4 sm:p-6 lg:p-8 flex flex-col min-h-screen transition-colors duration-300 ease-in-out font-sans tracking-normal">
-        <div class="flex justify-center mb-8">
+        <!-- Header that transforms on scroll -->
+        <div id="header-section" class="flex justify-center mb-8 transition-all duration-300 ease-in-out">
           <Navbar currentPath={Astro.url.pathname} />
         </div>
+        
         <div class="flex-1">
           <slot />
         </div>

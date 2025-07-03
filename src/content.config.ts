@@ -1,6 +1,7 @@
 import { z, defineCollection } from 'astro:content';
 
 const blog = defineCollection({
+  type: 'content',
   schema: z.object({
     title: z.string(),
     date: z.string().optional(),
@@ -11,14 +12,17 @@ const blog = defineCollection({
 });
 
 const projects = defineCollection({
+  type: 'content',
   schema: z.object({
     title: z.string(),
     date: z.string().optional(),
-    category: z.array(z.string()).optional(),
+    tags: z.array(z.string()).default([]),
     tech: z.array(z.string()).optional(),
     summary: z.string().optional(),
     details: z.string().optional(),
     image: z.string().optional(),
+    featured: z.boolean().default(false),
+    order: z.number().optional(),
   }),
 });
 
@@ -91,6 +95,12 @@ const education = defineCollection({
   type: 'content',
   schema: z.object({
     title: z.string(),
+    institution: z.string(),
+    period: z.string(),
+    status: z.string().optional(),
+    visible: z.boolean().default(true),
+    featured: z.boolean().default(false),
+    order: z.number().optional(),
   }),
 });
 

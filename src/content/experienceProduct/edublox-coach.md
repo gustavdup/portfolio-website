@@ -3,7 +3,7 @@ company: "Edublox Reading and Learning Clinic"
 title: "IT Manager and Business Coach"
 timeframe: "2012 - 2015"
 location: "South Africa"
-order: 3
+order: 6
 context: ["Product Manager", "Product Owner", "Tech Manager", "Strategy", "UX"]
 responsibilities:
   - Built and launched a comprehensive Excel (VBA) business management tool for 40+ franchisees.

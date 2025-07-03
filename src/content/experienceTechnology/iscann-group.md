@@ -3,7 +3,7 @@ company: "Iscann Group"
 title: "Product Manager"
 timeframe: "2021"
 location: "Remote"
-order: 2
+order: 5
 context: ["Tech Manager", "Product Manager", "Strategy", "UX"]
 responsibilities:
   - Led technical delivery of MVP, ensuring code quality and security.

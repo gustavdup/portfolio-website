@@ -3,7 +3,7 @@ company: "Edublox Reading and Learning Clinic"
 title: "IT Support Consultant"
 timeframe: "2010 - 2011"
 location: "South Africa"
-order: 3
+order: 7
 context: ["Technology Manager", "IT", "Support", "Training"]
 responsibilities:
   - Delivered Excel-based tools for client, invoicing, and learner progress management.

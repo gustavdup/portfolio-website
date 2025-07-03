@@ -62,47 +62,53 @@ export default function ExperienceList({
 
   return (
     <div>
-      {/* Main Header */}
-      <div className="mb-8">
-        <h1 className="text-2xl font-medium text-zinc-900 dark:text-zinc-100 mb-3">Experience</h1>
-        <p className="text-zinc-600 dark:text-zinc-400 text-base leading-relaxed">
+      {/* Description without main title */}
+      <div className="mb-6 mt-6">
+        <p className="text-zinc-600 dark:text-zinc-400 text-base leading-relaxed max-w-4xl">
           Each role highlights a different strength. Explore my experience from the perspective that matters most to you — product, technology, strategy, UX, or leadership.
         </p>
       </div>
 
-      <section className="mt-8">
-        {/* Tab Navigation */}
-        <div className="flex items-center gap-4 mb-8">
+      <section>
+        {/* Section Header with tabs integrated */}
+        <div className="mb-8">
+          <div className="flex items-center gap-4 mb-4">
+            <h2 className="text-sm font-medium tracking-wider uppercase text-zinc-600 dark:text-zinc-400">Select Perspective</h2>
+            <div className="flex-1 h-[1px] bg-zinc-200 dark:bg-zinc-800"></div>
+          </div>
+          
+          {/* Tab Navigation */}
           <div className="flex flex-wrap gap-2">
             {Object.keys(roleDescriptions).map((role) => (
               <button
                 key={role}
                 onClick={() => handleRoleChange(role)}
-                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
                   selectedRole === role
-                    ? 'bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900'
-                    : 'bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-200 dark:hover:bg-zinc-700'
+                    ? 'bg-primary text-white shadow-sm'
+                    : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-primary hover:text-white border border-gray-200 dark:border-gray-700'
                 }`}
               >
                 {role === 'UX' ? 'UX & Onboarding' : role}
               </button>
             ))}
           </div>
-          <div className="flex-1 h-[1px] bg-zinc-200 dark:bg-zinc-800 hidden sm:block"></div>
-          <span className="text-xs text-zinc-500 dark:text-zinc-400 font-medium whitespace-nowrap">
-            {experiences.length} {experiences.length === 1 ? 'role' : 'roles'}
-          </span>
         </div>
         
-        {/* Role Description Section */}
-        <div className={`mb-8 p-6 rounded-xl bg-zinc-50 dark:bg-zinc-900/50 border border-zinc-200 dark:border-zinc-800 transition-all duration-300 ${isTransitioning ? 'opacity-50' : 'opacity-100'}`}>
-          <h3 className="text-lg font-medium text-zinc-900 dark:text-zinc-100 mb-2">{currentRole.title}</h3>
-          <p className="text-zinc-600 dark:text-zinc-400 text-sm mb-4">{currentRole.description}</p>
+        {/* Role Description Section - More integrated */}
+        <div className={`mb-8 p-6 rounded-xl bg-gradient-to-br from-zinc-50 to-zinc-100/50 dark:from-zinc-900/50 dark:to-zinc-900/30 border border-zinc-200 dark:border-zinc-800 transition-all duration-300 ${isTransitioning ? 'opacity-50' : 'opacity-100'}`}>
+          <div className="flex items-start justify-between gap-4 mb-3">
+            <h3 className="text-lg font-medium text-zinc-900 dark:text-zinc-100">{currentRole.title}</h3>
+            <span className="text-xs text-zinc-500 dark:text-zinc-400 font-medium px-2 py-1 bg-zinc-200 dark:bg-zinc-800 rounded-full whitespace-nowrap">
+              {experiences.length} {experiences.length === 1 ? 'role' : 'roles'}
+            </span>
+          </div>
+          <p className="text-zinc-600 dark:text-zinc-400 text-sm mb-4 leading-relaxed">{currentRole.description}</p>
           <div className="flex flex-wrap gap-2">
             {currentRole.skills.map((skill, idx) => (
               <span 
                 key={idx}
-                className="px-3 py-1 text-xs rounded-full bg-zinc-200 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 border border-zinc-300 dark:border-zinc-700"
+                className="px-2 py-1 text-xs rounded-full bg-white dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 border border-zinc-300 dark:border-zinc-700 shadow-sm"
               >
                 {skill}
               </span>
@@ -112,7 +118,7 @@ export default function ExperienceList({
         
         {/* Experience List */}
         <div className={`transition-all duration-300 ${isTransitioning ? 'opacity-50 translate-y-2' : 'opacity-100 translate-y-0'}`}>
-          <ul className="space-y-6">
+          <div className="space-y-4">
           {experiences
             .sort((a, b) => {
               // Primary sort by order (if specified), secondary by timeframe
@@ -125,21 +131,30 @@ export default function ExperienceList({
               return b.data.timeframe > a.data.timeframe ? 1 : -1;
             })
             .map(exp => (
-              <li
-                className="exp-card py-6 px-7 rounded-xl bg-zinc-50 dark:bg-zinc-900/30 border border-zinc-200 dark:border-zinc-800 transition-all duration-200 hover:bg-zinc-100 dark:hover:bg-zinc-900/50 hover:border-zinc-300 dark:hover:border-zinc-700"
+              <div
+                className="exp-card p-6 rounded-xl bg-white dark:bg-zinc-900/40 border border-zinc-200 dark:border-zinc-800 transition-all duration-200 hover:shadow-md hover:border-zinc-300 dark:hover:border-zinc-700 hover:-translate-y-0.5"
                 key={exp.id}
               >
-                <div className="flex items-center justify-between mb-3 flex-wrap gap-2">
-                  <span className="font-medium text-lg text-zinc-900 dark:text-zinc-100">
-                    {exp.data.title} <span className="text-zinc-600 dark:text-zinc-400 font-normal">@ {exp.data.company}</span>
-                  </span>
-                  <span className="text-sm text-zinc-500 dark:text-zinc-400 font-medium">{exp.data.timeframe}</span>
-                </div>
-                <div className="text-sm text-zinc-600 dark:text-zinc-400 mb-4 flex items-center gap-2">
-                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
-                  </svg>
-                  {exp.data.location}
+                <div className="flex items-start justify-between mb-3 gap-4">
+                  <div>
+                    <h4 className="font-medium text-lg text-zinc-900 dark:text-zinc-100 mb-1">
+                      {exp.data.title}
+                    </h4>
+                    <p className="text-zinc-600 dark:text-zinc-400 font-medium">
+                      {exp.data.company}
+                    </p>
+                  </div>
+                  <div className="text-right flex-shrink-0">
+                    <span className="text-sm text-zinc-500 dark:text-zinc-400 font-medium block">{exp.data.timeframe}</span>
+                    {exp.data.location && (
+                      <div className="text-xs text-zinc-500 dark:text-zinc-400 flex items-center gap-1 mt-1 justify-end">
+                        <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
+                        </svg>
+                        {exp.data.location}
+                      </div>
+                    )}
+                  </div>
                 </div>
                 
                 {/* Context Tags */}
@@ -148,7 +163,7 @@ export default function ExperienceList({
                     {exp.data.context.map((tag, idx) => (
                       <span 
                         key={idx}
-                        className="px-2 py-1 text-xs rounded bg-zinc-200 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 border border-zinc-300 dark:border-zinc-700"
+                        className="px-2 py-1 text-xs rounded bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 border border-zinc-300 dark:border-zinc-700"
                       >
                         {tag}
                       </span>
@@ -157,14 +172,19 @@ export default function ExperienceList({
                 )}
                 
                 {/* Responsibilities */}
-                <ul className="list-disc list-inside text-sm text-zinc-700 dark:text-zinc-300 space-y-2 ml-2">
-                  {exp.data.responsibilities?.map((item, idx) => (
-                    <li key={idx} className="leading-relaxed">{item}</li>
-                  ))}
-                </ul>
-              </li>
+                {exp.data.responsibilities && exp.data.responsibilities.length > 0 && (
+                  <ul className="space-y-2">
+                    {exp.data.responsibilities.map((item, idx) => (
+                      <li key={idx} className="text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed flex items-start gap-2">
+                        <span className="text-zinc-400 dark:text-zinc-500 mt-1.5 flex-shrink-0">•</span>
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
             ))}
-          </ul>
+          </div>
         </div>
       </section>
     </div>

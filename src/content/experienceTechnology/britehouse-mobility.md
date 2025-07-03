@@ -3,7 +3,7 @@ company: "Britehouse Mobility"
 title: "Technology Manager | Product Owner"
 timeframe: "2023 – Present"
 location: "Remote"
-order: 7
+order: 1
 context: ["Tech Manager", "Product Owner", "Strategy", "UX"]
 responsibilities:
   - Built and led a cross-functional, remote-first technology team, improving collaboration and onboarding.

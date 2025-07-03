@@ -15,26 +15,26 @@ const isActive = (path: string) => {
 };
 ---
 
-<nav class="inline-flex w-full justify-center mt-6">
-  <div class="flex items-center gap-6 px-7 py-3 rounded-2xl text-zinc-800 dark:text-zinc-200 backdrop-blur-xl border border-zinc-200/80 dark:border-zinc-800/80 bg-white/90 dark:bg-zinc-900/90 shadow-xl">
+<nav class="flex w-full justify-center">
+  <div class="flex items-center gap-6 px-7 py-3 rounded-2xl text-text-light dark:text-text-dark backdrop-blur-xl border border-gray-200/80 dark:border-gray-700/80 bg-bg-light/90 dark:bg-bg-dark-alt/90 shadow-xl transition-all duration-300">
     <div class="flex items-center gap-6 text-sm">
-      <a class={`relative group font-medium transition-colors duration-200 px-2 ${isActive('/') ? 'text-zinc-900 dark:text-zinc-100' : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100'}`} href="/">About
-        <span class={`absolute -bottom-0.5 left-0 h-[1.5px] bg-zinc-900 dark:bg-zinc-100 transition-all duration-300 ${isActive('/') ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
+      <a class={`relative group font-medium transition-colors duration-200 px-2 ${isActive('/') ? 'text-primary' : 'text-gray-600 dark:text-gray-400 hover:text-primary'}`} href="/">About
+        <span class={`absolute -bottom-0.5 left-0 h-[1.5px] bg-primary transition-all duration-300 ${isActive('/') ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
       </a>
-      <a class={`relative group font-medium transition-colors duration-200 px-2 ${isActive('/blog') ? 'text-zinc-900 dark:text-zinc-100' : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100'}`} href="/blog">Blog
-        <span class={`absolute -bottom-0.5 left-0 h-[1.5px] bg-zinc-900 dark:bg-zinc-100 transition-all duration-300 ${isActive('/blog') ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
+      <a class={`relative group font-medium transition-colors duration-200 px-2 ${isActive('/blog') ? 'text-primary' : 'text-gray-600 dark:text-gray-400 hover:text-primary'}`} href="/blog">Blog
+        <span class={`absolute -bottom-0.5 left-0 h-[1.5px] bg-primary transition-all duration-300 ${isActive('/blog') ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
       </a>
-      <a class={`relative group font-medium transition-colors duration-200 px-2 ${isActive('/projects') ? 'text-zinc-900 dark:text-zinc-100' : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100'}`} href="/projects">Projects
-        <span class={`absolute -bottom-0.5 left-0 h-[1.5px] bg-zinc-900 dark:bg-zinc-100 transition-all duration-300 ${isActive('/projects') ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
+      <a class={`relative group font-medium transition-colors duration-200 px-2 ${isActive('/projects') ? 'text-primary' : 'text-gray-600 dark:text-gray-400 hover:text-primary'}`} href="/projects">Portfolio
+        <span class={`absolute -bottom-0.5 left-0 h-[1.5px] bg-primary transition-all duration-300 ${isActive('/projects') ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
       </a>
-      <a class={`relative group font-medium transition-colors duration-200 px-2 ${isActive('/experience') ? 'text-zinc-900 dark:text-zinc-100' : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100'}`} href="/experience">Experience
-        <span class={`absolute -bottom-0.5 left-0 h-[1.5px] bg-zinc-900 dark:bg-zinc-100 transition-all duration-300 ${isActive('/experience') ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
+      <a class={`relative group font-medium transition-colors duration-200 px-2 ${isActive('/experience') ? 'text-primary' : 'text-gray-600 dark:text-gray-400 hover:text-primary'}`} href="/experience">Experience
+        <span class={`absolute -bottom-0.5 left-0 h-[1.5px] bg-primary transition-all duration-300 ${isActive('/experience') ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
       </a>
-      <a class={`relative group font-medium transition-colors duration-200 px-2 ${isActive('/contact') ? 'text-zinc-900 dark:text-zinc-100' : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100'}`} href="/contact">Contact
-        <span class={`absolute -bottom-0.5 left-0 h-[1.5px] bg-zinc-900 dark:bg-zinc-100 transition-all duration-300 ${isActive('/contact') ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
+      <a class={`relative group font-medium transition-colors duration-200 px-2 ${isActive('/contact') ? 'text-primary' : 'text-gray-600 dark:text-gray-400 hover:text-primary'}`} href="/contact">Contact
+        <span class={`absolute -bottom-0.5 left-0 h-[1.5px] bg-primary transition-all duration-300 ${isActive('/contact') ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
       </a>
     </div>
-    <div class="h-4 w-[1.5px] bg-zinc-300 dark:bg-zinc-700 mx-5"></div>
+    <div class="h-4 w-[1.5px] bg-gray-300 dark:bg-gray-600 mx-5"></div>
     <DarkModeToggle />
   </div>
 </nav>
