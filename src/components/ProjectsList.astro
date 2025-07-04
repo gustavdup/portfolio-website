@@ -4,6 +4,10 @@ import { getCollection } from 'astro:content';
 const projects = await getCollection('projects');
 const sortedProjects = projects.sort((a, b) => (a.data.order || 999) - (b.data.order || 999));
 
+// Count featured projects
+const featuredProjects = sortedProjects.filter(project => project.data.featured);
+const featuredCount = featuredProjects.length;
+
 // Extract all unique tags and count occurrences
 const tagCounts = {};
 sortedProjects.forEach(project => {
@@ -43,7 +47,17 @@ const allCount = sortedProjects.length;
       const allCards = document.querySelectorAll('.project-card');
       allCards.forEach(card => {
         const cardTags = card.dataset.tags ? card.dataset.tags.split(',') : [];
-        const shouldShow = selectedTag === 'All' || cardTags.includes(selectedTag);
+        const isFeatured = card.dataset.featured === 'true';
+        let shouldShow = false;
+        
+        if (selectedTag === 'All') {
+          shouldShow = true;
+        } else if (selectedTag === 'Featured') {
+          shouldShow = isFeatured;
+        } else {
+          shouldShow = cardTags.includes(selectedTag);
+        }
+        
         card.style.display = shouldShow ? '' : 'none';
       });
     }
@@ -92,6 +106,14 @@ const allCount = sortedProjects.length;
         All ({allCount})
       </button>
       
+      <!-- Featured tab -->
+      <button 
+        class="tag-tab px-3 py-2 rounded-full text-xs font-medium transition-colors bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-primary hover:text-white whitespace-nowrap flex-shrink-0"
+        data-tag="Featured"
+      >
+        Featured ({featuredCount})
+      </button>
+      
       <!-- Other tags sorted alphabetically -->
       {sortedTags.map(tag => (
         <button 
@@ -113,6 +135,14 @@ const allCount = sortedProjects.length;
         All ({allCount})
       </button>
       
+      <!-- Featured tab -->
+      <button 
+        class="tag-tab px-3 py-1 rounded-full text-sm font-medium transition-colors bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-primary hover:text-white"
+        data-tag="Featured"
+      >
+        Featured ({featuredCount})
+      </button>
+      
       <!-- Other tags sorted alphabetically -->
       {sortedTags.map(tag => (
         <button 
@@ -132,6 +162,7 @@ const allCount = sortedProjects.length;
         key={project.id} 
         class="project-card group transition-all duration-200"
         data-tags={project.data.tags?.join(',') || ''}
+        data-featured={project.data.featured ? 'true' : 'false'}
       >
         <a 
           href={`/projects/${project.slug}`}

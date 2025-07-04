@@ -8,6 +8,10 @@ const sortedArticles = articles.sort((a, b) => {
   return dateB.getTime() - dateA.getTime();
 });
 
+// Count featured articles
+const featuredArticles = sortedArticles.filter(article => article.data.featured);
+const featuredCount = featuredArticles.length;
+
 // Extract all unique tags and count occurrences
 const tagCounts = {};
 sortedArticles.forEach(article => {
@@ -47,7 +51,17 @@ const allCount = sortedArticles.length;
       const allCards = document.querySelectorAll('.article-card');
       allCards.forEach(card => {
         const cardTags = card.dataset.tags ? card.dataset.tags.split(',') : [];
-        const shouldShow = selectedTag === 'All' || cardTags.includes(selectedTag);
+        const isFeatured = card.dataset.featured === 'true';
+        let shouldShow = false;
+        
+        if (selectedTag === 'All') {
+          shouldShow = true;
+        } else if (selectedTag === 'Featured') {
+          shouldShow = isFeatured;
+        } else {
+          shouldShow = cardTags.includes(selectedTag);
+        }
+        
         card.style.display = shouldShow ? '' : 'none';
       });
     }
@@ -96,6 +110,14 @@ const allCount = sortedArticles.length;
         All ({allCount})
       </button>
       
+      <!-- Featured tab -->
+      <button 
+        class="tag-tab px-3 py-2 rounded-full text-xs font-medium transition-colors bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-primary hover:text-white whitespace-nowrap flex-shrink-0"
+        data-tag="Featured"
+      >
+        Featured ({featuredCount})
+      </button>
+      
       <!-- Other tags sorted alphabetically -->
       {sortedTags.map(tag => (
         <button 
@@ -117,6 +139,14 @@ const allCount = sortedArticles.length;
         All ({allCount})
       </button>
       
+      <!-- Featured tab -->
+      <button 
+        class="tag-tab px-3 py-1 rounded-full text-sm font-medium transition-colors bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-primary hover:text-white"
+        data-tag="Featured"
+      >
+        Featured ({featuredCount})
+      </button>
+      
       <!-- Other tags sorted alphabetically -->
       {sortedTags.map(tag => (
         <button 
@@ -136,6 +166,7 @@ const allCount = sortedArticles.length;
         key={article.id} 
         class="article-card group transition-all duration-200"
         data-tags={article.data.tags?.join(',') || ''}
+        data-featured={article.data.featured ? 'true' : 'false'}
       >
         <a 
           href={`/articles/${article.slug}`}
