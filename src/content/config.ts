@@ -1,12 +1,13 @@
 import { z, defineCollection } from 'astro:content';
 
-const blog = defineCollection({
+const articles = defineCollection({
   schema: z.object({
     title: z.string(),
     date: z.string().optional(),
     description: z.string().optional(),
     image: z.string().optional(),
     tags: z.array(z.string()).optional(),
+    featured: z.boolean().optional(),
   }),
 });
 
@@ -85,13 +86,52 @@ const experienceTechnology = defineCollection({
   }),
 });
 
+const experienceStrategy = defineCollection({
+  type: 'content',
+  schema: z.object({
+    company: z.string(),
+    title: z.string(),
+    timeframe: z.string(),
+    location: z.string().optional(),
+    context: z.array(z.string()).optional(),
+    responsibilities: z.array(z.string()).optional(),
+  }),
+});
+
+const experienceUX = defineCollection({
+  type: 'content',
+  schema: z.object({
+    company: z.string(),
+    title: z.string(),
+    timeframe: z.string(),
+    location: z.string().optional(),
+    context: z.array(z.string()).optional(),
+    responsibilities: z.array(z.string()).optional(),
+  }),
+});
+
+const experienceLeadership = defineCollection({
+  type: 'content',
+  schema: z.object({
+    company: z.string(),
+    title: z.string(),
+    timeframe: z.string(),
+    location: z.string().optional(),
+    context: z.array(z.string()).optional(),
+    responsibilities: z.array(z.string()).optional(),
+  }),
+});
+
 // Export as default for Astro to pick up
 export default {
-  blog,
+  articles,
   projects,
   bio,
   currentRoles,
   education,
   experienceProduct,
   experienceTechnology,
+  experienceStrategy,
+  experienceUX,
+  experienceLeadership,
 };

@@ -61,31 +61,48 @@ export default function ExperienceList({
   const currentRole = roleDescriptions[selectedRole];
 
   return (
-    <div>
+    <section className="mt-4">
       {/* Description without main title */}
-      <div className="mb-8 flex justify-center px-4">
-        <div className="bg-accent/3 dark:bg-accent/6 border border-accent/15 dark:border-accent/20 rounded-2xl px-6 py-4 text-center backdrop-blur-xl shadow-lg w-full max-w-sm sm:max-w-none sm:w-auto">
-          <p className="text-text-light dark:text-text-dark font-normal text-base leading-relaxed">
-            Each role highlights a different strength. Explore my experience from the perspective that matters most to you — product, technology, strategy, UX, or leadership.
-          </p>
-        </div>
+      <div className="mb-6 sm:mb-8 text-center px-4">
+        <p className="text-sm sm:text-base font-medium text-gray-700 dark:text-gray-300 leading-relaxed max-w-2xl mx-auto mb-2">
+          My experience, Your perspective
+        </p>
+        <p className="text-xs sm:text-sm font-medium text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+          — filter by product, tech, strategy, UX, or leadership —
+        </p>
       </div>
 
-      <section>
-        {/* Section Header with tabs integrated */}
-        <div className="mb-10">
-          <div className="flex items-center gap-4 mb-6">
-            <h2 className="text-sm font-medium tracking-wider uppercase text-gray-600 dark:text-gray-400">Select Perspective</h2>
-            <div className="flex-1 h-[1px] bg-gray-200 dark:bg-gray-800"></div>
-          </div>
+      {/* Section Header with tabs integrated */}
+      <div className="mb-4 sm:mb-6">
+        <div className="flex items-center gap-2 sm:gap-4 mb-4 sm:mb-6 px-4">
+          <h2 className="text-xs sm:text-sm font-medium tracking-wider uppercase text-gray-600 dark:text-gray-400">Select Perspective</h2>
+          <div className="flex-1 h-[1px] bg-gray-200 dark:bg-gray-800"></div>
+        </div>
           
           {/* Tab Navigation */}
-          <div className="flex flex-wrap gap-2">
+          <div className="flex overflow-x-auto gap-2 pb-2 px-4 sm:hidden scrollbar-hide">
             {Object.keys(roleDescriptions).map((role) => (
               <button
                 key={role}
                 onClick={() => handleRoleChange(role)}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                className={`px-3 py-2 rounded-full text-xs font-medium transition-colors whitespace-nowrap flex-shrink-0 ${
+                  selectedRole === role
+                    ? 'bg-secondary text-white shadow-sm'
+                    : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-secondary hover:text-white border border-gray-200 dark:border-gray-700'
+                }`}
+              >
+                {role === 'UX' ? 'UX & Onboarding' : role}
+              </button>
+            ))}
+          </div>
+          
+          {/* Desktop: Flex wrap */}
+          <div className="hidden sm:flex flex-wrap gap-2">
+            {Object.keys(roleDescriptions).map((role) => (
+              <button
+                key={role}
+                onClick={() => handleRoleChange(role)}
+                className={`px-3 py-1 rounded-full text-sm font-medium transition-colors ${
                   selectedRole === role
                     ? 'bg-secondary text-white shadow-sm'
                     : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-secondary hover:text-white border border-gray-200 dark:border-gray-700'
@@ -99,24 +116,14 @@ export default function ExperienceList({
         
         {/* Role Description Section - Clean header design */}
         <div className={`mb-10 transition-all duration-300 ${isTransitioning ? 'opacity-50' : 'opacity-100'}`}>
-          <div className="border-l-4 border-secondary bg-gray-50 dark:bg-gray-900/50 pl-6 pr-4 py-6 rounded-r-lg">
+          <div className="border-l-4 border-secondary pl-6 pr-4 py-6">
             <div className="flex items-center gap-3 mb-3">
               <h3 className="text-xl font-semibold text-text-light dark:text-text-dark">{currentRole.title}</h3>
               <span className="text-xs text-secondary dark:text-secondary font-bold px-2 py-1 bg-secondary/10 dark:bg-secondary/20 rounded-md">
                 {experiences.length} {experiences.length === 1 ? 'role' : 'roles'}
               </span>
             </div>
-            <p className="text-gray-600 dark:text-gray-400 text-sm mb-4 leading-relaxed">{currentRole.description}</p>
-            <div className="flex flex-wrap gap-2">
-              {currentRole.skills.map((skill, idx) => (
-                <span 
-                  key={idx}
-                  className="px-3 py-1 text-xs font-medium rounded bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700"
-                >
-                  {skill}
-                </span>
-              ))}
-            </div>
+            <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">{currentRole.description}</p>
           </div>
         </div>
         
@@ -189,7 +196,6 @@ export default function ExperienceList({
             ))}
           </div>
         </div>
-      </section>
-    </div>
+    </section>
   );
 }

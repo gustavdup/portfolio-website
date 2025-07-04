@@ -48,7 +48,7 @@ export default {
           900: '#78350F',
         },
         // Custom background colors
-        'bg-light': '#FAFAFA',
+        'bg-light': '#f7f7f7',
         'bg-dark': '#121212',
         'bg-dark-alt': '#1A1A1A',
         
@@ -61,7 +61,7 @@ export default {
         'base-content': '#b8c1ec',
       },
       fontFamily: {
-        sans: ['Inter', 'ui-sans-serif', 'system-ui'],
+        sans: ['Plus Jakarta Sans', 'Inter', 'Helvetica Neue', 'ui-sans-serif', 'system-ui'],
       },
     },
   },

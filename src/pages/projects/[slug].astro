@@ -2,7 +2,6 @@
 import { getCollection } from 'astro:content';
 import type { GetStaticPathsOptions } from 'astro';
 import Layout from '../../layouts/Layout.astro';
-import Breadcrumb from '../../components/Breadcrumb.astro';
 
 export async function getStaticPaths() {
   const projects = await getCollection('projects');

@@ -1,20 +1,24 @@
 ---
 import { getCollection } from 'astro:content';
 
-const projects = await getCollection('projects');
-const sortedProjects = projects.sort((a, b) => (a.data.order || 999) - (b.data.order || 999));
+const articles = await getCollection('articles');
+const sortedArticles = articles.sort((a, b) => {
+  const dateA = a.data.date ? new Date(a.data.date) : new Date(0);
+  const dateB = b.data.date ? new Date(b.data.date) : new Date(0);
+  return dateB.getTime() - dateA.getTime();
+});
 
 // Extract all unique tags and count occurrences
 const tagCounts = {};
-sortedProjects.forEach(project => {
-  project.data.tags?.forEach(tag => {
+sortedArticles.forEach(article => {
+  article.data.tags?.forEach(tag => {
     tagCounts[tag] = (tagCounts[tag] || 0) + 1;
   });
 });
 
 // Sort tags alphabetically and create tab structure
 const sortedTags = Object.keys(tagCounts).sort();
-const allCount = sortedProjects.length;
+const allCount = sortedArticles.length;
 ---
 
 <script>
@@ -39,8 +43,8 @@ const allCount = sortedProjects.length;
         }
       });
       
-      // Filter projects
-      const allCards = document.querySelectorAll('.project-card');
+      // Filter articles
+      const allCards = document.querySelectorAll('.article-card');
       allCards.forEach(card => {
         const cardTags = card.dataset.tags ? card.dataset.tags.split(',') : [];
         const shouldShow = selectedTag === 'All' || cardTags.includes(selectedTag);
@@ -63,19 +67,19 @@ const allCount = sortedProjects.length;
 </script>
 
 <section class="mt-4">
-  <!-- Portfolio Description -->
+  <!-- Articles Description -->
   <div class="mb-6 sm:mb-8 text-center px-4">
     <p class="text-sm sm:text-base font-medium text-gray-700 dark:text-gray-300 leading-relaxed max-w-2xl mx-auto mb-2">
-      Projects and products that brought ideas to life
+      Insights from building, leading, and learning
     </p>
     <p class="text-xs sm:text-sm font-medium text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-      — through leadership, collaboration, and execution —
+      — drawn from real projects, research, and product experience —
     </p>
   </div>
   
   <div class="flex items-center gap-2 sm:gap-4 mb-4 sm:mb-6 px-4">
     <div class="flex items-center gap-2">
-      <h2 class="text-xs sm:text-sm font-medium tracking-wider uppercase text-gray-600 dark:text-gray-400">Filter by Category</h2>
+      <h2 class="text-xs sm:text-sm font-medium tracking-wider uppercase text-gray-600 dark:text-gray-400">Filter by Topic</h2>
     </div>
     <div class="flex-1 h-[1px] bg-gray-200 dark:bg-gray-800"></div>
   </div>
@@ -125,56 +129,49 @@ const allCount = sortedProjects.length;
     </div>
   </div>
   
-  <!-- Projects Grid -->
+  <!-- Articles List -->
   <ul class="space-y-3 sm:space-y-4 px-4">
-    {sortedProjects.map(project => (
+    {sortedArticles.map(article => (
       <li 
-        key={project.id} 
-        class="project-card group transition-all duration-200"
-        data-tags={project.data.tags?.join(',') || ''}
+        key={article.id} 
+        class="article-card group transition-all duration-200"
+        data-tags={article.data.tags?.join(',') || ''}
       >
         <a 
-          href={`/projects/${project.slug}`}
+          href={`/articles/${article.slug}`}
           class="block py-4 px-4 sm:py-5 sm:px-6 rounded-xl bg-gray-50 dark:bg-gray-900/30 border border-gray-200 dark:border-gray-800 transition-all duration-200 hover:bg-gray-100 dark:hover:bg-gray-900/50 hover:border-primary/30 hover:shadow-md"
         >
           <div class="flex items-start justify-between mb-2 gap-3">
-            <h3 class="font-medium text-sm sm:text-base text-gray-900 dark:text-gray-100 group-hover-accent transition-colors duration-200 leading-snug">{project.data.title}</h3>
+            <h3 class="font-medium text-sm sm:text-base text-gray-900 dark:text-gray-100 group-hover-accent transition-colors duration-200 leading-snug">{article.data.title}</h3>
             <div class="flex items-center gap-2 flex-shrink-0">
-              <span class="text-xs text-gray-500 dark:text-gray-400 whitespace-nowrap">{project.data.date}</span>
+              {article.data.date && (
+                <span class="text-xs text-gray-500 dark:text-gray-400 whitespace-nowrap">{article.data.date}</span>
+              )}
               <svg class="w-4 h-4 text-gray-400 group-hover-accent transition-colors duration-200 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
               </svg>
             </div>
           </div>
-          <p class="text-xs sm:text-sm text-gray-700 dark:text-gray-300 mb-3 leading-relaxed">{project.data.summary}</p>
+          {article.data.description && (
+            <p class="text-xs sm:text-sm text-gray-700 dark:text-gray-300 mb-3 leading-relaxed">{article.data.description}</p>
+          )}
           
           <!-- Tags Display -->
-          {project.data.tags && project.data.tags.length > 0 && (
-            <div class="flex flex-wrap gap-1 mb-2">
-              {project.data.tags.slice(0, 2).map(tag => (
+          {article.data.tags && article.data.tags.length > 0 && (
+            <div class="flex flex-wrap gap-1 mb-1">
+              {article.data.tags.slice(0, 2).map(tag => (
                 <span class="inline-block bg-primary/10 text-primary text-xs px-2 py-1 rounded border border-primary/20">
                   {tag}
                 </span>
               ))}
-              {project.data.tags.length > 2 && project.data.tags[2] && (
+              {article.data.tags.length > 2 && article.data.tags[2] && (
                 <span class="inline-block bg-secondary/10 text-secondary text-xs px-2 py-1 rounded border border-secondary/20">
-                  {project.data.tags[2]}
+                  {article.data.tags[2]}
                 </span>
               )}
-              {project.data.tags.length > 3 && (
-                <span class="text-xs text-gray-500 dark:text-gray-400">+{project.data.tags.length - 3} more</span>
+              {article.data.tags.length > 3 && (
+                <span class="text-xs text-gray-500 dark:text-gray-400">+{article.data.tags.length - 3} more</span>
               )}
-            </div>
-          )}
-          
-          <!-- Tech Stack -->
-          {project.data.tech && project.data.tech.length > 0 && (
-            <div class="flex flex-wrap gap-2">
-              {project.data.tech.map(tech => (
-                <span class="inline-block bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-xs px-2 py-1 rounded border border-gray-300 dark:border-gray-700">
-                  {tech}
-                </span>
-              ))}
             </div>
           )}
         </a>

@@ -1,7 +1,7 @@
 ---
-title: "Chief Product Officer and Co-Founder"
+title: "Co-Founder | CPO"
 company: "Edublox Online Tutor"
-roleType: "Strategic Consultant (From 2023)"
+roleType: "Strategic Consultant (Since 2023)"
 timeframe: "2017 - Present"
 location: "Remote"
 visible: true 

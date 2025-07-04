@@ -40,6 +40,16 @@ body {
   font-family: theme('fontFamily.sans');
 }
 
+/* Hide scrollbar for horizontal scroll containers */
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;  /* Safari and Chrome */
+}
+
 /* Education content styling */
 .education-content h2 {
   @apply text-base font-medium text-text-light dark:text-text-dark mb-2 mt-6 first:mt-0;
