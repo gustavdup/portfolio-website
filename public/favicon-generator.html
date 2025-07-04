@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Favicon Generator</title>
+</head>
+<body>
+    <canvas id="canvas" width="32" height="32" style="display: none;"></canvas>
+    <script>
+        // Create a 32x32 favicon using canvas
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        
+        // Fill background with gradient
+        const gradient = ctx.createLinearGradient(0, 0, 32, 32);
+        gradient.addColorStop(0, '#f59e0b');
+        gradient.addColorStop(1, '#d97706');
+        
+        // Draw circle background
+        ctx.fillStyle = gradient;
+        ctx.beginPath();
+        ctx.arc(16, 16, 15, 0, 2 * Math.PI);
+        ctx.fill();
+        
+        // Draw border
+        ctx.strokeStyle = '#374151';
+        ctx.lineWidth = 2;
+        ctx.stroke();
+        
+        // Draw letter G
+        ctx.fillStyle = 'white';
+        ctx.font = 'bold 16px Plus Jakarta Sans, Arial, sans-serif';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText('G', 16, 16);
+        
+        // Convert to ICO (this is a simplified approach)
+        const dataURL = canvas.toDataURL('image/png');
+        console.log('Generated favicon data URL:', dataURL);
+    </script>
+</body>
+</html>

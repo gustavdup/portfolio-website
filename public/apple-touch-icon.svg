@@ -1,0 +1,20 @@
+<svg width="180" height="180" viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Clean square background for iOS -->
+  <rect width="180" height="180" rx="36" fill="#1f2937"/>
+  
+  <!-- Scaled up diamond pattern -->
+  <g fill="url(#gradient)">
+    <rect x="72" y="45" width="36" height="36" rx="6" transform="rotate(45 90 63)"/>
+    <rect x="72" y="99" width="36" height="36" rx="6" transform="rotate(45 90 117)"/>
+    <rect x="45" y="72" width="24" height="24" rx="3" transform="rotate(45 57 84)"/>
+    <rect x="111" y="72" width="24" height="24" rx="3" transform="rotate(45 123 84)"/>
+  </g>
+  
+  <!-- Gradient definition -->
+  <defs>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f59e0b;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#d97706;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+</svg>
