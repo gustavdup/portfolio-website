@@ -69,7 +69,7 @@ const { hero, consulting, fulltime, contact } = pageData.data;
               </div>
             </div>
             
-            <p class="text-sm font-medium text-text-light dark:text-text-dark mt-6 text-center leading-relaxed">
+            <p class="text-sm sm:text-base font-medium text-text-light dark:text-text-dark mt-6 text-center leading-relaxed">
               {consulting.closing}
             </p>
           </div>
@@ -99,7 +99,7 @@ const { hero, consulting, fulltime, contact } = pageData.data;
               ))}
             </div>
             
-            <p class="text-sm font-medium text-text-light dark:text-text-dark mt-6 text-center leading-relaxed">
+            <p class="text-sm sm:text-base font-medium text-text-light dark:text-text-dark mt-6 text-center leading-relaxed">
               {fulltime.closing}
             </p>
           </div>
@@ -108,12 +108,12 @@ const { hero, consulting, fulltime, contact } = pageData.data;
 
       <!-- Contact Section -->
       <section class="text-center">
-        <div class="pl-3 pr-3 py-4 rounded-xl">
-          <h2 class="text-lg sm:text-xl font-bold text-text-light dark:text-text-dark mb-2 flex items-center justify-center gap-2">
+        <div class="p-6 rounded-xl bg-white dark:bg-gray-900/40 border border-gray-200 dark:border-gray-800 transition-all duration-200 hover:shadow-md hover:border-gray-300 dark:hover:border-gray-700">
+          <h2 class="text-xl sm:text-2xl font-bold text-text-light dark:text-text-dark mb-2 flex items-center justify-center gap-2">
             <span class="text-primary text-base">{contact.emoji}</span>
             {contact.title}
           </h2>
-          <p class="text-xs sm:text-sm text-gray-600 dark:text-gray-300 leading-relaxed mb-4 max-w-2xl mx-auto">
+          <p class="text-sm sm:text-base text-gray-600 dark:text-gray-300 leading-relaxed mb-4 max-w-2xl mx-auto">
             {contact.description}
           </p>
           
