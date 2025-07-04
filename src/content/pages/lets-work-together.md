@@ -4,7 +4,7 @@ description: "Available for product leadership, strategic consulting, and meanin
 hero:
   title: "Let's Work Together"
   subtitle: "If you're exploring fractional product leadership, strategic consulting, or considering a more permanent collaboration, I’d be glad to connect."
-  description: "My availability varies depending on current engagements, but I’m always open to meaningful conversations"
+  description: "My availability varies depending on current engagements, but I’m always open to meaningful conversations."
 consulting:
   title: "Consulting & Fractional Product Work"
   emoji: ""
