@@ -20,7 +20,7 @@ const getCurrentPageName = (path: string) => {
   if (path.startsWith('/projects')) return 'Portfolio';
   if (path.startsWith('/experience')) return 'Experience';
   if (path.startsWith('/articles')) return 'Articles';
-  if (path.startsWith('/contact')) return 'Contact';
+  if (path.startsWith('/lets-work-together')) return 'Let\'s Work Together';
   return 'Navigation';
 };
 ---
@@ -109,12 +109,12 @@ const getCurrentPageName = (path: string) => {
               <span>Articles</span>
             </div>
           </a>
-          <a class={`relative group font-medium transition-colors duration-200 py-3 px-4 rounded-lg ${isActive('/contact') ? 'text-primary bg-primary/10' : 'text-gray-700 dark:text-gray-300 hover:text-primary hover:bg-primary/5'}`} href="/contact">
+          <a class={`relative group font-medium transition-colors duration-200 py-3 px-4 rounded-lg ${isActive('/lets-work-together') ? 'text-primary bg-primary/10' : 'text-gray-700 dark:text-gray-300 hover:text-primary hover:bg-primary/5'}`} href="/lets-work-together">
             <div class="flex items-center gap-3">
               <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
               </svg>
-              <span>Contact</span>
+              <span>Let's Work Together</span>
             </div>
           </a>
         </div>
@@ -139,8 +139,8 @@ const getCurrentPageName = (path: string) => {
       <a class={`relative group font-medium transition-colors duration-200 px-2 ${isActive('/articles') ? 'text-primary' : 'text-gray-600 dark:text-gray-400 hover:text-primary'}`} href="/articles">Articles
         <span class={`absolute -bottom-0.5 left-0 h-[1.5px] bg-primary transition-all duration-300 ${isActive('/articles') ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
       </a>
-      <a class={`relative group font-medium transition-colors duration-200 px-2 ${isActive('/contact') ? 'text-primary' : 'text-gray-600 dark:text-gray-400 hover:text-primary'}`} href="/contact">Contact
-        <span class={`absolute -bottom-0.5 left-0 h-[1.5px] bg-primary transition-all duration-300 ${isActive('/contact') ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
+      <a class={`relative group font-medium transition-colors duration-200 px-2 ${isActive('/lets-work-together') ? 'text-primary' : 'text-gray-600 dark:text-gray-400 hover:text-primary'}`} href="/lets-work-together">Let's Work Together
+        <span class={`absolute -bottom-0.5 left-0 h-[1.5px] bg-primary transition-all duration-300 ${isActive('/lets-work-together') ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
       </a>
     </div>
     <div class="h-4 w-[1.5px] bg-gray-300 dark:bg-gray-600 mx-3 md:mx-5 flex-shrink-0"></div>

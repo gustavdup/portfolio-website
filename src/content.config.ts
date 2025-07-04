@@ -1,6 +1,6 @@
 import { z, defineCollection } from 'astro:content';
 
-const blog = defineCollection({
+const articles = defineCollection({
   type: 'content',
   schema: z.object({
     title: z.string(),
@@ -8,6 +8,7 @@ const blog = defineCollection({
     description: z.string().optional(),
     image: z.string().optional(),
     tags: z.array(z.string()).optional(),
+    featured: z.boolean().optional(),
   }),
 });
 
@@ -129,9 +130,52 @@ const currentRoles = defineCollection({
   }),
 });
 
+const pages = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    hero: z.object({
+      title: z.string(),
+      subtitle: z.string(),
+      description: z.string(),
+    }),
+    consulting: z.object({
+      title: z.string(),
+      emoji: z.string(),
+      description: z.string(),
+      subtitle: z.string(),
+      services: z.array(z.string()),
+      closing: z.string(),
+    }),
+    fulltime: z.object({
+      title: z.string(),
+      emoji: z.string(),
+      description: z.string(),
+      subtitle: z.string(),
+      requirements: z.array(z.string()),
+      closing: z.string(),
+    }),
+    contact: z.object({
+      title: z.string(),
+      emoji: z.string(),
+      description: z.string(),
+      disclaimer: z.string(),
+      email: z.string(),
+      linkedin: z.string(),
+      calendar_link: z.string(),
+      buttons: z.object({
+        book_call: z.string(),
+        linkedin: z.string(),
+        email: z.string(),
+      }),
+    }),
+  }),
+});
+
 // Export collections for Astro to pick up
 export const collections = {
-  blog,
+  articles,
   bio,
   projects,
   experienceProduct,
@@ -141,4 +185,5 @@ export const collections = {
   experienceLeadership,
   education,
   currentRoles,
+  pages,
 };
