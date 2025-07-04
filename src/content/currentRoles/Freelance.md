@@ -1,7 +1,7 @@
 ---
 title: "Product Manager"
-company: "via Toptal"
-roleType: "Project Based Freelancing"
+company: "Direct & via Toptal"
+roleType: "Freelance & Consulting Projects"
 timeframe: "2021 - Present"
 location: "Remote"
 visiblee: true
