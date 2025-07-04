@@ -4,7 +4,7 @@ title: "Product Manager | Product Owner"
 timeframe: "2023 – Present"
 location: "Remote"
 order: 1
-context: ["Tech Manager", "Product Owner", "Strategy", "UX"]
+context: ["Product Manager", "Product Owner", "Strategy", "UX"]
 responsibilities:
   - Lead a cross-functional product team across four B2B software verticals—field services, healthcare, retail, and governance—delivering scalable solutions aligned with client and market needs.
   - Directed end-to-end product delivery, while also supporting system architecture decisions with DevOps and technical leads, including infrastructure trade-offs, cloud hosting, and design for future integration flexibility.

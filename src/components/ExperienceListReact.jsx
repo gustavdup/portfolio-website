@@ -63,16 +63,18 @@ export default function ExperienceList({
   return (
     <div>
       {/* Description without main title */}
-      <div className="mb-6 mt-6">
-        <p className="text-gray-600 dark:text-gray-400 text-base leading-relaxed max-w-4xl">
-          Each role highlights a different strength. Explore my experience from the perspective that matters most to you — product, technology, strategy, UX, or leadership.
-        </p>
+      <div className="mb-8 flex justify-center px-4">
+        <div className="bg-accent/3 dark:bg-accent/6 border border-accent/15 dark:border-accent/20 rounded-2xl px-6 py-4 text-center backdrop-blur-xl shadow-lg w-full max-w-sm sm:max-w-none sm:w-auto">
+          <p className="text-text-light dark:text-text-dark font-normal text-base leading-relaxed">
+            Each role highlights a different strength. Explore my experience from the perspective that matters most to you — product, technology, strategy, UX, or leadership.
+          </p>
+        </div>
       </div>
 
       <section>
         {/* Section Header with tabs integrated */}
-        <div className="mb-8">
-          <div className="flex items-center gap-4 mb-4">
+        <div className="mb-10">
+          <div className="flex items-center gap-4 mb-6">
             <h2 className="text-sm font-medium tracking-wider uppercase text-gray-600 dark:text-gray-400">Select Perspective</h2>
             <div className="flex-1 h-[1px] bg-gray-200 dark:bg-gray-800"></div>
           </div>
@@ -95,24 +97,26 @@ export default function ExperienceList({
           </div>
         </div>
         
-        {/* Role Description Section - More integrated */}
-        <div className={`mb-8 p-6 rounded-xl bg-gradient-to-br from-gray-50 to-gray-100/50 dark:from-gray-900/50 dark:to-gray-900/30 border border-gray-200 dark:border-gray-800 transition-all duration-300 ${isTransitioning ? 'opacity-50' : 'opacity-100'}`}>
-          <div className="flex items-start justify-between gap-4 mb-3">
-            <h3 className="text-lg font-medium text-gray-900 dark:text-gray-100">{currentRole.title}</h3>
-            <span className="text-xs text-gray-500 dark:text-gray-400 font-medium px-2 py-1 bg-gray-200 dark:bg-gray-800 rounded-full whitespace-nowrap">
-              {experiences.length} {experiences.length === 1 ? 'role' : 'roles'}
-            </span>
-          </div>
-          <p className="text-gray-600 dark:text-gray-400 text-sm mb-4 leading-relaxed">{currentRole.description}</p>
-          <div className="flex flex-wrap gap-2">
-            {currentRole.skills.map((skill, idx) => (
-              <span 
-                key={idx}
-                className="px-2 py-1 text-xs rounded-full bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-700 shadow-sm"
-              >
-                {skill}
+        {/* Role Description Section - Clean header design */}
+        <div className={`mb-10 transition-all duration-300 ${isTransitioning ? 'opacity-50' : 'opacity-100'}`}>
+          <div className="border-l-4 border-secondary bg-gray-50 dark:bg-gray-900/50 pl-6 pr-4 py-6 rounded-r-lg">
+            <div className="flex items-center gap-3 mb-3">
+              <h3 className="text-xl font-semibold text-text-light dark:text-text-dark">{currentRole.title}</h3>
+              <span className="text-xs text-secondary dark:text-secondary font-bold px-2 py-1 bg-secondary/10 dark:bg-secondary/20 rounded-md">
+                {experiences.length} {experiences.length === 1 ? 'role' : 'roles'}
               </span>
-            ))}
+            </div>
+            <p className="text-gray-600 dark:text-gray-400 text-sm mb-4 leading-relaxed">{currentRole.description}</p>
+            <div className="flex flex-wrap gap-2">
+              {currentRole.skills.map((skill, idx) => (
+                <span 
+                  key={idx}
+                  className="px-3 py-1 text-xs font-medium rounded bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700"
+                >
+                  {skill}
+                </span>
+              ))}
+            </div>
           </div>
         </div>
         
@@ -173,11 +177,10 @@ export default function ExperienceList({
                 
                 {/* Responsibilities */}
                 {exp.data.responsibilities && exp.data.responsibilities.length > 0 && (
-                  <ul className="space-y-2">
+                  <ul className="space-y-2 pl-6 list-disc">
                     {exp.data.responsibilities.map((item, idx) => (
-                      <li key={idx} className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed flex items-start gap-2">
-                        <span className="text-gray-400 dark:text-gray-500 mt-1.5 flex-shrink-0">•</span>
-                        <span>{item}</span>
+                      <li key={idx} className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed ml-0" style={{listStylePosition: 'outside'}}>
+                        {item}
                       </li>
                     ))}
                   </ul>

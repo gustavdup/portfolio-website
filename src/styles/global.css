@@ -119,15 +119,19 @@ body {
   }
   
   .prose li {
-    @apply text-gray-700 dark:text-gray-300 mb-1;
+    @apply text-gray-700 dark:text-gray-300 mb-1 leading-relaxed;
   }
   
   .prose ul li {
-    @apply list-disc;
+    @apply list-disc ml-0;
+    list-style-position: outside;
+    text-indent: 0;
   }
   
   .prose ol li {
-    @apply list-decimal;
+    @apply list-decimal ml-0;
+    list-style-position: outside;
+    text-indent: 0;
   }
   
   .prose blockquote {
@@ -176,6 +180,69 @@ body {
   
   .prose em {
     @apply italic;
+  }
+}
+
+/* Experience content styling */
+.experience-content h2 {
+  @apply text-base font-medium text-text-light dark:text-text-dark mb-2 mt-6 first:mt-0;
+}
+
+.experience-content p {
+  @apply text-sm text-gray-600 dark:text-gray-400 mb-2;
+}
+
+.experience-content strong {
+  @apply font-medium text-text-light dark:text-text-dark;
+}
+
+.experience-content em {
+  @apply text-gray-600 dark:text-gray-400;
+}
+
+.experience-content ul {
+  @apply pl-6 list-disc;
+}
+
+.experience-content li {
+  @apply text-sm text-gray-700 dark:text-gray-300 leading-relaxed ml-0;
+  list-style-position: outside;
+  text-indent: 0;
+}
+
+/* Mobile touch and interaction improvements */
+@layer base {
+  /* Better touch targets for mobile */
+  @media (max-width: 640px) {
+    button, a {
+      min-height: 44px; /* iOS recommended touch target */
+    }
+    
+    /* Prevent text selection on navigation elements */
+    nav a, button {
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -khtml-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+    
+    /* Improve tap highlight color */
+    * {
+      -webkit-tap-highlight-color: rgba(75, 110, 245, 0.1);
+    }
+    
+    /* Better scroll behavior on mobile */
+    body {
+      -webkit-overflow-scrolling: touch;
+      overscroll-behavior-y: contain;
+    }
+    
+    /* Prevent zoom on input focus (iOS) */
+    input, textarea, select {
+      font-size: 16px;
+    }
   }
 }
 

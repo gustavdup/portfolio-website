@@ -18,48 +18,56 @@ const {
   <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
     <title>{title}</title>
     <script is:inline>
       // Prevent flash of unstyled content (FOUC) for dark mode
-      // Dark mode is the default
       (function() {
         const theme = localStorage.getItem('theme');
-        if (theme === 'light') {
-          // Only use light mode if explicitly set
-          document.documentElement.classList.remove('dark');
-        } else {
-          // Default to dark mode (including first visit)
-          document.documentElement.classList.add('dark');
+        const html = document.documentElement;
+        
+        // Remove any existing dark class first
+        html.classList.remove('dark');
+        
+        if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+          // Use dark mode if explicitly set to dark OR if no preference and system prefers dark
+          html.classList.add('dark');
         }
+        // Otherwise stay in light mode (default)
       })();
     </script>
     
     <script is:inline>
-      // Simple header scroll behavior
+      // Enhanced header scroll behavior with mobile optimizations
       window.addEventListener('DOMContentLoaded', function() {
         const headerSection = document.getElementById('header-section');
         let stickyHeader = null;
         let isSticky = false;
+        let lastScrollY = window.scrollY;
+        let isScrollingDown = false;
         
         function handleScroll() {
           const scrollY = window.scrollY;
-          const shouldBeSticky = scrollY > 100;
+          const shouldBeSticky = scrollY > 50; // Reduced threshold for mobile
+          isScrollingDown = scrollY > lastScrollY;
+          lastScrollY = scrollY;
           
           if (shouldBeSticky && !isSticky) {
             // Create sticky header
             isSticky = true;
             stickyHeader = headerSection.cloneNode(true);
             stickyHeader.id = 'sticky-header';
-            stickyHeader.className = 'fixed top-0 left-0 right-0 z-50 bg-bg-light/80 dark:bg-bg-dark/80 backdrop-blur-xl border-b border-gray-200/50 dark:border-gray-700/50 py-3 transition-all duration-300';
+            stickyHeader.className = 'fixed top-0 left-0 right-0 z-50 bg-bg-light/95 dark:bg-bg-dark/95 backdrop-blur-xl border-b border-gray-200/50 dark:border-gray-700/50 py-2 sm:py-3 transition-all duration-300';
             stickyHeader.style.transform = 'translateY(-100%)';
             document.body.insertBefore(stickyHeader, document.body.firstChild);
             
             // Animate in
             setTimeout(() => {
-              stickyHeader.style.transform = 'translateY(0)';
+              if (stickyHeader) {
+                stickyHeader.style.transform = 'translateY(0)';
+              }
             }, 10);
             
           } else if (!shouldBeSticky && isSticky) {
@@ -74,27 +82,46 @@ const {
                 stickyHeader = null;
               }, 300);
             }
+          } else if (isSticky && stickyHeader) {
+            // Mobile: hide header when scrolling down, show when scrolling up
+            if (window.innerWidth < 640) { // Mobile breakpoint
+              if (isScrollingDown && scrollY > 150) {
+                stickyHeader.style.transform = 'translateY(-100%)';
+              } else if (!isScrollingDown || scrollY <= 150) {
+                stickyHeader.style.transform = 'translateY(0)';
+              }
+            }
+          }
+        }
+        
+        // Throttled scroll listener for better performance
+        let ticking = false;
+        function requestTick() {
+          if (!ticking) {
+            requestAnimationFrame(handleScroll);
+            ticking = true;
+            setTimeout(() => { ticking = false; }, 16); // ~60fps
           }
         }
         
         // Listen for scroll events
-        window.addEventListener('scroll', handleScroll);
+        window.addEventListener('scroll', requestTick);
       });
     </script>
   </head>
   <body class="bg-bg-light dark:bg-bg-dark min-h-screen font-sans text-text-light dark:text-text-dark transition-colors duration-300 ease-in-out">
     <!-- Main Content -->
     <div class="relative min-h-screen overflow-x-hidden">
-      <div class="max-w-4xl mx-auto p-4 sm:p-6 lg:p-8 flex flex-col min-h-screen transition-colors duration-300 ease-in-out font-sans tracking-normal">
+      <div class="max-w-4xl mx-auto p-6 sm:p-6 lg:p-8 flex flex-col min-h-screen transition-colors duration-300 ease-in-out font-sans tracking-normal">
         <!-- Header that transforms on scroll -->
-        <div id="header-section" class="flex justify-center mb-8 transition-all duration-300 ease-in-out">
+        <div id="header-section" class="flex justify-center mb-8 sm:mb-8 transition-all duration-300 ease-in-out">
           <Navbar currentPath={Astro.url.pathname} />
         </div>
         
         <div class="flex-1">
           <slot />
         </div>
-        <div class="mt-auto pt-16">
+        <div class="mt-auto pt-16 sm:pt-16">
           <Footer />
         </div>
       </div>

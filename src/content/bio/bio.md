@@ -11,4 +11,4 @@ I’m a product and technology leader with over a decade of experience deliverin
 
 I’ve led global teams in startups, scale-ups, and enterprise environments, guiding products from concept to launch and continuous improvement. I hold a Master’s in ICT Management and am completing a doctorate focused on enterprise software onboarding and change readiness.
 
-You can read more about my thinking on the Articles page, explore selected work in the Portfolio, or dive into my Experience page — where each role is shown through a perspective that fits your focus, whether that’s product, technology, strategy, UX & onboarding, or leadership.
+You can read more about my thinking on the [Articles](/blog) page, explore selected work in the [Portfolio](/projects), or check out my [Experience](/experience) page — where each role is shown through a perspective that fits your focus, whether that's product, technology, strategy, UX & onboarding, or leadership.

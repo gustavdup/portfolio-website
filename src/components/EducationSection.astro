@@ -11,6 +11,19 @@ const visibleEducation = allEducation
 const featuredEntries = visibleEducation.filter(entry => entry.data.featured);
 const nonFeaturedEntries = visibleEducation.filter(entry => !entry.data.featured);
 
+// Function to get status color based on status value
+const getStatusColor = (status) => {
+  if (!status) return '';
+  const statusLower = status.toLowerCase();
+  if (statusLower.includes('graduated') || statusLower.includes('completed') || statusLower.includes('candidate')) {
+    return 'text-secondary'; // Green for completed/graduated
+  }
+  if (statusLower.includes('in progress') || statusLower.includes('current')) {
+    return 'text-accent'; // Amber for in progress
+  }
+  return 'text-gray-500 dark:text-gray-400'; // Default gray
+};
+
 // Pre-render content for all entries
 const renderedEntries = await Promise.all(
   visibleEducation.map(async (entry) => {
@@ -63,7 +76,7 @@ const hasExpandableContent = nonFeaturedEntriesRendered.length > 0;
               </div>
               <p class="text-gray-600 dark:text-gray-400 text-sm mb-3 -mt-1">
                 {entry.data.institution}
-                {entry.data.status && <span class="text-secondary font-medium"> • {entry.data.status}</span>}
+                {entry.data.status && <span class={`${getStatusColor(entry.data.status)} font-medium`}> • {entry.data.status}</span>}
               </p>
               {entry.rendered && (
                 <div class="text-gray-700 dark:text-gray-300 text-sm prose prose-gray dark:prose-invert max-w-none">
@@ -86,7 +99,7 @@ const hasExpandableContent = nonFeaturedEntriesRendered.length > 0;
                   </div>
                   <p class="text-gray-600 dark:text-gray-400 text-sm mb-3 -mt-1">
                     {entry.data.institution}
-                    {entry.data.status && <span class="text-gray-500 dark:text-gray-500"> • {entry.data.status}</span>}
+                    {entry.data.status && <span class={`${getStatusColor(entry.data.status)} font-medium`}> • {entry.data.status}</span>}
                   </p>
                   {entry.rendered && (
                     <div class="text-gray-700 dark:text-gray-300 text-sm prose prose-gray dark:prose-invert max-w-none">

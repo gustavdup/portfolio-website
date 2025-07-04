@@ -2,6 +2,7 @@
 title: "Master's in Information Technology: ICT Management"
 institution: "University of Pretoria, South Africa"
 period: "2020 - 2022"
+status: "Graduated"
 visible: true
 featured: true
 order: 2
