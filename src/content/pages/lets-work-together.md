@@ -3,7 +3,7 @@ title: "Let's Work Together"
 description: "Available for product leadership, strategic consulting, and meaningful collaborations"
 hero:
   title: "Let's Work Together"
-  subtitle: "If you're exploring fractional product leadership, strategic consulting, or considering a more permanent collaboration, I’d be glad to connect."
+  subtitle: "If you're exploring fractional product leadership, strategic consulting, or considering a more permanent collaboration, let's connect."
   description: "My availability varies depending on current engagements, but I’m always open to meaningful conversations."
 consulting:
   title: "Consulting & Fractional Product Work"
@@ -29,11 +29,11 @@ fulltime:
     - "Align user needs with business goals and technical context"  
     - "Simplify complexity across systems and stakeholders"  
     - "Contribute to cultures built on autonomy, trust, and purpose"  
-  closing: "If you’re building something meaningful and these values resonate, I’d love to connect."
+  closing: "If you’re building something meaningful and these values resonate feel free to reach out."
 contact:
   title: "Let's Connect"
   emoji: "📬"
-  description: "If something here resonates—let's start the conversation."
+  description: "If something here resonates—let's start a conversation."
   disclaimer: "Not sure what you need yet? Reach out anyway. I'll respond personally and help you figure out the next step."
   email: "mailto:gustavdup90@gmail.com"
   linkedin: "https://linkedin.com/in/gustavdup"
