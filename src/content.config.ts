@@ -173,16 +173,113 @@ const pages = defineCollection({
   }),
 });
 
+// New experience collections
+const experienceProductStrategist = defineCollection({
+  type: 'content',
+  schema: z.object({
+    company: z.string(),
+    title: z.string(),
+    timeframe: z.string(),
+    location: z.string().optional(),
+    context: z.array(z.string()).optional(),
+    responsibilities: z.array(z.string()).optional(),
+    order: z.number().optional(),
+  }),
+});
+
+const experienceExecutionLead = defineCollection({
+  type: 'content',
+  schema: z.object({
+    company: z.string(),
+    title: z.string(),
+    timeframe: z.string(),
+    location: z.string().optional(),
+    context: z.array(z.string()).optional(),
+    responsibilities: z.array(z.string()).optional(),
+    order: z.number().optional(),
+  }),
+});
+
+const experienceDigitalEnabler = defineCollection({
+  type: 'content',
+  schema: z.object({
+    company: z.string(),
+    title: z.string(),
+    timeframe: z.string(),
+    location: z.string().optional(),
+    context: z.array(z.string()).optional(),
+    responsibilities: z.array(z.string()).optional(),
+    order: z.number().optional(),
+  }),
+});
+
+const experienceFractionalPm = defineCollection({
+  type: 'content',
+  schema: z.object({
+    company: z.string(),
+    title: z.string(),
+    timeframe: z.string(),
+    location: z.string().optional(),
+    context: z.array(z.string()).optional(),
+    responsibilities: z.array(z.string()).optional(),
+    order: z.number().optional(),
+  }),
+});
+
+const experienceCollaborativeLeader = defineCollection({
+  type: 'content',
+  schema: z.object({
+    company: z.string(),
+    title: z.string(),
+    timeframe: z.string(),
+    location: z.string().optional(),
+    context: z.array(z.string()).optional(),
+    responsibilities: z.array(z.string()).optional(),
+    order: z.number().optional(),
+  }),
+});
+
+const experienceCommercialStrategist = defineCollection({
+  type: 'content',
+  schema: z.object({
+    company: z.string(),
+    title: z.string(),
+    timeframe: z.string(),
+    location: z.string().optional(),
+    context: z.array(z.string()).optional(),
+    responsibilities: z.array(z.string()).optional(),
+    order: z.number().optional(),
+  }),
+});
+
+const experienceStrategicTechnologist = defineCollection({
+  type: 'content',
+  schema: z.object({
+    company: z.string(),
+    title: z.string(),
+    timeframe: z.string(),
+    location: z.string().optional(),
+    context: z.array(z.string()).optional(),
+    responsibilities: z.array(z.string()).optional(),
+    order: z.number().optional(),
+  }),
+});
+
 // Export collections for Astro to pick up
 export const collections = {
-  articles,
+ 
+
+  
   bio,
   projects,
-  experienceProduct,
-  experienceTechnology,
-  experienceStrategy,
-  experienceUX,
-  experienceLeadership,
+  articles,
+  experienceProductStrategist,
+  experienceExecutionLead,
+  experienceDigitalEnabler,
+  experienceFractionalPm,
+  experienceCollaborativeLeader,
+  experienceCommercialStrategist,
+  experienceStrategicTechnologist,
   education,
   currentRoles,
   pages,

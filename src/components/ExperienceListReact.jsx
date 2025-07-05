@@ -1,21 +1,25 @@
 import React, { useState, useEffect } from "react";
 
 export default function ExperienceList({ 
-  productExperiences, 
-  technologyExperiences, 
-  strategyExperiences, 
-  uxExperiences, 
-  leadershipExperiences 
+  experienceProductStrategistExperiences,
+  experienceExecutionLeadExperiences,
+  experienceDigitalEnablerExperiences,
+  experienceFractionalPmExperiences,
+  experienceCollaborativeLeaderExperiences,
+  experienceCommercialStrategistExperiences,
+  experienceStrategicTechnologistExperiences
 }) {
-  const [selectedRole, setSelectedRole] = useState("Product");
+  const [selectedRole, setSelectedRole] = useState("ProductStrategist");
   const [isTransitioning, setIsTransitioning] = useState(false);
   
   const experienceCollections = {
-    Product: productExperiences,
-    Technology: technologyExperiences,
-    Strategy: strategyExperiences,
-    UX: uxExperiences,
-    Leadership: leadershipExperiences
+    ProductStrategist: experienceProductStrategistExperiences,
+    ExecutionLead: experienceExecutionLeadExperiences,
+    DigitalEnabler: experienceDigitalEnablerExperiences,
+    FractionalPm: experienceFractionalPmExperiences,
+    CollaborativeLeader: experienceCollaborativeLeaderExperiences,
+    CommercialStrategist: experienceCommercialStrategistExperiences,
+    StrategicTechnologist: experienceStrategicTechnologistExperiences,
   };
   
   const experiences = experienceCollections[selectedRole];
@@ -31,30 +35,40 @@ export default function ExperienceList({
   };
 
   const roleDescriptions = {
-    Product: {
-      title: "Product Management Experience",
-      description: "Leading product strategy, user experience, and cross-functional teams to deliver impactful solutions.",
-      skills: ["Product Strategy", "User Experience", "Team Leadership", "Roadmap Planning", "Stakeholder Management"]
+    ProductStrategist: {
+      title: "Product Strategist",
+      description: "Defines product vision, market alignment, and growth priorities—balancing user needs, business value, and feasibility to create long-term impact.",
+      skills: []
     },
-    Technology: {
-      title: "Technology Leadership Experience", 
-      description: "Driving technical architecture, engineering excellence, and scalable infrastructure solutions.",
-      skills: ["Technical Architecture", "Engineering Leadership", "DevOps", "Cloud Infrastructure", "System Design"]
+    ExecutionLead: {
+      title: "Execution Lead",
+      description: "Turns plans into shipped outcomes—leading delivery across complex environments while balancing speed, quality, and strategic trade-offs to stay aligned with product goals.",
+      skills: []
     },
-    Strategy: {
-      title: "Strategic Leadership Experience",
-      description: "Developing long-term vision, business strategy, and organizational transformation initiatives.",
-      skills: ["Strategic Planning", "Business Development", "Market Analysis", "Organizational Design", "Change Management"]
+    DigitalEnabler: {
+      title: "Digital Enabler",
+      description: "Builds and refines internal platforms, tools, and automation—improving operational visibility, team efficiency, and cross-system data flows.",
+      skills: []
     },
-    UX: {
-      title: "UX & Onboarding Experience",
-      description: "Creating intuitive user experiences and seamless onboarding flows that drive engagement and adoption.",
-      skills: ["User Research", "Design Systems", "Onboarding Design", "User Testing", "Conversion Optimization"]
+    FractionalPm: {
+      title: "Fractional PM",
+      description: "Rapidly adapts to client needs—jumping into high-context environments to scope, align, and deliver as a flexible and experienced product partner.",
+      skills: []
     },
-    Leadership: {
-      title: "Leadership & Team Management",
-      description: "Building and scaling high-performing teams while fostering innovation and growth culture.",
-      skills: ["Team Building", "Mentoring", "Performance Management", "Culture Development", "Strategic Communication"]
+    CollaborativeLeader: {
+      title: "Collaborative Leader",
+      description: "Shapes open, outcome-focused team culture—championing transparency, psychological safety, and shared ownership to unlock high performance.",
+      skills: []
+    },
+    CommercialStrategist: {
+      title: "Commercial Strategist",
+      description: "Connects product thinking with business outcomes—building scalable models, pricing, market narratives, and systems that drive adoption and growth.",
+      skills: []
+    },
+    StrategicTechnologist: {
+      title: "Strategic Technologist",
+      description: "Bridges product, architecture, and platform evolution—collaborating with engineers and domain experts to make informed, sustainable technology decisions.",
+      skills: []
     }
   };
 
@@ -65,17 +79,17 @@ export default function ExperienceList({
       {/* Description without main title */}
       <div className="mb-6 sm:mb-8 text-center px-4">
         <p className="text-sm sm:text-base font-medium text-gray-700 dark:text-gray-300 leading-relaxed max-w-2xl mx-auto mb-2">
-          My experience, Your perspective
+          Explore My Experience by Profile
         </p>
         <p className="text-xs sm:text-sm font-medium text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-          — filter by product, tech, strategy, UX, or leadership —
+          Each profile offers a focused view of my work — from product strategy and execution to technology, leadership, and commercial impact.
         </p>
       </div>
 
       {/* Section Header with tabs integrated */}
       <div className="mb-4 sm:mb-6">
         <div className="flex items-center gap-2 sm:gap-4 mb-4 sm:mb-6 px-4">
-          <h2 className="text-xs sm:text-sm font-medium tracking-wider uppercase text-gray-600 dark:text-gray-400">Select Perspective</h2>
+          <h2 className="text-xs sm:text-sm font-medium tracking-wider uppercase text-gray-600 dark:text-gray-400">Select Profile</h2>
           <div className="flex-1 h-[1px] bg-gray-200 dark:bg-gray-800"></div>
         </div>
           
@@ -91,7 +105,7 @@ export default function ExperienceList({
                     : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-secondary hover:text-white border border-gray-200 dark:border-gray-700'
                 }`}
               >
-                {role === 'UX' ? 'UX & Onboarding' : role}
+                {roleDescriptions[role].title}
               </button>
             ))}
           </div>
@@ -108,7 +122,7 @@ export default function ExperienceList({
                     : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-secondary hover:text-white border border-gray-200 dark:border-gray-700'
                 }`}
               >
-                {role === 'UX' ? 'UX & Onboarding' : role}
+                {roleDescriptions[role].title}
               </button>
             ))}
           </div>
@@ -126,7 +140,10 @@ export default function ExperienceList({
             <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">{currentRole.description}</p>
           </div>
         </div>
-        
+        {/* Centered note about ordering */}
+        <div className="text-center mb-6">
+          <p className="text-sm text-accent italic">Roles ordered by relevance, not chronology.</p>
+        </div>
         {/* Experience List */}
         <div className={`transition-all duration-300 ${isTransitioning ? 'opacity-50 translate-y-2' : 'opacity-100 translate-y-0'}`}>
           <div className="space-y-4">

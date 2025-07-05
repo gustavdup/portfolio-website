@@ -273,4 +273,8 @@ body {
   .dark .group:hover .group-hover-accent {
     color: #FFB454 !important;
   }
+  
+  .text-accent {
+    color: var(--accent) !important;
+  }
 }
