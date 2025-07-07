@@ -21,6 +21,8 @@ const bio = defineCollection({
     description: z.string().optional(),
     image: z.string().optional(),
     email: z.string().optional(),
+    showArticles: z.boolean().default(true),
+    showProjects: z.boolean().default(true),
   }),
 });
 
@@ -39,70 +41,7 @@ const projects = defineCollection({
   }),
 });
 
-const experienceProduct = defineCollection({
-  type: 'content',
-  schema: z.object({
-    company: z.string(),
-    title: z.string(),
-    timeframe: z.string(),
-    location: z.string().optional(),
-    context: z.array(z.string()).optional(),
-    responsibilities: z.array(z.string()).optional(),
-    order: z.number().optional(),
-  }),
-});
 
-const experienceTechnology = defineCollection({
-  type: 'content',
-  schema: z.object({
-    company: z.string(),
-    title: z.string(),
-    timeframe: z.string(),
-    location: z.string().optional(),
-    context: z.array(z.string()).optional(),
-    responsibilities: z.array(z.string()).optional(),
-    order: z.number().optional(),
-  }),
-});
-
-const experienceStrategy = defineCollection({
-  type: 'content',
-  schema: z.object({
-    company: z.string(),
-    title: z.string(),
-    timeframe: z.string(),
-    location: z.string().optional(),
-    context: z.array(z.string()).optional(),
-    responsibilities: z.array(z.string()).optional(),
-    order: z.number().optional(),
-  }),
-});
-
-const experienceUX = defineCollection({
-  type: 'content',
-  schema: z.object({
-    company: z.string(),
-    title: z.string(),
-    timeframe: z.string(),
-    location: z.string().optional(),
-    context: z.array(z.string()).optional(),
-    responsibilities: z.array(z.string()).optional(),
-    order: z.number().optional(),
-  }),
-});
-
-const experienceLeadership = defineCollection({
-  type: 'content',
-  schema: z.object({
-    company: z.string(),
-    title: z.string(),
-    timeframe: z.string(),
-    location: z.string().optional(),
-    context: z.array(z.string()).optional(),
-    responsibilities: z.array(z.string()).optional(),
-    order: z.number().optional(),
-  }),
-});
 
 const education = defineCollection({
   type: 'content',

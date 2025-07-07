@@ -1,7 +1,7 @@
 ---
 company: "MURAL"
 title: "Interim Senior Product Manager (Freelance)"
-timeframe: "2022"
+timeframe: "Nov 2021 - Jul 2022"
 order: 2
 context: ["Collaborative Leader", "Team Transition", "Onboarding"]
 responsibilities:

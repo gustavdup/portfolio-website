@@ -142,7 +142,7 @@ export default function ExperienceList({
         </div>
         {/* Centered note about ordering */}
         <div className="text-center mb-6">
-          <p className="text-sm text-accent italic">Roles ordered by relevance, not chronology.</p>
+          <p className="text-sm text-accent italic">Roles ordered by relevance, not chronologically.</p>
         </div>
         {/* Experience List */}
         <div className={`transition-all duration-300 ${isTransitioning ? 'opacity-50 translate-y-2' : 'opacity-100 translate-y-0'}`}>

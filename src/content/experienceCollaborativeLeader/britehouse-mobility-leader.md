@@ -1,7 +1,7 @@
 ---
 company: "Britehouse Mobility"
 title: "Product Manager | Product Owner"
-timeframe: "2023 – Present"
+timeframe: "Jan 2023 – Present"
 order: 1
 context: ["Collaborative Leader", "Remote Team Culture", "Agile Practices"]
 responsibilities:
