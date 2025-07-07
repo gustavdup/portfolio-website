@@ -1,34 +1,42 @@
 # Astro Portfolio Site
 
-A personal portfolio website built with Astro, TailwindCSS, and optional React. Inspired by https://prateekkeshari.com/.
+A modern personal portfolio website built with Astro, TailwindCSS, and React components. Features a clean, professional design with comprehensive content management and advanced navigation.
 
 ## Features
-- Fully responsive design (mobile, tablet, desktop, ultra-wide)
-- Modular components and layouts
-- Blog and project content managed via Markdown/MDX
-- Experience page with context toggle
-- Dark mode, smooth scroll, accessible HTML
-- Placeholder for future React chatbot widget
+- **Fully responsive design** — Optimized for mobile, tablet, desktop, and ultra-wide displays
+- **Content collections** — Blog posts, projects, experience, and collaboration content managed via Markdown/MDX
+- **Advanced navigation** — Tabbed interfaces with anchor linking for experience profiles and engagement types
+- **React integration** — Dynamic components for enhanced interactivity and state management
+- **Modern UX** — Dark mode support, smooth transitions, loading skeletons, and accessible HTML
+- **SEO optimized** — Proper meta tags, structured content, and semantic markup
+- **Modular architecture** — Reusable components and clean separation of concerns
+
+## Pages Overview
+- **Home** — Hero section, featured projects, and contact information
+- **Experience** — Professional background organized by role profiles with anchor navigation
+- **Projects** — Portfolio showcase with detailed project information
+- **Articles** — Blog posts and thought leadership content
+- **Let's Collaborate** — Three engagement types (consulting, fractional, permanent) with contact section
 
 ## Getting Started
 
 ### 1. Install dependencies
-```
+```bash
 npm install
 ```
 
 ### 2. Start the development server
-```
+```bash
 npm run dev
 ```
 
 ### 3. Build for production
-```
+```bash
 npm run build
 ```
 
 ### 4. Preview production build
-```
+```bash
 npm run preview
 ```
 
@@ -41,16 +49,82 @@ Deploy easily to Vercel:
 4. Set output directory: `dist`
 
 ## Project Structure
-- `/src/pages` — Astro pages (routes)
-- `/src/components` — UI components
-- `/src/layouts` — Layout wrappers
-- `/src/content` — Blog posts, projects, experience (Markdown/MDX)
-- `/public` — Static assets
+```
+├── src/
+│   ├── pages/              # Astro pages (routes)
+│   │   ├── index.astro     # Homepage
+│   │   ├── experience.astro # Professional experience
+│   │   ├── projects.astro   # Portfolio projects
+│   │   ├── articles.astro   # Blog/articles
+│   │   └── lets-work-together.astro # Collaboration page
+│   ├── components/         # UI components
+│   │   ├── ExperienceListReact.jsx # Experience profiles (React)
+│   │   ├── WorkWithMeReact.jsx     # Engagement types (React)
+│   │   ├── Navbar.astro            # Navigation component
+│   │   └── ...             # Other components
+│   ├── layouts/            # Layout wrappers
+│   │   └── Layout.astro    # Main layout template
+│   ├── content/            # Content collections (Markdown/MDX)
+│   │   ├── articles/       # Blog posts
+│   │   ├── projects/       # Portfolio projects
+│   │   ├── experience*/    # Professional experience by role
+│   │   ├── workWithMe/     # Collaboration content
+│   │   └── ...             # Other content types
+│   └── styles/             # Global styles
+└── public/                 # Static assets
+```
+
+## Content Management
+
+### Adding New Content
+- **Blog posts**: Create `.md` files in `/src/content/articles/`
+- **Projects**: Create `.md` files in `/src/content/projects/`
+- **Experience**: Add to appropriate role-based folders in `/src/content/experience*/`
+- **Collaboration types**: Update files in `/src/content/workWithMe/`
+
+### Content Structure
+All content uses frontmatter for metadata and markdown for body content:
+```yaml
+---
+title: "Content Title"
+description: "Brief description"
+date: 2025-01-01
+tags: ["tag1", "tag2"]
+---
+
+Content body in markdown...
+```
+
+## Key Features
+
+### Anchor Navigation
+Both the Experience and Let's Collaborate pages support direct linking to specific sections:
+- `/experience#product-strategist` — Links directly to Product Strategist profile
+- `/lets-work-together#fractional` — Links directly to Fractional Leadership section
+
+### React Components
+- **Client-side hydration** — Prevents hydration mismatches with loading skeletons
+- **State management** — URL hash synchronization with component state
+- **Event handling** — Browser navigation and hash change detection
+
+### Responsive Design
+- **Mobile-first** — Optimized for touch interfaces and small screens
+- **Progressive enhancement** — Enhanced features for larger displays
+- **Accessibility** — ARIA labels, keyboard navigation, and semantic HTML
 
 ## Customization
-- Add blog posts/projects by creating new Markdown/MDX files in `/src/content`
-- Update navigation and site config in `/src/components` and `/src/layouts`
+- **Content**: Add/edit Markdown files in `/src/content/` directories
+- **Styling**: Modify TailwindCSS classes or update `/src/styles/global.css`
+- **Components**: Create new components in `/src/components/`
+- **Navigation**: Update `/src/components/Navbar.astro`
+- **Layout**: Modify `/src/layouts/Layout.astro`
+
+## Technologies Used
+- **[Astro](https://astro.build/)** — Static site generator with partial hydration
+- **[TailwindCSS](https://tailwindcss.com/)** — Utility-first CSS framework
+- **[React](https://reactjs.org/)** — Interactive components
+- **[Markdown/MDX](https://mdxjs.com/)** — Content authoring
 
 ---
 
-For more details, see Astro and TailwindCSS documentation.
+For more details, see [Astro documentation](https://docs.astro.build/) and [TailwindCSS documentation](https://tailwindcss.com/docs).
