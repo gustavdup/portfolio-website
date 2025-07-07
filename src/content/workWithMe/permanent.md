@@ -1,5 +1,5 @@
 ---
-title: "Long-Term Engagements"
+title: "Long-Term or Permanent"
 slug: "permanent"
 order: 3
 ---
