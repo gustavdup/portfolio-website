@@ -9,7 +9,35 @@ export default function ExperienceList({
   experienceCommercialStrategistExperiences,
   experienceStrategicTechnologistExperiences
 }) {
-  const [selectedRole, setSelectedRole] = useState("ProductStrategist");
+  const [isClient, setIsClient] = useState(false);
+  
+  // Get initial role from URL hash immediately
+  const getInitialRole = () => {
+    if (typeof window !== 'undefined') {
+      const hash = window.location.hash.substring(1);
+      const roleDescriptions = {
+        ProductStrategist: { anchor: "product-strategist" },
+        ExecutionLead: { anchor: "execution-lead" },
+        DigitalEnabler: { anchor: "digital-enabler" },
+        FractionalPm: { anchor: "fractional-pm" },
+        CollaborativeLeader: { anchor: "collaborative-leader" },
+        CommercialStrategist: { anchor: "commercial-strategist" },
+        StrategicTechnologist: { anchor: "strategic-technologist" }
+      };
+      
+      if (hash) {
+        const roleKey = Object.keys(roleDescriptions).find(
+          key => roleDescriptions[key].anchor === hash
+        );
+        if (roleKey) {
+          return roleKey;
+        }
+      }
+    }
+    return "ProductStrategist";
+  };
+
+  const [selectedRole, setSelectedRole] = useState(() => getInitialRole());
   const [isTransitioning, setIsTransitioning] = useState(false);
   
   const experienceCollections = {
@@ -87,15 +115,40 @@ export default function ExperienceList({
 
   // Handle initial page load and anchor navigation
   useEffect(() => {
-    const hash = window.location.hash.substring(1);
-    if (hash) {
-      const roleKey = Object.keys(roleDescriptions).find(
-        key => roleDescriptions[key].anchor === hash
-      );
-      if (roleKey) {
-        setSelectedRole(roleKey);
+    setIsClient(true);
+    
+    // Immediately check and set the correct hash on mount
+    const checkAndSetHash = () => {
+      const hash = window.location.hash.substring(1);
+      if (hash) {
+        const roleKey = Object.keys(roleDescriptions).find(
+          key => roleDescriptions[key].anchor === hash
+        );
+        if (roleKey) {
+          setSelectedRole(roleKey);
+        }
+      } else {
+        setSelectedRole("ProductStrategist");
       }
-    }
+    };
+
+    // Run immediately on mount
+    checkAndSetHash();
+
+    // Handle hash changes (anchor navigation)
+    const handleHashChange = () => {
+      const hash = window.location.hash.substring(1);
+      if (hash) {
+        const roleKey = Object.keys(roleDescriptions).find(
+          key => roleDescriptions[key].anchor === hash
+        );
+        if (roleKey) {
+          setSelectedRole(roleKey);
+        }
+      } else {
+        setSelectedRole("ProductStrategist");
+      }
+    };
 
     // Handle browser back/forward navigation
     const handlePopState = () => {
@@ -112,11 +165,37 @@ export default function ExperienceList({
       }
     };
 
+    window.addEventListener('hashchange', handleHashChange);
     window.addEventListener('popstate', handlePopState);
-    return () => window.removeEventListener('popstate', handlePopState);
+    return () => {
+      window.removeEventListener('hashchange', handleHashChange);
+      window.removeEventListener('popstate', handlePopState);
+    };
   }, []);
 
   const currentRole = roleDescriptions[selectedRole];
+
+  // Don't render until client-side to avoid hydration mismatch
+  if (!isClient) {
+    return (
+      <section className="mt-4">
+        <div className="animate-pulse">
+          <div className="mb-6 sm:mb-8 text-center px-4">
+            <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-3/4 mx-auto mb-2"></div>
+            <div className="h-3 bg-gray-200 dark:bg-gray-700 rounded w-1/2 mx-auto"></div>
+          </div>
+          <div className="mb-4 sm:mb-6">
+            <div className="flex gap-2 px-4 mb-4">
+              <div className="h-8 bg-gray-200 dark:bg-gray-700 rounded-full w-24"></div>
+              <div className="h-8 bg-gray-200 dark:bg-gray-700 rounded-full w-32"></div>
+              <div className="h-8 bg-gray-200 dark:bg-gray-700 rounded-full w-28"></div>
+            </div>
+            <div className="h-32 bg-gray-200 dark:bg-gray-700 rounded"></div>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="mt-4">
@@ -173,7 +252,7 @@ export default function ExperienceList({
         </div>
         
         {/* Role Description Section - Clean header design */}
-        <div id={currentRole.anchor} className={`mb-10 transition-all duration-300 ${isTransitioning ? 'opacity-50' : 'opacity-100'}`}>
+        <div className={`mb-10 transition-all duration-300 ${isTransitioning ? 'opacity-50' : 'opacity-100'}`}>
           <div className="border-l-4 border-secondary pl-6 pr-4 py-6">
             <div className="flex items-center gap-3 mb-3">
               <h3 className="text-xl font-semibold text-text-light dark:text-text-dark">{currentRole.title}</h3>
