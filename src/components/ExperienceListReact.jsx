@@ -31,46 +31,90 @@ export default function ExperienceList({
         setSelectedRole(newRole);
         setIsTransitioning(false);
       }, 150);
+      
+      // Update URL with anchor
+      const anchor = roleDescriptions[newRole].anchor;
+      if (anchor) {
+        window.history.pushState(null, null, `#${anchor}`);
+      }
     }
   };
 
   const roleDescriptions = {
     ProductStrategist: {
       title: "Product Strategist",
+      anchor: "product-strategist",
       description: "Defines product vision, market alignment, and growth priorities—balancing user needs, business value, and feasibility to create long-term impact.",
       skills: []
     },
     ExecutionLead: {
       title: "Execution Lead",
+      anchor: "execution-lead",
       description: "Turns plans into shipped outcomes—leading delivery across complex environments while balancing speed, quality, and strategic trade-offs to stay aligned with product goals.",
       skills: []
     },
     DigitalEnabler: {
       title: "Digital Enabler",
+      anchor: "digital-enabler",
       description: "Builds and refines internal platforms, tools, and automation—improving operational visibility, team efficiency, and cross-system data flows.",
       skills: []
     },
     FractionalPm: {
       title: "Fractional PM",
+      anchor: "fractional-pm",
       description: "Rapidly adapts to client needs—jumping into high-context environments to scope, align, and deliver as a flexible and experienced product partner.",
       skills: []
     },
     CollaborativeLeader: {
       title: "Collaborative Leader",
+      anchor: "collaborative-leader",
       description: "Shapes open, outcome-focused team culture—championing transparency, psychological safety, and shared ownership to unlock high performance.",
       skills: []
     },
     CommercialStrategist: {
       title: "Commercial Strategist",
+      anchor: "commercial-strategist",
       description: "Connects product thinking with business outcomes—building scalable models, pricing, market narratives, and systems that drive adoption and growth.",
       skills: []
     },
     StrategicTechnologist: {
       title: "Strategic Technologist",
+      anchor: "strategic-technologist",
       description: "Bridges product, architecture, and platform evolution—collaborating with engineers and domain experts to make informed, sustainable technology decisions.",
       skills: []
     }
   };
+
+  // Handle initial page load and anchor navigation
+  useEffect(() => {
+    const hash = window.location.hash.substring(1);
+    if (hash) {
+      const roleKey = Object.keys(roleDescriptions).find(
+        key => roleDescriptions[key].anchor === hash
+      );
+      if (roleKey) {
+        setSelectedRole(roleKey);
+      }
+    }
+
+    // Handle browser back/forward navigation
+    const handlePopState = () => {
+      const hash = window.location.hash.substring(1);
+      if (hash) {
+        const roleKey = Object.keys(roleDescriptions).find(
+          key => roleDescriptions[key].anchor === hash
+        );
+        if (roleKey) {
+          setSelectedRole(roleKey);
+        }
+      } else {
+        setSelectedRole("ProductStrategist");
+      }
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
 
   const currentRole = roleDescriptions[selectedRole];
 
@@ -129,7 +173,7 @@ export default function ExperienceList({
         </div>
         
         {/* Role Description Section - Clean header design */}
-        <div className={`mb-10 transition-all duration-300 ${isTransitioning ? 'opacity-50' : 'opacity-100'}`}>
+        <div id={currentRole.anchor} className={`mb-10 transition-all duration-300 ${isTransitioning ? 'opacity-50' : 'opacity-100'}`}>
           <div className="border-l-4 border-secondary pl-6 pr-4 py-6">
             <div className="flex items-center gap-3 mb-3">
               <h3 className="text-xl font-semibold text-text-light dark:text-text-dark">{currentRole.title}</h3>

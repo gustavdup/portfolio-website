@@ -204,6 +204,29 @@ const experienceStrategicTechnologist = defineCollection({
   }),
 });
 
+const workWithMe = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    type: z.string().optional(), // "contact" for contact section, undefined for tabs
+    slug: z.string().optional(),
+    order: z.number().optional(),
+    cta: z.string().optional(),
+    ctaLink: z.string().optional(),
+    // For contact.md specifically
+    email: z.string().optional(),
+    linkedin: z.string().optional(),
+    calendar_link: z.string().optional(),
+    header_text: z.string().optional(),
+    footer_text: z.string().optional(),
+    buttons: z.object({
+      book_call: z.string(),
+      linkedin: z.string(),
+      email: z.string(),
+    }).optional(),
+  }),
+});
+
 // Export collections for Astro to pick up
 export const collections = {
  
@@ -222,4 +245,5 @@ export const collections = {
   education,
   currentRoles,
   pages,
+  workWithMe,
 };

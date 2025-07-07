@@ -1,164 +1,241 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { getEntry } from 'astro:content';
+import { getCollection } from 'astro:content';
 
-const pageData = await getEntry('pages', 'lets-work-together');
-const { hero, consulting, fulltime, contact } = pageData.data;
+// Get all work with me content
+const workWithMeEntries = await getCollection('workWithMe');
+
+// Filter tabs (exclude contact section) and sort by order
+const tabs = workWithMeEntries
+  .filter(entry => entry.data.type !== 'contact')
+  .sort((a, b) => (a.data.order || 0) - (b.data.order || 0));
+
+// Get contact section
+const contactEntry = workWithMeEntries.find(entry => entry.data.type === 'contact');
+const { Content: ContactContent } = await contactEntry?.render() || { Content: null };
 ---
 
-<Layout title={`${pageData.data.title} | Gustav du Plessis`} description={pageData.data.description}>
-  <main class="min-h-screen pt-4 sm:pt-6 px-4 pb-20">
+<Layout title="Let's Work Together | Gustav du Plessis" description="Available for product leadership, strategic consulting, and meaningful collaborations">
+  <main class="min-h-screen px-4 pb-20">
     <div class="max-w-4xl mx-auto">
       
-      <!-- Hero Section -->
-      <section class="text-center mb-12">
-        <h1 class="text-xl sm:text-2xl lg:text-3xl font-bold text-text-light dark:text-text-dark mb-6 leading-tight">
-          {hero.title}
-        </h1>
-        
-        <div class="max-w-2xl mx-auto mb-6">
-          <p class="text-sm sm:text-base text-gray-600 dark:text-gray-300 leading-relaxed mb-6">
-            {hero.subtitle}
+      <section class="mt-4">
+        <!-- Description Section -->
+        <div class="mb-6 sm:mb-8 text-center px-4">
+          <p class="text-sm sm:text-base font-medium text-gray-700 dark:text-gray-300 leading-relaxed max-w-2xl mx-auto mb-2">
+            Whether you need strategic input, flexible product leadership, or a long-term engagement, I offer multiple ways to collaborate.
+          </p>
+          <p class="text-xs sm:text-sm font-medium text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+            Choose the engagement type that aligns with your current needs and timeline.
           </p>
         </div>
-        
-        <div class="max-w-2xl mx-auto py-4">
-          <div class="px-3 py-2 bg-red-800/10 dark:bg-red-800/15 border border-red-800/25 rounded-lg">
-            <p class="text-xs sm:text-sm text-gray-600 dark:text-gray-300 leading-relaxed italic">
-              {hero.description}
-            </p>
+
+        <!-- Tabs Section -->
+        <!-- Section Header with tabs integrated -->
+        <div class="mb-4 sm:mb-6">
+          <div class="flex items-center gap-2 sm:gap-4 mb-4 sm:mb-6 px-4">
+            <h2 class="text-xs sm:text-sm font-medium tracking-wider uppercase text-gray-600 dark:text-gray-400">Engagement Types</h2>
+            <div class="flex-1 h-[1px] bg-gray-200 dark:bg-gray-800"></div>
+          </div>
+            
+          <!-- Mobile: Scrollable pills -->
+          <div class="flex overflow-x-auto gap-2 pb-2 px-4 sm:hidden scrollbar-hide">
+            {tabs.map((tab, index) => (
+              <button
+                class={`px-3 py-2 rounded-full text-xs font-medium transition-colors whitespace-nowrap flex-shrink-0 ${
+                  index === 0
+                    ? 'bg-secondary text-white shadow-sm'
+                    : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-secondary hover:text-white border border-gray-200 dark:border-gray-700'
+                }`}
+                type="button"
+                role="tab"
+                aria-selected={index === 0 ? 'true' : 'false'}
+                aria-controls={`panel-${tab.data.slug || tab.slug}`}
+                id={`tab-${tab.data.slug || tab.slug}`}
+                onclick="switchTab(event, this)"
+                data-anchor={tab.data.slug || tab.slug}
+              >
+                {tab.data.title}
+              </button>
+            ))}
+          </div>
+          
+          <!-- Desktop: Flex wrap -->
+          <div class="hidden sm:flex flex-wrap gap-2 px-4">
+            {tabs.map((tab, index) => (
+              <button
+                class={`px-3 py-1 rounded-full text-sm font-medium transition-colors ${
+                  index === 0
+                    ? 'bg-secondary text-white shadow-sm'
+                    : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-secondary hover:text-white border border-gray-200 dark:border-gray-700'
+                }`}
+                type="button"
+                role="tab"
+                aria-selected={index === 0 ? 'true' : 'false'}
+                aria-controls={`panel-${tab.data.slug || tab.slug}`}
+                id={`tab-${tab.data.slug || tab.slug}`}
+                onclick="switchTab(event, this)"
+                data-anchor={tab.data.slug || tab.slug}
+              >
+                {tab.data.title}
+              </button>
+            ))}
           </div>
         </div>
-      </section>
 
-      <!-- Services Section -->
-      <section class="mb-12">
-        <!-- Consulting & Fractional Product Work -->
-        <div class="mb-10">
-          <div class="border-l-4 border-primary pl-3 pr-3 py-6 mb-4 rounded-r-xl">
-            <h2 class="text-lg sm:text-xl font-bold text-text-light dark:text-text-dark mb-4 flex items-center gap-2">
-              <span class="text-primary text-base">{consulting.emoji}</span>
-              {consulting.title}
-            </h2>
-            <p class="text-sm sm:text-base text-gray-600 dark:text-gray-300 leading-relaxed mb-5">
-              {consulting.description}
-            </p>
-            
-            <p class="text-sm sm:text-base font-medium text-gray-700 dark:text-gray-200 mb-4">{consulting.subtitle}</p>
-            
-            <div class="grid sm:grid-cols-2 gap-2">
-              <div class="space-y-1.5">
-                {consulting.services.slice(0, 3).map((service) => (
-                  <div class="flex items-start gap-2 p-2 rounded-lg bg-gray-50 dark:bg-gray-800/50">
-                    <div class="w-1 h-1 rounded-full bg-primary mt-2 flex-shrink-0"></div>
-                    <div>
-                      <h3 class="text-base font-medium text-text-light dark:text-text-dark">{service}</h3>
-                    </div>
-                  </div>
-                ))}
-              </div>
-              <div class="space-y-1.5">
-                {consulting.services.slice(3).map((service) => (
-                  <div class="flex items-start gap-2 p-2 rounded-lg bg-gray-50 dark:bg-gray-800/50">
-                    <div class="w-1 h-1 rounded-full bg-primary mt-2 flex-shrink-0"></div>
-                    <div>
-                      <h3 class="text-base font-medium text-text-light dark:text-text-dark">{service}</h3>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-            
-            <p class="text-sm sm:text-base font-medium text-text-light dark:text-text-dark mt-6 text-center leading-relaxed">
-              {consulting.closing}
-            </p>
-          </div>
-        </div>
-
-        <!-- Permanent or Long-Term Roles -->
-        <div class="mb-10">
-          <div class="border-l-4 border-secondary pl-3 pr-3 py-6 mb-4 rounded-r-xl">
-            <h2 class="text-lg sm:text-xl font-bold text-text-light dark:text-text-dark mb-4 flex items-center gap-2">
-              <span class="text-secondary text-base">{fulltime.emoji}</span>
-              {fulltime.title}
-            </h2>
-            <p class="text-sm sm:text-base text-gray-600 dark:text-gray-300 leading-relaxed mb-5">
-              {fulltime.description}
-            </p>
-            
-            <p class="text-sm sm:text-base font-medium text-gray-700 dark:text-gray-200 mb-4">{fulltime.subtitle}</p>
-            
-            <div class="space-y-3">
-              {fulltime.requirements.map((requirement) => (
-                <div class="flex items-start gap-2 p-2 rounded-lg bg-secondary/5 dark:bg-secondary/10 border border-secondary/20">
-                  <div class="w-1 h-1 rounded-full bg-secondary mt-2 flex-shrink-0"></div>
-                  <div>
-                    <h3 class="text-base font-medium text-text-light dark:text-text-dark">{requirement}</h3>
+        <!-- Tab Panels -->
+        <div class="space-y-8 mb-6">
+          {tabs.map(async (tab, index) => {
+            const { Content } = await tab.render();
+            return (
+              <div
+                class={`tab-panel ${index === 0 ? 'block' : 'hidden'}`}
+                id={`panel-${tab.data.slug || tab.slug}`}
+                role="tabpanel"
+                aria-labelledby={`tab-${tab.data.slug || tab.slug}`}
+                data-anchor={tab.data.slug || tab.slug}
+              >
+                <div class="py-3">
+                  <div class="prose prose-gray dark:prose-invert max-w-none">
+                    <Content />
                   </div>
                 </div>
-              ))}
+              </div>
+            );
+          })}
+        </div>
+
+        <!-- Availability Note -->
+        <section class="mb-8">
+          <div class="max-w-2xl mx-auto py-4">
+            <div class="px-3 py-2 bg-red-800/10 dark:bg-red-800/15 border border-red-800/25 rounded-lg">
+              <p class="text-xs sm:text-sm text-gray-600 dark:text-gray-300 leading-relaxed italic text-center">
+                My availability depends on active engagements, but I always welcome conversations that could lead to meaningful collaboration.
+              </p>
             </div>
-            
-            <p class="text-sm sm:text-base font-medium text-text-light dark:text-text-dark mt-6 text-center leading-relaxed">
-              {fulltime.closing}
+          </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="text-center">
+        <div class="p-6 rounded-xl bg-white dark:bg-gray-900/40 border border-gray-200 dark:border-gray-800 transition-all duration-200 hover:shadow-md hover:border-gray-300 dark:hover:border-gray-700">
+          <h2 class="text-xl sm:text-2xl font-bold text-text-light dark:text-text-dark mb-4">
+            {contactEntry?.data.title}
+          </h2>
+          
+          <div class="mb-6">
+            <p class="text-sm sm:text-base text-gray-600 dark:text-gray-300 leading-relaxed max-w-2xl mx-auto">
+              {contactEntry?.data.header_text}
             </p>
           </div>
-        </div>
-      </section>
-
-      <!-- Contact Section -->
-      <section class="text-center">
-        <div class="p-6 rounded-xl bg-white dark:bg-gray-900/40 border border-gray-200 dark:border-gray-800 transition-all duration-200 hover:shadow-md hover:border-gray-300 dark:hover:border-gray-700">
-          <h2 class="text-xl sm:text-2xl font-bold text-text-light dark:text-text-dark mb-2 flex items-center justify-center gap-2">
-            <span class="text-primary text-base">{contact.emoji}</span>
-            {contact.title}
-          </h2>
-          <p class="text-sm sm:text-base text-gray-600 dark:text-gray-300 leading-relaxed mb-4 max-w-2xl mx-auto">
-            {contact.description}
-          </p>
           
-          <div class="flex flex-col sm:flex-row gap-3 justify-center items-center mb-4">
+          <div class="flex flex-col sm:flex-row gap-3 justify-center items-center mb-6">
             <a 
-              href={contact.calendar_link}
+              href={contactEntry?.data.calendar_link}
               target="_blank"
               rel="noopener noreferrer"
               class="inline-flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg text-xs font-medium transition-all duration-200 hover:bg-primary/90 hover:shadow-lg hover:-translate-y-0.5"
             >
-              <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v14a2 2 0 002 2z" />
-              </svg>
-              {contact.buttons.book_call}
+              {contactEntry?.data.buttons?.book_call}
             </a>
             
             <a 
-              href={contact.linkedin}
+              href={contactEntry?.data.linkedin}
               target="_blank"
               rel="noopener noreferrer"
               class="inline-flex items-center gap-2 px-4 py-2 bg-[#0077B5] text-white rounded-lg text-xs font-medium transition-all duration-200 hover:bg-[#005885] hover:shadow-lg hover:-translate-y-0.5"
             >
-              <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-              </svg>
-              {contact.buttons.linkedin}
+              {contactEntry?.data.buttons?.linkedin}
             </a>
             
             <a 
-              href={`mailto:${contact.email}`}
+              href={`mailto:${contactEntry?.data.email}`}
               class="inline-flex items-center gap-2 px-4 py-2 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-lg text-xs font-medium transition-all duration-200 hover:bg-gray-200 dark:hover:bg-gray-700 hover:shadow-lg hover:-translate-y-0.5"
             >
-              <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-              </svg>
-              {contact.buttons.email}
+              {contactEntry?.data.buttons?.email}
             </a>
           </div>
-          
-          <p class="text-xs text-gray-500 dark:text-gray-400 max-w-lg mx-auto">
-            {contact.disclaimer}
-          </p>
+
+          <div>
+            <p class="text-xs text-gray-500 dark:text-gray-400 max-w-lg mx-auto">
+              {contactEntry?.data.footer_text}
+            </p>
+          </div>
         </div>
-      </section>
+        </section>
 
     </div>
   </main>
+
+  <!-- Tab Switching Script -->
+  <script is:inline>
+    function switchTab(event, button) {
+      const anchor = button.getAttribute('data-anchor');
+      
+      // Remove active state from all tabs
+      const allTabs = document.querySelectorAll('[role="tab"]');
+      const allPanels = document.querySelectorAll('[role="tabpanel"]');
+      
+      allTabs.forEach(tab => {
+        tab.setAttribute('aria-selected', 'false');
+        tab.className = tab.className.replace(
+          'bg-secondary text-white shadow-sm',
+          'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-secondary hover:text-white border border-gray-200 dark:border-gray-700'
+        );
+      });
+      
+      allPanels.forEach(panel => {
+        panel.classList.add('hidden');
+        panel.classList.remove('block');
+      });
+      
+      // Activate clicked tab
+      button.setAttribute('aria-selected', 'true');
+      button.className = button.className.replace(
+        'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-secondary hover:text-white border border-gray-200 dark:border-gray-700',
+        'bg-secondary text-white shadow-sm'
+      );
+      
+      // Show corresponding panel
+      const panel = document.getElementById(`panel-${anchor}`);
+      if (panel) {
+        panel.classList.remove('hidden');
+        panel.classList.add('block');
+      }
+      
+      // Update URL without scrolling
+      if (history.pushState) {
+        history.pushState(null, null, `#${anchor}`);
+      }
+    }
+
+    function switchToTabByAnchor(anchor) {
+      const targetButton = document.querySelector(`[data-anchor="${anchor}"]`);
+      if (targetButton) {
+        switchTab(null, targetButton);
+      }
+    }
+
+    // Handle initial page load with anchor
+    document.addEventListener('DOMContentLoaded', function() {
+      const hash = window.location.hash.substring(1);
+      if (hash && ['consulting', 'fractional', 'permanent'].includes(hash)) {
+        switchToTabByAnchor(hash);
+      }
+    });
+
+    // Handle browser back/forward navigation
+    window.addEventListener('popstate', function(event) {
+      const hash = window.location.hash.substring(1);
+      if (hash && ['consulting', 'fractional', 'permanent'].includes(hash)) {
+        switchToTabByAnchor(hash);
+      } else {
+        // Default to first tab if no valid hash
+        const firstTab = document.querySelector('[role="tab"]');
+        if (firstTab) {
+          switchTab(null, firstTab);
+        }
+      }
+    });
+  </script>
 </Layout>

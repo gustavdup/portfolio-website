@@ -26,7 +26,7 @@ const getCurrentPageName = (path: string) => {
   if (path.startsWith('/projects')) return 'Portfolio';
   if (path.startsWith('/experience')) return 'Experience';
   if (path.startsWith('/articles')) return 'Articles';
-  if (path.startsWith('/lets-work-together')) return 'Let\'s Work Together';
+  if (path.startsWith('/lets-work-together')) return 'Let\'s Collaborate';
   return 'Navigation';
 };
 ---
@@ -124,7 +124,7 @@ const getCurrentPageName = (path: string) => {
               <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
               </svg>
-              <span>Let's Work Together</span>
+              <span>Let's Collaborate</span>
             </div>
           </a>
         </div>
@@ -153,7 +153,7 @@ const getCurrentPageName = (path: string) => {
           <span class={`absolute -bottom-0.5 left-0 h-[1.5px] bg-primary transition-all duration-300 ${isActive('/articles') ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
         </a>
       )}
-      <a class={`relative group font-medium transition-colors duration-200 px-2 ${isActive('/lets-work-together') ? 'text-primary' : 'text-gray-600 dark:text-gray-400 hover:text-primary'}`} href="/lets-work-together">Let's Work Together
+      <a class={`relative group font-medium transition-colors duration-200 px-2 ${isActive('/lets-work-together') ? 'text-primary' : 'text-gray-600 dark:text-gray-400 hover:text-primary'}`} href="/lets-work-together">Let's Collaborate
         <span class={`absolute -bottom-0.5 left-0 h-[1.5px] bg-primary transition-all duration-300 ${isActive('/lets-work-together') ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>
       </a>
     </div>
