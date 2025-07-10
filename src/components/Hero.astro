@@ -8,6 +8,8 @@ const { Content: BioContent } = await bio?.render() || { Content: null };
 // Get visibility settings from bio
 const showArticles = bio?.data.showArticles ?? true;
 const showProjects = bio?.data.showProjects ?? true;
+const showExperience = bio?.data.showExperience ?? true;
+const linkedinUrl = bio?.data.linkedinUrl || 'https://linkedin.com/in/gustavduplessis';
 
 // Get featured projects
 const allProjects = await getCollection('projects');
@@ -93,7 +95,12 @@ const sortedCurrentRoles = currentRoles
   <section class="mb-16">
     <div class="flex items-center justify-between mb-6">
       <h2 class="text-lg font-medium text-text-light dark:text-text-dark tracking-wide uppercase">Ongoing Roles</h2>
-      <a href="/experience" class="text-sm text-gray-600 dark:text-gray-400 hover-accent transition-colors flex items-center gap-1 group">
+      <a 
+        href={showExperience ? "/experience" : linkedinUrl} 
+        target={showExperience ? "_self" : "_blank"}
+        rel={showExperience ? "" : "noopener noreferrer"}
+        class="text-sm text-gray-600 dark:text-gray-400 hover-accent transition-colors flex items-center gap-1 group"
+      >
         <span>Full Work History</span>
         <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" class="w-3 h-3 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300" xmlns="http://www.w3.org/2000/svg">
           <line x1="5" y1="12" x2="19" y2="12"></line>

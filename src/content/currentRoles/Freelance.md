@@ -1,10 +1,10 @@
 ---
-title: "Product Manager"
+title: "Freelance Product Manager & Consultant"
 company: "Direct & via Toptal"
-roleType: "Freelance & Consulting Projects"
-timeframe: "2021 - Present"
+roleType: "Project Based"
+timeframe: "2021 - Present" 
 location: "Remote"
-visiblee: true
-order: 4
+visible: true
+order: 1
 ---
 

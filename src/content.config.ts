@@ -23,6 +23,8 @@ const bio = defineCollection({
     email: z.string().optional(),
     showArticles: z.boolean().default(true),
     showProjects: z.boolean().default(true),
+    showExperience: z.boolean().default(true),
+    linkedinUrl: z.string().optional(),
   }),
 });
 

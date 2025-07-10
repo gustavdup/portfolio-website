@@ -1,26 +1,94 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import ExperienceListReact from '../components/ExperienceListReact.jsx';
-import { getCollection } from 'astro:content';
+import { getCollection, getEntryBySlug } from 'astro:content';
 
-const experienceProductStrategistExperiences = await getCollection('experienceProductStrategist');
-const experienceExecutionLeadExperiences = await getCollection('experienceExecutionLead');
-const experienceDigitalEnablerExperiences = await getCollection('experienceDigitalEnabler');
-const experienceFractionalPmExperiences = await getCollection('experienceFractionalPm');
-const experienceCollaborativeLeaderExperiences = await getCollection('experienceCollaborativeLeader');
-const experienceCommercialStrategistExperiences = await getCollection('experienceCommercialStrategist');
-const experienceStrategicTechnologistExperiences = await getCollection('experienceStrategicTechnologist');
+// Check if experience page should be shown
+const bio = await getEntryBySlug('bio', 'bio');
+const showExperience = bio?.data.showExperience ?? true;
+const linkedinUrl = bio?.data.linkedinUrl || 'https://linkedin.com/in/gustavduplessis';
+
+// If experience is hidden, show coming soon page
+if (!showExperience) {
+  // We'll show the coming soon content instead of redirecting
+} else {
+  // Load experience data only if showing
+  var experienceProductStrategistExperiences = await getCollection('experienceProductStrategist');
+  var experienceExecutionLeadExperiences = await getCollection('experienceExecutionLead');
+  var experienceDigitalEnablerExperiences = await getCollection('experienceDigitalEnabler');
+  var experienceFractionalPmExperiences = await getCollection('experienceFractionalPm');
+  var experienceCollaborativeLeaderExperiences = await getCollection('experienceCollaborativeLeader');
+  var experienceCommercialStrategistExperiences = await getCollection('experienceCommercialStrategist');
+  var experienceStrategicTechnologistExperiences = await getCollection('experienceStrategicTechnologist');
+}
 ---
 
-<Layout>
-  <ExperienceListReact 
-    client:load 
-    experienceProductStrategistExperiences={experienceProductStrategistExperiences}
-    experienceExecutionLeadExperiences={experienceExecutionLeadExperiences}
-    experienceDigitalEnablerExperiences={experienceDigitalEnablerExperiences}
-    experienceFractionalPmExperiences={experienceFractionalPmExperiences}
-    experienceCollaborativeLeaderExperiences={experienceCollaborativeLeaderExperiences}
-    experienceCommercialStrategistExperiences={experienceCommercialStrategistExperiences}
-    experienceStrategicTechnologistExperiences={experienceStrategicTechnologistExperiences}
-  />
-</Layout>
+{showExperience ? (
+  <Layout title="Experience | Gustav du Plessis" description="Professional experience across product strategy, execution, and technology leadership">
+    <main class="min-h-screen px-4 pb-20">
+      <div class="max-w-4xl mx-auto">
+        <ExperienceListReact 
+          client:load 
+          experienceProductStrategistExperiences={experienceProductStrategistExperiences}
+          experienceExecutionLeadExperiences={experienceExecutionLeadExperiences}
+          experienceDigitalEnablerExperiences={experienceDigitalEnablerExperiences}
+          experienceFractionalPmExperiences={experienceFractionalPmExperiences}
+          experienceCollaborativeLeaderExperiences={experienceCollaborativeLeaderExperiences}
+          experienceCommercialStrategistExperiences={experienceCommercialStrategistExperiences}
+          experienceStrategicTechnologistExperiences={experienceStrategicTechnologistExperiences}
+        />
+      </div>
+    </main>
+  </Layout>
+) : (
+  <Layout title="Experience Coming Soon | Gustav du Plessis" description="Detailed experience page coming soon">
+    <main class="min-h-screen px-4 pb-20 flex items-center justify-center">
+      <div class="max-w-2xl mx-auto text-center">
+        <div class="mb-8">
+          <svg class="mx-auto h-24 w-24 text-gray-400 dark:text-gray-600 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0H8m8 0v2a2 2 0 01-2 2H10a2 2 0 01-2-2V6" />
+          </svg>
+          <h1 class="text-3xl sm:text-4xl font-bold text-text-light dark:text-text-dark mb-4">
+            Experience Page Coming Soon
+          </h1>
+          <p class="text-lg text-gray-600 dark:text-gray-400 mb-8 leading-relaxed">
+            I'm currently updating my detailed experience page. In the meantime, you can view my professional background on LinkedIn or explore my current work and collaboration options.
+          </p>
+        </div>
+        
+        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <a 
+            href={linkedinUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 px-6 py-3 bg-[#0077B5] text-white rounded-lg font-medium transition-all duration-200 hover:bg-[#005885] hover:shadow-lg hover:-translate-y-0.5"
+          >
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+            </svg>
+            View LinkedIn Profile
+          </a>
+          
+          <a 
+            href="/lets-work-together"
+            class="inline-flex items-center gap-2 px-6 py-3 bg-primary text-white rounded-lg font-medium transition-all duration-200 hover:bg-primary/90 hover:shadow-lg hover:-translate-y-0.5"
+          >
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+            </svg>
+            Let's Collaborate
+          </a>
+        </div>
+        
+        <div class="mt-8">
+          <a 
+            href="/"
+            class="text-gray-600 dark:text-gray-400 hover:text-primary transition-colors font-medium"
+          >
+            ← Back to About
+          </a>
+        </div>
+      </div>
+    </main>
+  </Layout>
+)}
