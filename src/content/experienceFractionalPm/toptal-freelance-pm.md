@@ -2,6 +2,7 @@
 company: "Toptal"
 title: "Freelance Product Manager (via Toptal Network)"
 timeframe: "2021 – Present"
+visible: true
 order: 3
 context: ["Fractional PM", "Freelance", "Marketplace"]
 responsibilities:

@@ -2,6 +2,7 @@
 company: "Mural"
 title: "Interim Senior Product Manager (Freelance)"
 timeframe: "Nov 2021 - Jul 2022"
+visible: true
 order: 2
 context: ["Product Strategist", "Enterprise SaaS", "Product Validation", "Vision Alignment"]
 responsibilities:

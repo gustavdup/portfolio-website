@@ -2,6 +2,7 @@
 company: "Edublox Reading and Learning Clinic"
 title: "IT Manager and Business Coach"
 timeframe: "2012 – 2015"
+visible: false
 order: 4
 context: ["Digital Enabler", "Internal Tools", "Process Automation"]
 responsibilities:

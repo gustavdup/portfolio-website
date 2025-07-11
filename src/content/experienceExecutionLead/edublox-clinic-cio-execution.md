@@ -2,6 +2,7 @@
 company: "Edublox Reading and Learning Clinic"
 title: "Chief Information Officer & Co-Owner"
 timeframe: "2016 – Present"
+visible: false
 order: 5
 context: ["Execution", "Operations", "Platform Delivery", "Enablement"]
 responsibilities:

@@ -10,9 +10,9 @@ I help product teams that need senior leadership at a critical point of growth o
 
 - Fractional product leadership
 - Product discovery & roadmapping
-- Technical scoping & systems thinking
-- SaaS growth & retention
-- Team onboarding & delivery setup
+- Systems thinking and product architecture
+- SaaS growth, retention, and delivery clarity
+- Improving team alignment, delivery practices, and onboarding
 - Process improvement & product insights
 
 <div align="center"><br>

@@ -2,6 +2,7 @@
 company: "Edublox Online Tutor"
 title: "Chief Product Officer & Co-Founder"
 timeframe: "2019 – Present"
+visible: false
 order: 3
 context: ["Execution", "SaaS Delivery", "Startup", "Remote Teams"]
 responsibilities:

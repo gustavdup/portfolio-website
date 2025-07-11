@@ -2,6 +2,7 @@
 company: "Edublox Online Tutor"
 title: "Chief Product Officer | Co-Founder"
 timeframe: "2017 – Present"
+visible: false
 order: 2
 context: ["Commercial Strategist", "SaaS Growth", "Subscription Models"]
 responsibilities:

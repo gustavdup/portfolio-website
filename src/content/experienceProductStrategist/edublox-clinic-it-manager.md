@@ -2,6 +2,7 @@
 company: "Edublox Reading and Learning Clinic"
 title: "IT Manager and Business Coach"
 timeframe: "2012 – 2015"
+visible: true
 order: 6
 context: ["Product Strategist", "Operational Strategy", "Systems Implementation"]
 responsibilities:

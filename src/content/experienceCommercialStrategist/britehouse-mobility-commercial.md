@@ -2,6 +2,7 @@
 company: "Britehouse Mobility"
 title: "Product Manager | Product Owner"
 timeframe: "Jan 2023 – Present"
+visible: false
 order: 4
 context: ["Commercial Strategist", "Platform Positioning", "Client Proposals"]
 responsibilities:

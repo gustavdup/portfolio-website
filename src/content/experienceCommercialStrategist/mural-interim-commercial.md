@@ -2,6 +2,7 @@
 company: "MURAL"
 title: "Interim Senior Product Manager (Freelance)"
 timeframe: "Nov 2021 - Jul 2022"
+visible: false
 order: 3
 context: ["Commercial Strategist", "Competitor Differentiation", "Growth Enablers"]
 responsibilities:

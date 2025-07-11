@@ -2,6 +2,7 @@
 company: "Britehouse Mobility"
 title: "Product Manager | Product Owner"
 timeframe: "Jan 2023 – Present"
+visible: true
 order: 3
 context: ["Product Strategist", "B2B SaaS", "Roadmap Ownership", "ERP Integration"]
 responsibilities:

@@ -12,14 +12,14 @@ const linkedinUrl = bio?.data.linkedinUrl || 'https://linkedin.com/in/gustavdupl
 if (!showExperience) {
   // We'll show the coming soon content instead of redirecting
 } else {
-  // Load experience data only if showing
-  var experienceProductStrategistExperiences = await getCollection('experienceProductStrategist');
-  var experienceExecutionLeadExperiences = await getCollection('experienceExecutionLead');
-  var experienceDigitalEnablerExperiences = await getCollection('experienceDigitalEnabler');
-  var experienceFractionalPmExperiences = await getCollection('experienceFractionalPm');
-  var experienceCollaborativeLeaderExperiences = await getCollection('experienceCollaborativeLeader');
-  var experienceCommercialStrategistExperiences = await getCollection('experienceCommercialStrategist');
-  var experienceStrategicTechnologistExperiences = await getCollection('experienceStrategicTechnologist');
+  // Load experience data only if showing, and filter by visibility
+  var experienceProductStrategistExperiences = (await getCollection('experienceProductStrategist')).filter(exp => exp.data.visible !== false);
+  var experienceExecutionLeadExperiences = (await getCollection('experienceExecutionLead')).filter(exp => exp.data.visible !== false);
+  var experienceDigitalEnablerExperiences = (await getCollection('experienceDigitalEnabler')).filter(exp => exp.data.visible !== false);
+  var experienceFractionalPmExperiences = (await getCollection('experienceFractionalPm')).filter(exp => exp.data.visible !== false);
+  var experienceCollaborativeLeaderExperiences = (await getCollection('experienceCollaborativeLeader')).filter(exp => exp.data.visible !== false);
+  var experienceCommercialStrategistExperiences = (await getCollection('experienceCommercialStrategist')).filter(exp => exp.data.visible !== false);
+  var experienceStrategicTechnologistExperiences = (await getCollection('experienceStrategicTechnologist')).filter(exp => exp.data.visible !== false);
 }
 ---
 

@@ -50,6 +50,11 @@ export default function ExperienceList({
     StrategicTechnologist: experienceStrategicTechnologistExperiences,
   };
   
+  // Filter out roles that have no visible experiences
+  const visibleRoles = Object.keys(experienceCollections).filter(role => 
+    experienceCollections[role] && experienceCollections[role].length > 0
+  );
+  
   const experiences = experienceCollections[selectedRole];
 
   const handleRoleChange = (newRole) => {
@@ -124,11 +129,15 @@ export default function ExperienceList({
         const roleKey = Object.keys(roleDescriptions).find(
           key => roleDescriptions[key].anchor === hash
         );
-        if (roleKey) {
+        if (roleKey && visibleRoles.includes(roleKey)) {
           setSelectedRole(roleKey);
+        } else {
+          // If hash role is not visible, redirect to first visible role
+          setSelectedRole(visibleRoles[0] || "ProductStrategist");
         }
       } else {
-        setSelectedRole("ProductStrategist");
+        // If no hash, select first visible role
+        setSelectedRole(visibleRoles.includes("ProductStrategist") ? "ProductStrategist" : visibleRoles[0]);
       }
     };
 
@@ -142,11 +151,14 @@ export default function ExperienceList({
         const roleKey = Object.keys(roleDescriptions).find(
           key => roleDescriptions[key].anchor === hash
         );
-        if (roleKey) {
+        if (roleKey && visibleRoles.includes(roleKey)) {
           setSelectedRole(roleKey);
+        } else {
+          // If hash role is not visible, redirect to first visible role
+          setSelectedRole(visibleRoles[0] || "ProductStrategist");
         }
       } else {
-        setSelectedRole("ProductStrategist");
+        setSelectedRole(visibleRoles.includes("ProductStrategist") ? "ProductStrategist" : visibleRoles[0]);
       }
     };
 
@@ -157,11 +169,14 @@ export default function ExperienceList({
         const roleKey = Object.keys(roleDescriptions).find(
           key => roleDescriptions[key].anchor === hash
         );
-        if (roleKey) {
+        if (roleKey && visibleRoles.includes(roleKey)) {
           setSelectedRole(roleKey);
+        } else {
+          // If hash role is not visible, redirect to first visible role
+          setSelectedRole(visibleRoles[0] || "ProductStrategist");
         }
       } else {
-        setSelectedRole("ProductStrategist");
+        setSelectedRole(visibleRoles.includes("ProductStrategist") ? "ProductStrategist" : visibleRoles[0]);
       }
     };
 
@@ -171,7 +186,7 @@ export default function ExperienceList({
       window.removeEventListener('hashchange', handleHashChange);
       window.removeEventListener('popstate', handlePopState);
     };
-  }, []);
+  }, [visibleRoles]);
 
   const currentRole = roleDescriptions[selectedRole];
 
@@ -218,7 +233,7 @@ export default function ExperienceList({
           
           {/* Tab Navigation */}
           <div className="flex overflow-x-auto gap-2 pb-2 px-4 sm:hidden scrollbar-hide">
-            {Object.keys(roleDescriptions).map((role) => (
+            {visibleRoles.map((role) => (
               <button
                 key={role}
                 onClick={() => handleRoleChange(role)}
@@ -235,7 +250,7 @@ export default function ExperienceList({
           
           {/* Desktop: Flex wrap */}
           <div className="hidden sm:flex flex-wrap gap-2">
-            {Object.keys(roleDescriptions).map((role) => (
+            {visibleRoles.map((role) => (
               <button
                 key={role}
                 onClick={() => handleRoleChange(role)}

@@ -35,7 +35,10 @@ const { id = Math.random().toString(36).substr(2, 9) } = Astro.props;
         }
       });
     }
-
+    
+    // Make functions globally accessible
+    window.setAllIcons = setAllIcons;
+    
     function toggleDarkMode() {
       const html = document.documentElement;
       const isDarkNow = html.classList.contains('dark');
@@ -53,6 +56,8 @@ const { id = Math.random().toString(36).substr(2, 9) } = Astro.props;
       // Update all icons
       setTimeout(setAllIcons, 10);
     }
+    
+    window.toggleDarkMode = toggleDarkMode;
 
     // Initialize icons on page load
     document.addEventListener('DOMContentLoaded', () => {

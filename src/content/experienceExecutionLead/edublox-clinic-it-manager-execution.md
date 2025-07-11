@@ -2,6 +2,7 @@
 company: "Edublox Reading and Learning Clinic"
 title: "IT Manager"
 timeframe: "2012 – 2015"
+visible: false
 order: 6
 context: ["Execution", "Support", "System Management"]
 responsibilities:

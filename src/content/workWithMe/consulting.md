@@ -10,8 +10,8 @@ These are typically short, focused engagements where I help define direction, un
 
 ### Where I can help:
 
-- Product strategy & prioritisation
-- Discovery and roadmap planning
-- Systems thinking & integration planning
-- Team/process audits
+- Product strategy and prioritisation workshops
+- Discovery, GTM and roadmap planning
+- Systems thinking and product architecture
+- Team and business process audits
 - Vendor referrals when needed

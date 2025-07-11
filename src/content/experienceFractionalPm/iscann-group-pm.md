@@ -2,6 +2,7 @@
 company: "iScann Group"
 title: "Product Manager (Freelance)"
 timeframe: "Aug 2021 - Sept 2021"
+visible: true
 order: 2
 context: ["Fractional PM", "Freelance", "SaaS", "Subscriber Platforms"]
 responsibilities:

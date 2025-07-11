@@ -2,6 +2,7 @@
 company: "Edublox Reading and Learning Clinic"
 title: "Chief Information Officer | Co-Owner"
 timeframe: "2016 – Present"
+visible: true
 order: 4
 context: ["Product Strategist", "Business Strategy", "Platform Alignment"]
 responsibilities:

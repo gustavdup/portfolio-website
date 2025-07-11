@@ -124,6 +124,7 @@ const experienceProductStrategist = defineCollection({
     location: z.string().optional(),
     context: z.array(z.string()).optional(),
     responsibilities: z.array(z.string()).optional(),
+    visible: z.boolean().default(true),
     order: z.number().optional(),
   }),
 });
@@ -137,6 +138,7 @@ const experienceExecutionLead = defineCollection({
     location: z.string().optional(),
     context: z.array(z.string()).optional(),
     responsibilities: z.array(z.string()).optional(),
+    visible: z.boolean().default(true),
     order: z.number().optional(),
   }),
 });
@@ -150,6 +152,7 @@ const experienceDigitalEnabler = defineCollection({
     location: z.string().optional(),
     context: z.array(z.string()).optional(),
     responsibilities: z.array(z.string()).optional(),
+    visible: z.boolean().default(true),
     order: z.number().optional(),
   }),
 });
@@ -163,6 +166,7 @@ const experienceFractionalPm = defineCollection({
     location: z.string().optional(),
     context: z.array(z.string()).optional(),
     responsibilities: z.array(z.string()).optional(),
+    visible: z.boolean().default(true),
     order: z.number().optional(),
   }),
 });
@@ -176,6 +180,7 @@ const experienceCollaborativeLeader = defineCollection({
     location: z.string().optional(),
     context: z.array(z.string()).optional(),
     responsibilities: z.array(z.string()).optional(),
+    visible: z.boolean().default(true),
     order: z.number().optional(),
   }),
 });
@@ -189,6 +194,7 @@ const experienceCommercialStrategist = defineCollection({
     location: z.string().optional(),
     context: z.array(z.string()).optional(),
     responsibilities: z.array(z.string()).optional(),
+    visible: z.boolean().default(true),
     order: z.number().optional(),
   }),
 });
@@ -202,6 +208,7 @@ const experienceStrategicTechnologist = defineCollection({
     location: z.string().optional(),
     context: z.array(z.string()).optional(),
     responsibilities: z.array(z.string()).optional(),
+    visible: z.boolean().default(true),
     order: z.number().optional(),
   }),
 });

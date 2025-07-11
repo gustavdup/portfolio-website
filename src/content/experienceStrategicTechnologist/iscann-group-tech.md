@@ -2,6 +2,7 @@
 company: "iScann Group"
 title: "Product Manager (Freelance)"
 timeframe: "Aug 2021 - Sept 2021"
+visible: false
 order: 6
 context: ["Strategic Technologist", "Freelance", "Security SaaS", "Architecture"]
 responsibilities:

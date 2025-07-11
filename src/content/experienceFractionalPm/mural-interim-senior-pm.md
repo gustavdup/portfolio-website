@@ -2,6 +2,7 @@
 company: "MURAL"
 title: "Interim Senior Product Manager (Freelance)"
 timeframe: "Nov 2021 - Jul 2022"
+visible: true
 order: 1
 context: ["Fractional PM", "Freelance", "Product Discovery", "SaaS"]
 responsibilities:

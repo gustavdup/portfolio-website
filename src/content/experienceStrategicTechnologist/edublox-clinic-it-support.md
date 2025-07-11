@@ -2,6 +2,7 @@
 company: "Edublox Reading and Learning Clinic"
 title: "IT Manager and Business Coach"
 timeframe: "2012 – 2016"
+visible: false
 order: 4
 context: ["Strategic Technologist", "IT Management", "Support", "Franchise"]
 responsibilities:

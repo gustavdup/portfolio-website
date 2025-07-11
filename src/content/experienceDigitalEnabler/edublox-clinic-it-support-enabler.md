@@ -2,6 +2,7 @@
 company: "Edublox Reading and Learning Clinic"
 title: "IT Support Consultant"
 timeframe: "2010 – 2011"
+visible: false
 order: 5
 context: ["Digital Enabler", "IT Operations", "Support Systems"]
 responsibilities:

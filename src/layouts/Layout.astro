@@ -72,6 +72,49 @@ const {
             stickyHeader.style.transform = 'translateY(-100%)';
             document.body.insertBefore(stickyHeader, document.body.firstChild);
             
+            // Fix duplicate IDs in cloned header by updating them
+            const elementsWithIds = stickyHeader.querySelectorAll('[id]');
+            elementsWithIds.forEach(element => {
+              element.id = element.id + '-sticky';
+            });
+            
+            // Re-initialize dark mode toggle for cloned header using event delegation
+            stickyHeader.addEventListener('click', function(e) {
+              // Check if the clicked element or its parent is the dark mode toggle
+              const target = e.target.closest('.dark-toggle-btn');
+              if (target) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                // Call the global toggle function if available, or implement directly
+                if (window.toggleDarkMode) {
+                  window.toggleDarkMode();
+                } else {
+                  // Fallback direct implementation
+                  const html = document.documentElement;
+                  const isDarkNow = html.classList.contains('dark');
+                  
+                  if (isDarkNow) {
+                    html.classList.remove('dark');
+                    localStorage.setItem('theme', 'light');
+                  } else {
+                    html.classList.add('dark');
+                    localStorage.setItem('theme', 'dark');
+                  }
+                  
+                  // Update icons
+                  if (window.setAllIcons) {
+                    setTimeout(window.setAllIcons, 10);
+                  }
+                }
+              }
+            });
+            
+            // Update icons immediately
+            if (window.setAllIcons) {
+              setTimeout(window.setAllIcons, 50);
+            }
+            
             // Animate in
             setTimeout(() => {
               if (stickyHeader) {
