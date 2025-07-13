@@ -2,9 +2,16 @@ import React, { useState, useEffect } from "react";
 
 export default function WorkWithMe({ 
   tabs,
-  contactEntry
+  contactEntry,
+  availability
 }) {
   const [isClient, setIsClient] = useState(false);
+  
+  // Function to convert markdown links to HTML
+  const convertMarkdownLinks = (text) => {
+    if (!text) return '';
+    return text.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" class="text-secondary hover:underline">$1</a>');
+  };
   
   // Get initial tab from URL hash immediately
   const getInitialTab = () => {
@@ -203,19 +210,30 @@ export default function WorkWithMe({
       </div>
 
       {/* Availability Note */}
-      <section className="mb-8">
-        <div className="max-w-2xl mx-auto py-4">
-          <div className="px-3 py-2 bg-red-800/10 dark:bg-red-800/15 border border-red-800/25 rounded-lg">
-            <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-300 leading-relaxed italic text-center">
-              My availability depends on active engagements, but I always welcome conversations that could lead to meaningful collaboration.
-            </p>
+      {availability?.data.showOnContact && (
+        <section className="mb-8">
+          <div className="max-w-2xl mx-auto py-4">
+            <div className={`px-3 py-2 border rounded-lg ${
+              availability?.data.level === 'high' 
+                ? 'bg-secondary/10 dark:bg-secondary/15 border-secondary/25'
+                : availability?.data.level === 'medium'
+                ? 'bg-accent/10 dark:bg-accent/15 border-accent/25'
+                : 'bg-red-800/10 dark:bg-red-800/15 border-red-800/25'
+            }`}>
+              <div 
+                className="text-xs sm:text-sm text-gray-600 dark:text-gray-300 leading-relaxed italic text-center"
+                dangerouslySetInnerHTML={{
+                  __html: convertMarkdownLinks(availability?.data.contactMessage || availability?.data.message)
+                }}
+              />
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* Contact Section */}
       <section id="contact" className="text-center">
-        <div className="p-6 rounded-xl bg-white dark:bg-gray-900/40 border border-gray-200 dark:border-gray-800 transition-all duration-200 hover:shadow-md hover:border-gray-300 dark:hover:border-gray-700">
+        <div id="lets-connect" className="p-6 rounded-xl bg-white dark:bg-gray-900/40 border border-gray-200 dark:border-gray-800 transition-all duration-200 hover:shadow-md hover:border-gray-300 dark:hover:border-gray-700">
           <h2 className="text-xl sm:text-2xl font-bold text-text-light dark:text-text-dark mb-4">
             {contactEntry?.data.title}
           </h2>

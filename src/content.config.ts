@@ -28,6 +28,18 @@ const bio = defineCollection({
   }),
 });
 
+const availability = defineCollection({
+  type: 'content',
+  schema: z.object({
+    message: z.string().optional(), // Fallback message for both pages
+    homeMessage: z.string().optional(), // Specific message for home page
+    contactMessage: z.string().optional(), // Specific message for contact page
+    level: z.enum(['high', 'medium', 'low']),
+    showOnAbout: z.boolean().default(false),
+    showOnContact: z.boolean().default(true),
+  }),
+});
+
 const projects = defineCollection({
   type: 'content',
   schema: z.object({
@@ -71,49 +83,6 @@ const currentRoles = defineCollection({
   }),
 });
 
-const pages = defineCollection({
-  type: 'content',
-  schema: z.object({
-    title: z.string(),
-    description: z.string(),
-    hero: z.object({
-      title: z.string(),
-      subtitle: z.string(),
-      description: z.string(),
-    }),
-    consulting: z.object({
-      title: z.string(),
-      emoji: z.string(),
-      description: z.string(),
-      subtitle: z.string(),
-      services: z.array(z.string()),
-      closing: z.string(),
-    }),
-    fulltime: z.object({
-      title: z.string(),
-      emoji: z.string(),
-      description: z.string(),
-      subtitle: z.string(),
-      requirements: z.array(z.string()),
-      closing: z.string(),
-    }),
-    contact: z.object({
-      title: z.string(),
-      emoji: z.string(),
-      description: z.string(),
-      disclaimer: z.string(),
-      email: z.string(),
-      linkedin: z.string(),
-      calendar_link: z.string(),
-      buttons: z.object({
-        book_call: z.string(),
-        linkedin: z.string(),
-        email: z.string(),
-      }),
-    }),
-  }),
-});
-
 // New experience collections
 const experienceProductStrategist = defineCollection({
   type: 'content',
@@ -123,7 +92,9 @@ const experienceProductStrategist = defineCollection({
     timeframe: z.string(),
     location: z.string().optional(),
     context: z.array(z.string()).optional(),
+    header: z.string().optional(),
     responsibilities: z.array(z.string()).optional(),
+    footer: z.string().optional(),
     visible: z.boolean().default(true),
     order: z.number().optional(),
   }),
@@ -137,7 +108,9 @@ const experienceExecutionLead = defineCollection({
     timeframe: z.string(),
     location: z.string().optional(),
     context: z.array(z.string()).optional(),
+    header: z.string().optional(),
     responsibilities: z.array(z.string()).optional(),
+    footer: z.string().optional(),
     visible: z.boolean().default(true),
     order: z.number().optional(),
   }),
@@ -151,7 +124,9 @@ const experienceDigitalEnabler = defineCollection({
     timeframe: z.string(),
     location: z.string().optional(),
     context: z.array(z.string()).optional(),
+    header: z.string().optional(),
     responsibilities: z.array(z.string()).optional(),
+    footer: z.string().optional(),
     visible: z.boolean().default(true),
     order: z.number().optional(),
   }),
@@ -165,7 +140,9 @@ const experienceFractionalPm = defineCollection({
     timeframe: z.string(),
     location: z.string().optional(),
     context: z.array(z.string()).optional(),
+    header: z.string().optional(),
     responsibilities: z.array(z.string()).optional(),
+    footer: z.string().optional(),
     visible: z.boolean().default(true),
     order: z.number().optional(),
   }),
@@ -179,7 +156,9 @@ const experienceCollaborativeLeader = defineCollection({
     timeframe: z.string(),
     location: z.string().optional(),
     context: z.array(z.string()).optional(),
+    header: z.string().optional(),
     responsibilities: z.array(z.string()).optional(),
+    footer: z.string().optional(),
     visible: z.boolean().default(true),
     order: z.number().optional(),
   }),
@@ -193,7 +172,9 @@ const experienceCommercialStrategist = defineCollection({
     timeframe: z.string(),
     location: z.string().optional(),
     context: z.array(z.string()).optional(),
+    header: z.string().optional(),
     responsibilities: z.array(z.string()).optional(),
+    footer: z.string().optional(),
     visible: z.boolean().default(true),
     order: z.number().optional(),
   }),
@@ -207,7 +188,25 @@ const experienceStrategicTechnologist = defineCollection({
     timeframe: z.string(),
     location: z.string().optional(),
     context: z.array(z.string()).optional(),
+    header: z.string().optional(),
     responsibilities: z.array(z.string()).optional(),
+    footer: z.string().optional(),
+    visible: z.boolean().default(true),
+    order: z.number().optional(),
+  }),
+});
+
+const experienceOverview = defineCollection({
+  type: 'content',
+  schema: z.object({
+    company: z.string(),
+    title: z.string(),
+    timeframe: z.string(),
+    location: z.string().optional(),
+    context: z.array(z.string()).optional(),
+    header: z.string().optional(),
+    responsibilities: z.array(z.string()).optional(),
+    footer: z.string().optional(),
     visible: z.boolean().default(true),
     order: z.number().optional(),
   }),
@@ -238,12 +237,11 @@ const workWithMe = defineCollection({
 
 // Export collections for Astro to pick up
 export const collections = {
- 
-
-  
   bio,
+  availability,
   projects,
   articles,
+  experienceOverview,
   experienceProductStrategist,
   experienceExecutionLead,
   experienceDigitalEnabler,
@@ -253,6 +251,5 @@ export const collections = {
   experienceStrategicTechnologist,
   education,
   currentRoles,
-  pages,
   workWithMe,
 };

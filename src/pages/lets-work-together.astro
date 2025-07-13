@@ -1,7 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import WorkWithMeReact from '../components/WorkWithMeReact.jsx';
-import { getCollection } from 'astro:content';
+import { getCollection, getEntryBySlug } from 'astro:content';
 
 // Get all work with me content
 const workWithMeEntries = await getCollection('workWithMe');
@@ -13,6 +13,9 @@ const tabs = workWithMeEntries
 
 // Get contact section
 const contactEntry = workWithMeEntries.find(entry => entry.data.type === 'contact');
+
+// Get availability data
+const availability = await getEntryBySlug('availability', 'availability');
 ---
 
 <Layout title="Let's Work Together | Gustav du Plessis" description="Available for product leadership, strategic consulting, and meaningful collaborations">
@@ -22,6 +25,7 @@ const contactEntry = workWithMeEntries.find(entry => entry.data.type === 'contac
         client:load 
         tabs={tabs}
         contactEntry={contactEntry}
+        availability={availability}
       />
     </div>
   </main>

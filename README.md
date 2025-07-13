@@ -76,6 +76,71 @@ Deploy easily to Vercel:
 
 ## Content Management
 
+### Availability Status System
+Control your availability status on the "Let's Collaborate" page through the contact.md file:
+
+**Location**: `/src/content/workWithMe/contact.md`
+
+```yaml
+---
+availability_message: "Your custom availability message here"
+availability_level: "high"  # Options: "high", "medium", "low"
+---
+```
+
+**Visual Indicators:**
+- **High**: Green background (`availability_level: "high"`)
+- **Medium**: Orange background (`availability_level: "medium"`)  
+- **Low**: Red background (`availability_level: "low"`)
+
+### Experience Notes
+Add optional notes to experience entries that appear below responsibilities:
+
+```yaml
+---
+company: "Company Name"
+title: "Job Title"
+# ... other fields
+note: "Currently Engaged as Strategic Consultant"  # Optional
+---
+```
+
+The note will display in italic, centered text with primary green color.
+
+### Experience Profile Descriptions
+Each experience profile has customizable messaging:
+
+**Location**: `/src/components/ExperienceListReact.jsx`
+
+```javascript
+const roleDescriptions = {
+  ProductStrategist: {
+    description: "Your role description here",
+    order_description: "Custom ordering message here"
+  }
+}
+```
+
+### Visibility Controls
+Control which content appears on your site:
+
+**Experience Entries:**
+```yaml
+---
+visible: true  # Set to false to hide
+order: 1       # Control display order
+---
+```
+
+**Page-level Controls** (in `/src/content/bio/bio.md`):
+```yaml
+---
+showArticles: true     # Show/hide articles page
+showProjects: true     # Show/hide projects page  
+showExperience: true   # Show/hide experience page
+---
+```
+
 ### Adding New Content
 - **Blog posts**: Create `.md` files in `/src/content/articles/`
 - **Projects**: Create `.md` files in `/src/content/projects/`

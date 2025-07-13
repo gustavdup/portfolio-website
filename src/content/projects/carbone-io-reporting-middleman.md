@@ -1,7 +1,7 @@
 ---
 title: "Carbone.io Middleman with Reporting & Cost Tracking"
 date: "2024"
-tags: ["Document Automation", "Reporting", "Middleware Integration", "API Logging", "Internal Tooling"]
+tags: ["Document Automation", "Reporting", "Integration", "API", "Internal Tooling"]
 tech: ["Carbone.io", "Azure Logic Apps", "PostgreSQL", "Metabase"]
 summary: "Developed a backend service to automate PDF document generation, log metadata for each operation, and generate team- and client-level reports using a custom integration with Azure and Metabase."
 featured: true
@@ -83,7 +83,7 @@ All logic app executions write logs to PostgreSQL. This data feeds a Metabase da
 - Effective document cost calculations.
 - Monthly usage trends.
 
-**Cost Breakdown Example (July 2024):**
+**Cost Breakdown Example:**
 
 | Range               | Docs | Rate  | Total   |
 |---------------------|------|-------|---------|

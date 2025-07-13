@@ -18,6 +18,3 @@ I help product teams that need senior leadership at a critical point of growth o
 <div align="center"><br>
  <strong>I onboard quickly, create momentum early, and hand over with clarity.</strong>
 </div>
-
-
-

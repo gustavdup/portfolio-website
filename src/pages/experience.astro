@@ -13,6 +13,7 @@ if (!showExperience) {
   // We'll show the coming soon content instead of redirecting
 } else {
   // Load experience data only if showing, and filter by visibility
+  var experienceOverviewExperiences = (await getCollection('experienceOverview')).filter(exp => exp.data.visible !== false);
   var experienceProductStrategistExperiences = (await getCollection('experienceProductStrategist')).filter(exp => exp.data.visible !== false);
   var experienceExecutionLeadExperiences = (await getCollection('experienceExecutionLead')).filter(exp => exp.data.visible !== false);
   var experienceDigitalEnablerExperiences = (await getCollection('experienceDigitalEnabler')).filter(exp => exp.data.visible !== false);
@@ -29,6 +30,7 @@ if (!showExperience) {
       <div class="max-w-4xl mx-auto">
         <ExperienceListReact 
           client:load 
+          experienceOverviewExperiences={experienceOverviewExperiences}
           experienceProductStrategistExperiences={experienceProductStrategistExperiences}
           experienceExecutionLeadExperiences={experienceExecutionLeadExperiences}
           experienceDigitalEnablerExperiences={experienceDigitalEnablerExperiences}

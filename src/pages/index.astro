@@ -1,8 +1,12 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
+import { getEntryBySlug } from 'astro:content';
+
+// Get availability data
+const availability = await getEntryBySlug('availability', 'availability');
 ---
 
 <Layout>
-  <Hero />
+  <Hero availability={availability} />
 </Layout>

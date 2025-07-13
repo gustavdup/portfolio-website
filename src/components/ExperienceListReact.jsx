@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 export default function ExperienceList({ 
+  experienceOverviewExperiences,
   experienceProductStrategistExperiences,
   experienceExecutionLeadExperiences,
   experienceDigitalEnablerExperiences,
@@ -16,13 +17,14 @@ export default function ExperienceList({
     if (typeof window !== 'undefined') {
       const hash = window.location.hash.substring(1);
       const roleDescriptions = {
+        Overview: { anchor: "overview" },
         ProductStrategist: { anchor: "product-strategist" },
         ExecutionLead: { anchor: "execution-lead" },
         DigitalEnabler: { anchor: "digital-enabler" },
         FractionalPm: { anchor: "fractional-pm" },
         CollaborativeLeader: { anchor: "collaborative-leader" },
         CommercialStrategist: { anchor: "commercial-strategist" },
-        StrategicTechnologist: { anchor: "strategic-technologist" }
+        StrategicTechnologist: { anchor: "technology-strategist" }
       };
       
       if (hash) {
@@ -34,13 +36,14 @@ export default function ExperienceList({
         }
       }
     }
-    return "ProductStrategist";
+    return "Overview";
   };
 
   const [selectedRole, setSelectedRole] = useState(() => getInitialRole());
   const [isTransitioning, setIsTransitioning] = useState(false);
   
   const experienceCollections = {
+    Overview: experienceOverviewExperiences,
     ProductStrategist: experienceProductStrategistExperiences,
     ExecutionLead: experienceExecutionLeadExperiences,
     DigitalEnabler: experienceDigitalEnablerExperiences,
@@ -74,46 +77,60 @@ export default function ExperienceList({
   };
 
   const roleDescriptions = {
+    Overview: {
+      title: "Overview",
+      anchor: "overview",
+      description: "A comprehensive view of my career journey, highlighting key experiences, achievements, and the evolution of my expertise across product strategy, execution, and technology leadership.",
+      order_description: "Roles ordered chronologically.",
+      skills: []
+    },
     ProductStrategist: {
       title: "Product Strategist",
       anchor: "product-strategist",
       description: "Defines product vision, market alignment, and growth priorities—balancing user needs, business value, and feasibility to create long-term impact.",
+      order_description: "Roles ordered by relevance, not chronologically.",
       skills: []
     },
     ExecutionLead: {
       title: "Execution Lead",
       anchor: "execution-lead",
       description: "Turns plans into shipped outcomes—leading delivery across complex environments while balancing speed, quality, and strategic trade-offs to stay aligned with product goals.",
+      order_description: "Roles ordered by relevance, not chronologically.",
       skills: []
     },
     DigitalEnabler: {
       title: "Digital Enabler",
       anchor: "digital-enabler",
       description: "Builds and refines internal platforms, tools, and automation—improving operational visibility, team efficiency, and cross-system data flows.",
+      order_description: "Roles ordered by relevance, not chronologically.",
       skills: []
     },
     FractionalPm: {
       title: "Fractional PM",
       anchor: "fractional-pm",
       description: "Rapidly adapts to client needs—jumping into high-context environments to scope, align, and deliver as a flexible and experienced product partner.",
+      order_description: "Roles ordered by relevance, not chronologically.",
       skills: []
     },
     CollaborativeLeader: {
       title: "Collaborative Leader",
       anchor: "collaborative-leader",
       description: "Shapes open, outcome-focused team culture—championing transparency, psychological safety, and shared ownership to unlock high performance.",
+      order_description: "Roles ordered by relevance, not chronologically.",
       skills: []
     },
     CommercialStrategist: {
       title: "Commercial Strategist",
       anchor: "commercial-strategist",
       description: "Connects product thinking with business outcomes—building scalable models, pricing, market narratives, and systems that drive adoption and growth.",
+      order_description: "Roles ordered by relevance, not chronologically.",
       skills: []
     },
     StrategicTechnologist: {
-      title: "Strategic Technologist",
-      anchor: "strategic-technologist",
+      title: "Technology Strategist",
+      anchor: "technology-strategist",
       description: "Bridges product, architecture, and platform evolution—collaborating with engineers and domain experts to make informed, sustainable technology decisions.",
+      order_description: "Roles ordered by relevance, not chronologically.",
       skills: []
     }
   };
@@ -133,11 +150,11 @@ export default function ExperienceList({
           setSelectedRole(roleKey);
         } else {
           // If hash role is not visible, redirect to first visible role
-          setSelectedRole(visibleRoles[0] || "ProductStrategist");
+          setSelectedRole(visibleRoles[0] || "Overview");
         }
       } else {
         // If no hash, select first visible role
-        setSelectedRole(visibleRoles.includes("ProductStrategist") ? "ProductStrategist" : visibleRoles[0]);
+        setSelectedRole(visibleRoles.includes("Overview") ? "Overview" : visibleRoles[0]);
       }
     };
 
@@ -155,10 +172,10 @@ export default function ExperienceList({
           setSelectedRole(roleKey);
         } else {
           // If hash role is not visible, redirect to first visible role
-          setSelectedRole(visibleRoles[0] || "ProductStrategist");
+          setSelectedRole(visibleRoles[0] || "Overview");
         }
       } else {
-        setSelectedRole(visibleRoles.includes("ProductStrategist") ? "ProductStrategist" : visibleRoles[0]);
+        setSelectedRole(visibleRoles.includes("Overview") ? "Overview" : visibleRoles[0]);
       }
     };
 
@@ -173,10 +190,10 @@ export default function ExperienceList({
           setSelectedRole(roleKey);
         } else {
           // If hash role is not visible, redirect to first visible role
-          setSelectedRole(visibleRoles[0] || "ProductStrategist");
+          setSelectedRole(visibleRoles[0] || "Overview");
         }
       } else {
-        setSelectedRole(visibleRoles.includes("ProductStrategist") ? "ProductStrategist" : visibleRoles[0]);
+        setSelectedRole(visibleRoles.includes("Overview") ? "Overview" : visibleRoles[0]);
       }
     };
 
@@ -280,7 +297,7 @@ export default function ExperienceList({
         </div>
         {/* Centered note about ordering */}
         <div className="text-center mb-6">
-          <p className="text-sm text-accent italic">Roles ordered by relevance, not chronologically.</p>
+          <p className="text-sm text-accent italic">{currentRole.order_description}</p>
         </div>
         {/* Experience List */}
         <div className={`transition-all duration-300 ${isTransitioning ? 'opacity-50 translate-y-2' : 'opacity-100 translate-y-0'}`}>
@@ -337,6 +354,15 @@ export default function ExperienceList({
                   </div>
                 )}
                 
+                {/* Optional Header */}
+                {exp.data.header && (
+                  <div className="mb-3">
+                    <p className="text-sm text-white leading-relaxed">
+                      {exp.data.header}
+                    </p>
+                  </div>
+                )}
+                
                 {/* Responsibilities */}
                 {exp.data.responsibilities && exp.data.responsibilities.length > 0 && (
                   <ul className="space-y-2 pl-6 list-disc">
@@ -346,6 +372,15 @@ export default function ExperienceList({
                       </li>
                     ))}
                   </ul>
+                )}
+                
+                {/* Optional Footer */}
+                {exp.data.footer && (
+                  <div className="mt-4 text-center">
+                    <p className="text-sm text-secondary dark:text-secondary italic">
+                      {exp.data.footer}
+                    </p>
+                  </div>
                 )}
               </div>
             ))}

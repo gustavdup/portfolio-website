@@ -2,6 +2,12 @@
 import { getEntryBySlug, getCollection } from 'astro:content';
 import EducationSection from './EducationSection.astro';
 
+interface Props {
+  availability?: any;
+}
+
+const { availability } = Astro.props;
+
 const bio = await getEntryBySlug('bio', 'bio');
 const { Content: BioContent } = await bio?.render() || { Content: null };
 
@@ -125,12 +131,30 @@ const sortedCurrentRoles = currentRoles
   </section>
 
   <!-- What I Do Section -->
-  <section class="mb-16">
+  <section class="mb-12">
     <h2 class="text-lg font-medium text-text-light dark:text-text-dark mb-6 tracking-wide uppercase">About</h2>
     <div class="prose prose-gray dark:prose-invert max-w-none">
       {BioContent && <BioContent />}
     </div>
   </section>
+
+  <!-- Availability Section -->
+  {availability?.data.showOnAbout && (
+    <section class="mb-12">
+      <div class="max-w-2xl mx-auto py-2">
+        <div class={`px-3 py-2 border rounded-lg ${
+          availability?.data.level === 'high' 
+            ? 'bg-secondary/10 dark:bg-secondary/15 border-secondary/25'
+            : availability?.data.level === 'medium'
+            ? 'bg-accent/10 dark:bg-accent/15 border-accent/25'
+            : 'bg-red-800/10 dark:bg-red-800/15 border-red-800/25'
+        }`}>
+          <div class="text-xs sm:text-sm text-gray-600 dark:text-gray-300 leading-relaxed italic text-center prose prose-sm dark:prose-invert max-w-none prose-a:text-secondary dark:prose-a:text-secondary prose-a:no-underline hover:prose-a:underline" 
+               set:html={(availability?.data.homeMessage || availability?.data.message)?.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>')} />
+        </div>
+      </div>
+    </section>
+  )}
 
   <!-- Education Section -->
   <EducationSection />
