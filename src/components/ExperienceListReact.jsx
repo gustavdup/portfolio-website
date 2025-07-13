@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo, useCallback } from "react";
 
 export default function ExperienceList({ 
   experienceOverviewExperiences,
@@ -12,71 +12,8 @@ export default function ExperienceList({
 }) {
   const [isClient, setIsClient] = useState(false);
   
-  // Get initial role from URL hash immediately
-  const getInitialRole = () => {
-    if (typeof window !== 'undefined') {
-      const hash = window.location.hash.substring(1);
-      const roleDescriptions = {
-        Overview: { anchor: "overview" },
-        ProductStrategist: { anchor: "product-strategist" },
-        ExecutionLead: { anchor: "execution-lead" },
-        DigitalEnabler: { anchor: "digital-enabler" },
-        FractionalPm: { anchor: "fractional-pm" },
-        CollaborativeLeader: { anchor: "collaborative-leader" },
-        CommercialStrategist: { anchor: "commercial-strategist" },
-        StrategicTechnologist: { anchor: "technology-strategist" }
-      };
-      
-      if (hash) {
-        const roleKey = Object.keys(roleDescriptions).find(
-          key => roleDescriptions[key].anchor === hash
-        );
-        if (roleKey) {
-          return roleKey;
-        }
-      }
-    }
-    return "Overview";
-  };
-
-  const [selectedRole, setSelectedRole] = useState(() => getInitialRole());
-  const [isTransitioning, setIsTransitioning] = useState(false);
-  
-  const experienceCollections = {
-    Overview: experienceOverviewExperiences,
-    ProductStrategist: experienceProductStrategistExperiences,
-    ExecutionLead: experienceExecutionLeadExperiences,
-    DigitalEnabler: experienceDigitalEnablerExperiences,
-    FractionalPm: experienceFractionalPmExperiences,
-    CollaborativeLeader: experienceCollaborativeLeaderExperiences,
-    CommercialStrategist: experienceCommercialStrategistExperiences,
-    StrategicTechnologist: experienceStrategicTechnologistExperiences,
-  };
-  
-  // Filter out roles that have no visible experiences
-  const visibleRoles = Object.keys(experienceCollections).filter(role => 
-    experienceCollections[role] && experienceCollections[role].length > 0
-  );
-  
-  const experiences = experienceCollections[selectedRole];
-
-  const handleRoleChange = (newRole) => {
-    if (newRole !== selectedRole) {
-      setIsTransitioning(true);
-      setTimeout(() => {
-        setSelectedRole(newRole);
-        setIsTransitioning(false);
-      }, 150);
-      
-      // Update URL with anchor
-      const anchor = roleDescriptions[newRole].anchor;
-      if (anchor) {
-        window.history.pushState(null, null, `#${anchor}`);
-      }
-    }
-  };
-
-  const roleDescriptions = {
+  // Memoize role descriptions with full data
+  const roleDescriptions = useMemo(() => ({
     Overview: {
       title: "Overview",
       anchor: "overview",
@@ -133,14 +70,68 @@ export default function ExperienceList({
       order_description: "Roles ordered by relevance, not chronologically.",
       skills: []
     }
+  }), []);
+  
+  // Get initial role from URL hash immediately
+  const getInitialRole = useCallback(() => {
+    if (typeof window !== 'undefined') {
+      const hash = window.location.hash.substring(1);
+      
+      if (hash) {
+        const roleKey = Object.keys(roleDescriptions).find(
+          key => roleDescriptions[key].anchor === hash
+        );
+        if (roleKey) {
+          return roleKey;
+        }
+      }
+    }
+    return "Overview";
+  }, [roleDescriptions]);
+
+  const [selectedRole, setSelectedRole] = useState(() => getInitialRole());
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  
+  const experienceCollections = {
+    Overview: experienceOverviewExperiences,
+    ProductStrategist: experienceProductStrategistExperiences,
+    ExecutionLead: experienceExecutionLeadExperiences,
+    DigitalEnabler: experienceDigitalEnablerExperiences,
+    FractionalPm: experienceFractionalPmExperiences,
+    CollaborativeLeader: experienceCollaborativeLeaderExperiences,
+    CommercialStrategist: experienceCommercialStrategistExperiences,
+    StrategicTechnologist: experienceStrategicTechnologistExperiences,
+  };
+  
+  // Filter out roles that have no visible experiences
+  const visibleRoles = Object.keys(experienceCollections).filter(role => 
+    experienceCollections[role] && experienceCollections[role].length > 0
+  );
+  
+  const experiences = experienceCollections[selectedRole];
+
+  const handleRoleChange = (newRole) => {
+    if (newRole !== selectedRole) {
+      setIsTransitioning(true);
+      setTimeout(() => {
+        setSelectedRole(newRole);
+        setIsTransitioning(false);
+      }, 150);
+      
+      // Update URL with anchor
+      const anchor = roleDescriptions[newRole].anchor;
+      if (anchor) {
+        window.history.pushState(null, null, `#${anchor}`);
+      }
+    }
   };
 
   // Handle initial page load and anchor navigation
   useEffect(() => {
     setIsClient(true);
     
-    // Immediately check and set the correct hash on mount
-    const checkAndSetHash = () => {
+    // Optimized hash handler to reduce duplicate code
+    const handleHashNavigation = () => {
       const hash = window.location.hash.substring(1);
       if (hash) {
         const roleKey = Object.keys(roleDescriptions).find(
@@ -153,55 +144,19 @@ export default function ExperienceList({
           setSelectedRole(visibleRoles[0] || "Overview");
         }
       } else {
-        // If no hash, select first visible role
         setSelectedRole(visibleRoles.includes("Overview") ? "Overview" : visibleRoles[0]);
       }
     };
 
     // Run immediately on mount
-    checkAndSetHash();
+    handleHashNavigation();
 
-    // Handle hash changes (anchor navigation)
-    const handleHashChange = () => {
-      const hash = window.location.hash.substring(1);
-      if (hash) {
-        const roleKey = Object.keys(roleDescriptions).find(
-          key => roleDescriptions[key].anchor === hash
-        );
-        if (roleKey && visibleRoles.includes(roleKey)) {
-          setSelectedRole(roleKey);
-        } else {
-          // If hash role is not visible, redirect to first visible role
-          setSelectedRole(visibleRoles[0] || "Overview");
-        }
-      } else {
-        setSelectedRole(visibleRoles.includes("Overview") ? "Overview" : visibleRoles[0]);
-      }
-    };
-
-    // Handle browser back/forward navigation
-    const handlePopState = () => {
-      const hash = window.location.hash.substring(1);
-      if (hash) {
-        const roleKey = Object.keys(roleDescriptions).find(
-          key => roleDescriptions[key].anchor === hash
-        );
-        if (roleKey && visibleRoles.includes(roleKey)) {
-          setSelectedRole(roleKey);
-        } else {
-          // If hash role is not visible, redirect to first visible role
-          setSelectedRole(visibleRoles[0] || "Overview");
-        }
-      } else {
-        setSelectedRole(visibleRoles.includes("Overview") ? "Overview" : visibleRoles[0]);
-      }
-    };
-
-    window.addEventListener('hashchange', handleHashChange);
-    window.addEventListener('popstate', handlePopState);
+    // Use passive event listeners for better performance
+    window.addEventListener('hashchange', handleHashNavigation, { passive: true });
+    window.addEventListener('popstate', handleHashNavigation, { passive: true });
     return () => {
-      window.removeEventListener('hashchange', handleHashChange);
-      window.removeEventListener('popstate', handlePopState);
+      window.removeEventListener('hashchange', handleHashNavigation);
+      window.removeEventListener('popstate', handleHashNavigation);
     };
   }, [visibleRoles]);
 

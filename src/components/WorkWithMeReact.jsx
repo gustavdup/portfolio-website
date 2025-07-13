@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback, useMemo } from "react";
 
 export default function WorkWithMe({ 
   tabs,
@@ -7,24 +7,25 @@ export default function WorkWithMe({
 }) {
   const [isClient, setIsClient] = useState(false);
   
-  // Function to convert markdown links to HTML
-  const convertMarkdownLinks = (text) => {
+  // Memoize markdown conversion function
+  const convertMarkdownLinks = useCallback((text) => {
     if (!text) return '';
     return text.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" class="text-secondary hover:underline">$1</a>');
-  };
+  }, []);
+  
+  // Memoize valid anchors
+  const validAnchors = useMemo(() => ['consulting', 'fractional', 'permanent'], []);
   
   // Get initial tab from URL hash immediately
-  const getInitialTab = () => {
+  const getInitialTab = useCallback(() => {
     if (typeof window !== 'undefined') {
       const hash = window.location.hash.substring(1);
-      const validAnchors = ['consulting', 'fractional', 'permanent'];
-      
       if (hash && validAnchors.includes(hash)) {
         return hash;
       }
     }
     return "consulting";
-  };
+  }, [validAnchors]);
 
   const [selectedTab, setSelectedTab] = useState(() => getInitialTab());
   const [isTransitioning, setIsTransitioning] = useState(false);
@@ -33,11 +34,9 @@ export default function WorkWithMe({
   useEffect(() => {
     setIsClient(true);
     
-    // Immediately check and set the correct hash on mount
+    // Memoized hash checker
     const checkAndSetHash = () => {
       const hash = window.location.hash.substring(1);
-      const validAnchors = ['consulting', 'fractional', 'permanent'];
-      
       if (hash && validAnchors.includes(hash)) {
         setSelectedTab(hash);
       } else if (!hash) {
@@ -48,11 +47,9 @@ export default function WorkWithMe({
     // Run immediately on mount
     checkAndSetHash();
 
-    // Handle hash changes (direct navigation to anchors)
+    // Optimized hash and popstate handlers
     const handleHashChange = () => {
       const hash = window.location.hash.substring(1);
-      const validAnchors = ['consulting', 'fractional', 'permanent'];
-      
       if (hash && validAnchors.includes(hash)) {
         setSelectedTab(hash);
       } else {
@@ -60,25 +57,15 @@ export default function WorkWithMe({
       }
     };
 
-    // Handle browser back/forward navigation
-    const handlePopState = () => {
-      const hash = window.location.hash.substring(1);
-      const validAnchors = ['consulting', 'fractional', 'permanent'];
-      
-      if (hash && validAnchors.includes(hash)) {
-        setSelectedTab(hash);
-      } else {
-        setSelectedTab("consulting");
-      }
-    };
-
-    window.addEventListener('hashchange', handleHashChange);
-    window.addEventListener('popstate', handlePopState);
+    // Use passive event listeners for better performance
+    window.addEventListener('hashchange', handleHashChange, { passive: true });
+    window.addEventListener('popstate', handleHashChange, { passive: true });
+    
     return () => {
       window.removeEventListener('hashchange', handleHashChange);
-      window.removeEventListener('popstate', handlePopState);
+      window.removeEventListener('popstate', handleHashChange);
     };
-  }, []);
+  }, [validAnchors]);
 
   const handleTabChange = (newTab) => {
     if (newTab !== selectedTab) {

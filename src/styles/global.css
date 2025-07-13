@@ -173,7 +173,22 @@ body {
   }
   
   .prose img {
-    @apply rounded-lg border border-gray-200 dark:border-gray-700 mb-6 mt-6;
+    @apply rounded-lg border border-gray-200 dark:border-gray-700 mb-6 mt-6 max-w-full h-auto;
+    /* Mobile-optimized image display */
+    width: 100% !important;
+    max-width: min(100%, var(--max-width, 700px)) !important;
+    height: auto !important;
+    loading: lazy;
+    decoding: async;
+  }
+  
+  /* Mobile-specific image optimizations */
+  @media (max-width: 640px) {
+    .prose img {
+      margin: 1rem auto !important;
+      max-width: 95% !important;
+      border-radius: 0.5rem;
+    }
   }
   
   .prose table {
