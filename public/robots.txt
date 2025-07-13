@@ -1,0 +1,30 @@
+# robots.txt for Gustav du Plessis Portfolio Site
+
+User-agent: *
+Allow: /
+
+# Allow all content to be crawled
+Allow: /articles/
+Allow: /projects/
+Allow: /experience/
+Allow: /contact/
+Allow: /lets-work-together/
+
+# Allow important assets
+Allow: /images/
+Allow: /favicon.ico
+Allow: /apple-touch-icon.svg
+
+# Block any admin or private areas (if they exist)
+Disallow: /admin/
+Disallow: /.well-known/
+Disallow: /api/
+
+# Block common files that shouldn't be indexed
+Disallow: /*.json$
+Disallow: /*.xml$
+Disallow: /*.txt$
+Disallow: /robots.txt
+
+# Sitemap location (update with your actual domain)
+Sitemap: https://gustavduplessis.com/sitemap.xml
