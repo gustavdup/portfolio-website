@@ -1,7 +1,7 @@
 ---
 title: "Customer Success is Psychology, Not Product Training"
 date: "2025-07-09"
-description: "Why the most successful CS teams focus on emotional adoption stages, not feature completion rates"
+description: "Why the most successful CS teams focus on emotional adoption stages, not feature completion rates."
 tags: ["Customer Success", "User Psychology", "Product Management", "User Adoption", "B2B SaaS"]
 image: "/images/articles/customer_success_psychology_hero.png"
 featured: true

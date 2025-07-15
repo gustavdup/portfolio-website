@@ -47,7 +47,7 @@ const sortedCurrentRoles = currentRoles
   .sort((a, b) => (a.data.order || 999) - (b.data.order || 999));
 ---
 
-<div class="max-w-4xl mx-auto mt-8">
+<div class="max-w-4xl mx-auto mt-8 px-4">
   <!-- Main Hero Section -->
   <div class="flex flex-col sm:flex-row sm:items-end gap-8 sm:gap-4 mb-6 sm:mb-12">
     <!-- Profile Image -->
@@ -154,7 +154,7 @@ const sortedCurrentRoles = currentRoles
             ? 'bg-accent/10 dark:bg-accent/15 border-accent/25'
             : 'bg-red-800/10 dark:bg-red-800/15 border-red-800/25'
         }`}>
-          <div class="text-xs sm:text-sm text-gray-600 dark:text-gray-300 leading-relaxed italic text-center prose prose-sm dark:prose-invert max-w-none prose-a:text-secondary dark:prose-a:text-secondary prose-a:no-underline hover:prose-a:underline" 
+          <div class="text-sm sm:text-base text-gray-600 dark:text-gray-300 leading-relaxed italic text-center prose prose-sm dark:prose-invert max-w-none prose-a:text-secondary dark:prose-a:text-secondary prose-a:no-underline hover:prose-a:underline" 
                set:html={(availability?.data.homeMessage || availability?.data.message)?.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>')} />
         </div>
       </div>

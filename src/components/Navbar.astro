@@ -34,7 +34,7 @@ const getCurrentPageName = (path: string) => {
 
 <!-- Mobile Navigation -->
 <nav class="sm:hidden flex w-full justify-center px-4">
-  <div class="flex items-center justify-between w-full max-w-sm px-4 py-3 rounded-2xl text-text-light dark:text-text-dark backdrop-blur-xl border border-gray-200/80 dark:border-gray-700/80 bg-bg-light/90 dark:bg-bg-dark-alt/90 shadow-xl transition-all duration-300">
+  <div class="flex items-center justify-between w-full max-w-sm px-4 py-4 rounded-2xl text-text-light dark:text-text-dark backdrop-blur-xl border border-gray-200/80 dark:border-gray-700/80 bg-bg-light/90 dark:bg-bg-dark-alt/90 shadow-xl transition-all duration-300 h-16">
     <!-- Logo/Brand -->
     <div class="font-medium text-primary">
       {getCurrentPageName(currentPath)}
@@ -138,7 +138,7 @@ const getCurrentPageName = (path: string) => {
 
 <!-- Desktop Navigation -->
 <nav class="hidden sm:flex w-full justify-center px-4">
-  <div class="flex items-center gap-4 md:gap-6 px-5 md:px-7 py-3 rounded-2xl text-text-light dark:text-text-dark backdrop-blur-xl border border-gray-200/80 dark:border-gray-700/80 bg-bg-light/90 dark:bg-bg-dark-alt/90 shadow-xl transition-all duration-300">
+  <div class="flex items-center gap-4 md:gap-6 px-5 md:px-7 py-4 rounded-2xl text-text-light dark:text-text-dark backdrop-blur-xl border border-gray-200/80 dark:border-gray-700/80 bg-bg-light/90 dark:bg-bg-dark-alt/90 shadow-xl transition-all duration-300 h-16">
     <div class="flex items-center gap-4 md:gap-6 text-sm">
       <a class={`relative group font-medium transition-colors duration-200 px-2 ${isActive('/') ? 'text-primary' : 'text-gray-600 dark:text-gray-400 hover:text-primary'}`} href="/">About
         <span class={`absolute -bottom-0.5 left-0 h-[1.5px] bg-primary transition-all duration-300 ${isActive('/') ? 'w-full' : 'w-0 group-hover:w-full'}`}></span>

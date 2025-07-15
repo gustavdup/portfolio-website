@@ -8,6 +8,9 @@ Allow: /articles/
 Allow: /projects/
 Allow: /experience/
 Allow: /contact/
+
+# Sitemap location
+Sitemap: https://gustavduplessis.com/sitemap.xml
 Allow: /lets-work-together/
 
 # Allow important assets

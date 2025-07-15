@@ -128,10 +128,10 @@ export default function WorkWithMe({
     <section className="mt-4">
       {/* Description Section */}
       <div className="mb-6 sm:mb-8 text-center px-4">
-        <p className="text-sm sm:text-base font-medium text-gray-700 dark:text-gray-300 leading-relaxed max-w-2xl mx-auto mb-2">
+        <p className="text-base sm:text-lg font-medium text-gray-700 dark:text-gray-300 leading-relaxed max-w-2xl mx-auto mb-2">
           Whether you need strategic input, flexible product leadership, or a long-term engagement, I offer multiple ways to collaborate.
         </p>
-        <p className="text-xs sm:text-sm font-medium text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+        <p className="text-sm sm:text-base font-medium text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
           Choose the engagement type that aligns with your current needs and timeline.
         </p>
       </div>
@@ -208,7 +208,7 @@ export default function WorkWithMe({
                 : 'bg-red-800/10 dark:bg-red-800/15 border-red-800/25'
             }`}>
               <div 
-                className="text-xs sm:text-sm text-gray-600 dark:text-gray-300 leading-relaxed italic text-center"
+                className="text-sm sm:text-base text-gray-600 dark:text-gray-300 leading-relaxed italic text-center"
                 dangerouslySetInnerHTML={{
                   __html: convertMarkdownLinks(availability?.data.contactMessage || availability?.data.message)
                 }}

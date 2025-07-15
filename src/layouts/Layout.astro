@@ -57,6 +57,12 @@ const {
         line-height: 1.6; 
       }
       .dark { color-scheme: dark; }
+      
+      /* Define background colors for critical path */
+      .bg-bg-light { background-color: #f7f7f7; }
+      .bg-bg-dark { background-color: #121212; }
+      .dark .bg-bg-light { background-color: #121212; }
+      
       /* Prevent layout shift */
       nav { height: 64px; }
       main { min-height: calc(100vh - 64px); }
@@ -139,6 +145,30 @@ const {
                   if (window.setAllIcons) {
                     setTimeout(window.setAllIcons, 10);
                   }
+                }
+              }
+              
+              // Check if the clicked element is the mobile menu toggle
+              const menuToggle = e.target.closest('#mobile-menu-toggle-sticky');
+              if (menuToggle) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                // Find the mobile menu elements in the original header
+                const mobileMenu = document.getElementById('mobile-menu');
+                const mobileMenuPanel = document.getElementById('mobile-menu-panel');
+                const hamburgerIcon = document.getElementById('hamburger-icon-sticky');
+                const closeIcon = document.getElementById('close-icon-sticky');
+                
+                if (mobileMenu && mobileMenuPanel) {
+                  // Open mobile menu
+                  mobileMenu.classList.remove('hidden');
+                  document.body.style.overflow = 'hidden';
+                  setTimeout(() => {
+                    mobileMenuPanel.style.transform = 'translateX(0)';
+                  }, 10);
+                  if (hamburgerIcon) hamburgerIcon.classList.add('hidden');
+                  if (closeIcon) closeIcon.classList.remove('hidden');
                 }
               }
             });
@@ -236,7 +266,7 @@ const {
   <body class="bg-bg-light dark:bg-bg-dark min-h-screen font-sans text-text-light dark:text-text-dark transition-colors duration-300 ease-in-out">
     <!-- Main Content -->
     <div class="relative min-h-screen overflow-x-hidden">
-      <div class="max-w-4xl mx-auto p-6 sm:p-6 lg:p-8 flex flex-col min-h-screen transition-colors duration-300 ease-in-out font-sans tracking-normal">
+      <div class="max-w-4xl mx-auto p-3 sm:p-3 lg:p-4 flex flex-col min-h-screen transition-colors duration-300 ease-in-out font-sans tracking-normal">
         <!-- Header that transforms on scroll -->
         <div id="header-section" class="flex justify-center mb-8 sm:mb-8 transition-all duration-300 ease-in-out">
           <Navbar currentPath={Astro.url.pathname} />

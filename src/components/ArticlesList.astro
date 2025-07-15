@@ -1,5 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
+import ArticleTags from './ArticleTags.jsx';
 
 const articles = await getCollection('articles');
 const sortedArticles = articles.sort((a, b) => {
@@ -83,10 +84,10 @@ const allCount = sortedArticles.length;
 <section class="mt-4">
   <!-- Articles Description -->
   <div class="mb-6 sm:mb-8 text-center px-4">
-    <p class="text-sm sm:text-base font-medium text-gray-700 dark:text-gray-300 leading-relaxed max-w-2xl mx-auto mb-2">
+    <p class="text-base sm:text-lg font-medium text-gray-700 dark:text-gray-300 leading-relaxed max-w-2xl mx-auto mb-2">
       Insights from Building, Leading, and Learning
     </p>
-    <p class="text-xs sm:text-sm font-medium text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+    <p class="text-sm sm:text-base font-medium text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
       Drawn from real projects, research, and product experience.
     </p>
   </div>
@@ -104,7 +105,7 @@ const allCount = sortedArticles.length;
     <div class="flex overflow-x-auto gap-2 pb-2 px-4 sm:hidden scrollbar-hide">
       <!-- All tab always first -->
       <button 
-        class="tag-tab px-3 py-2 rounded-full text-xs font-medium transition-colors bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-primary hover:text-white whitespace-nowrap flex-shrink-0"
+        class="tag-tab px-2.5 py-1.5 rounded-full text-xs font-medium transition-colors bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-primary hover:text-white whitespace-nowrap flex-shrink-0"
         data-tag="All"
       >
         All ({allCount})
@@ -112,7 +113,7 @@ const allCount = sortedArticles.length;
       
       <!-- Featured tab -->
       <button 
-        class="tag-tab px-3 py-2 rounded-full text-xs font-medium transition-colors bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-primary hover:text-white whitespace-nowrap flex-shrink-0"
+        class="tag-tab px-2.5 py-1.5 rounded-full text-xs font-medium transition-colors bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-primary hover:text-white whitespace-nowrap flex-shrink-0"
         data-tag="Featured"
       >
         Featured ({featuredCount})
@@ -121,7 +122,7 @@ const allCount = sortedArticles.length;
       <!-- Other tags sorted alphabetically -->
       {sortedTags.map(tag => (
         <button 
-          class="tag-tab px-3 py-2 rounded-full text-xs font-medium transition-colors bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-primary hover:text-white whitespace-nowrap flex-shrink-0"
+          class="tag-tab px-2.5 py-1.5 rounded-full text-xs font-medium transition-colors bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-primary hover:text-white whitespace-nowrap flex-shrink-0"
           data-tag={tag}
         >
           {tag} ({tagCounts[tag]})
@@ -133,7 +134,7 @@ const allCount = sortedArticles.length;
     <div class="hidden sm:flex flex-wrap gap-2">
       <!-- All tab always first -->
       <button 
-        class="tag-tab px-3 py-1 rounded-full text-sm font-medium transition-colors bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-primary hover:text-white"
+        class="tag-tab px-2.5 py-1 rounded-full text-xs font-medium transition-colors bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-primary hover:text-white"
         data-tag="All"
       >
         All ({allCount})
@@ -141,7 +142,7 @@ const allCount = sortedArticles.length;
       
       <!-- Featured tab -->
       <button 
-        class="tag-tab px-3 py-1 rounded-full text-sm font-medium transition-colors bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-primary hover:text-white"
+        class="tag-tab px-2.5 py-1 rounded-full text-xs font-medium transition-colors bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-primary hover:text-white"
         data-tag="Featured"
       >
         Featured ({featuredCount})
@@ -150,7 +151,7 @@ const allCount = sortedArticles.length;
       <!-- Other tags sorted alphabetically -->
       {sortedTags.map(tag => (
         <button 
-          class="tag-tab px-3 py-1 rounded-full text-sm font-medium transition-colors bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-primary hover:text-white"
+          class="tag-tab px-2.5 py-1 rounded-full text-xs font-medium transition-colors bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-primary hover:text-white"
           data-tag={tag}
         >
           {tag} ({tagCounts[tag]})
@@ -187,24 +188,11 @@ const allCount = sortedArticles.length;
             <p class="text-xs sm:text-sm text-gray-700 dark:text-gray-300 mb-3 leading-relaxed">{article.data.description}</p>
           )}
           
-          <!-- Tags Display -->
-          {article.data.tags && article.data.tags.length > 0 && (
-            <div class="flex flex-wrap gap-1 mb-1">
-              {article.data.tags.slice(0, 2).map(tag => (
-                <span class="inline-block bg-primary/10 text-primary text-xs px-2 py-1 rounded border border-primary/20">
-                  {tag}
-                </span>
-              ))}
-              {article.data.tags.length > 2 && article.data.tags[2] && (
-                <span class="inline-block bg-secondary/10 text-secondary text-xs px-2 py-1 rounded border border-secondary/20">
-                  {article.data.tags[2]}
-                </span>
-              )}
-              {article.data.tags.length > 3 && (
-                <span class="text-xs text-gray-500 dark:text-gray-400">+{article.data.tags.length - 3} more</span>
-              )}
-            </div>
-          )}
+          <!-- Responsive Tags -->
+          <ArticleTags 
+            tags={article.data.tags}
+            client:load
+          />
         </a>
       </li>
     ))}

@@ -6,7 +6,6 @@ export interface Project extends CollectionEntry<"projects"> {}
 export interface Bio extends CollectionEntry<"bio"> {}
 export interface Education extends CollectionEntry<"education"> {}
 export interface CurrentRole extends CollectionEntry<"currentRoles"> {}
-export interface Page extends CollectionEntry<"pages"> {}
 export interface WorkWithMe extends CollectionEntry<"workWithMe"> {}
 
 // Experience collection types - new role-based structure

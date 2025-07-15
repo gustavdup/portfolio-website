@@ -1,7 +1,7 @@
 ---
 title: "The Hidden Psychology of Product Adoption: Why Emotions Matter More Than Features"
 date: "2025-07-11"
-description: "How product managers can leverage the research-backed DOI Experience Model to design user journeys that transform resistance into enthusiastic adoption.."
+description: "How product managers can leverage the research-backed DOI Experience Model to design user journeys that transform resistance into enthusiastic adoption."
 tags: ["Product Management", "User Psychology", "Product Strategy", "User Adoption", "Change Management"]
 image: "/images/articles/psychology_of_product_adoption_hero.png"
 featured: true

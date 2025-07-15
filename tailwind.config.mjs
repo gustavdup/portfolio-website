@@ -52,6 +52,10 @@ export default {
         'bg-dark': '#121212',
         'bg-dark-alt': '#1A1A1A',
         
+        // Also define the bg-bg-* versions used in components
+        'bg-bg-light': '#f7f7f7',
+        'bg-bg-dark': '#121212',
+        
         // Custom text colors
         'text-light': '#111827', // slate-900 equivalent
         'text-dark': '#E5E7EB',  // slate-200 equivalent

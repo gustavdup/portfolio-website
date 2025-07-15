@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useMemo, useCallback } from "react";
+import ResponsiveTags from './ResponsiveTags.jsx';
 
 export default function ExperienceList({ 
   experienceOverviewExperiences,
@@ -188,10 +189,10 @@ export default function ExperienceList({
     <section className="mt-4">
       {/* Description without main title */}
       <div className="mb-6 sm:mb-8 text-center px-4">
-        <p className="text-sm sm:text-base font-medium text-gray-700 dark:text-gray-300 leading-relaxed max-w-2xl mx-auto mb-2">
+        <p className="text-base sm:text-lg font-medium text-gray-700 dark:text-gray-300 leading-relaxed max-w-2xl mx-auto mb-2">
           Explore My Experience by Profile
         </p>
-        <p className="text-xs sm:text-sm font-medium text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+        <p className="text-sm sm:text-base font-medium text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
           Each profile offers a focused view of my work — from product strategy and execution to technology, leadership, and commercial impact.
         </p>
       </div>
@@ -204,20 +205,28 @@ export default function ExperienceList({
         </div>
           
           {/* Tab Navigation */}
-          <div className="flex overflow-x-auto gap-2 pb-2 px-4 sm:hidden scrollbar-hide">
-            {visibleRoles.map((role) => (
-              <button
-                key={role}
-                onClick={() => handleRoleChange(role)}
-                className={`px-3 py-2 rounded-full text-xs font-medium transition-colors whitespace-nowrap flex-shrink-0 ${
-                  selectedRole === role
-                    ? 'bg-secondary text-white shadow-sm'
-                    : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-secondary hover:text-white border border-gray-200 dark:border-gray-700'
-                }`}
-              >
-                {roleDescriptions[role].title}
-              </button>
-            ))}
+          <div className="sm:hidden">
+            {/* Scrollable tabs container */}
+            <div className="flex overflow-x-auto gap-2 pb-2 px-4 scrollbar-hide">
+              {visibleRoles.map((role) => (
+                <button
+                  key={role}
+                  onClick={() => handleRoleChange(role)}
+                  className={`px-3 py-2 rounded-full text-xs font-medium transition-colors whitespace-nowrap flex-shrink-0 ${
+                    selectedRole === role
+                      ? 'bg-secondary text-white shadow-sm'
+                      : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-secondary hover:text-white border border-gray-200 dark:border-gray-700'
+                  }`}
+                >
+                  {roleDescriptions[role].title}
+                </button>
+              ))}
+            </div>
+            
+            {/* Scroll hint text - moved below pills, right aligned */}
+            <div className="flex justify-end px-4 mt-1">
+              <span className="text-xs text-gray-500 dark:text-gray-400 italic">Swipe for more profiles →</span>
+            </div>
           </div>
           
           {/* Desktop: Flex wrap */}
@@ -270,22 +279,22 @@ export default function ExperienceList({
             })
             .map(exp => (
               <div
-                className="exp-card p-6 rounded-xl bg-white dark:bg-gray-900/40 border border-gray-200 dark:border-gray-800 transition-all duration-200 hover:shadow-md hover:border-gray-300 dark:hover:border-gray-700 hover:-translate-y-0.5"
+                className="exp-card p-4 md:p-6 rounded-xl bg-white dark:bg-gray-900/40 border border-gray-200 dark:border-gray-800 transition-all duration-200 hover:shadow-md hover:border-gray-300 dark:hover:border-gray-700 hover:-translate-y-0.5"
                 key={exp.id}
               >
-                <div className="flex items-start justify-between mb-3 gap-4">
-                  <div>
-                    <h4 className="font-medium text-lg text-gray-900 dark:text-gray-100 mb-1">
+                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-3 gap-2 sm:gap-4">
+                  <div className="flex-1 min-w-0">
+                    <h4 className="font-medium text-base sm:text-lg text-gray-900 dark:text-gray-100 mb-1 leading-tight">
                       {exp.data.title}
                     </h4>
-                    <p className="text-gray-600 dark:text-gray-400 font-medium">
+                    <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 font-medium">
                       {exp.data.company}
                     </p>
                   </div>
-                  <div className="text-right flex-shrink-0">
-                    <span className="text-sm text-gray-500 dark:text-gray-400 font-medium block">{exp.data.timeframe}</span>
+                  <div className="text-left sm:text-right flex-shrink-0 sm:min-w-0">
+                    <span className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 font-medium block">{exp.data.timeframe}</span>
                     {exp.data.location && (
-                      <div className="text-xs text-gray-500 dark:text-gray-400 flex items-center gap-1 mt-1 justify-end">
+                      <div className="text-xs text-gray-500 dark:text-gray-400 flex items-center gap-1 mt-1 sm:justify-end">
                         <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
                           <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
                         </svg>
@@ -297,22 +306,19 @@ export default function ExperienceList({
                 
                 {/* Context Tags */}
                 {exp.data.context && exp.data.context.length > 0 && (
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {exp.data.context.map((tag, idx) => (
-                      <span 
-                        key={idx}
-                        className="px-2 py-1 text-xs rounded bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-700"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
+                  <ResponsiveTags 
+                    tags={exp.data.context}
+                    tagType="context"
+                    maxRowsMobile={2}
+                    maxRowsDesktop={3}
+                    className="mb-4"
+                  />
                 )}
                 
                 {/* Optional Header */}
                 {exp.data.header && (
                   <div className="mb-3">
-                    <p className="text-sm text-white leading-relaxed">
+                    <p className="text-sm text-text-light dark:text-text-dark leading-relaxed">
                       {exp.data.header}
                     </p>
                   </div>
