@@ -8,8 +8,6 @@ featured: true
 order: 1
 ---
 
-# **Enhanced Carbone.io Integration with Reporting – A Smart PDF Generation Middleman** 
-
 ## **Overview**
 
 Carbone.io is a powerful, template-based document generation engine that fits seamlessly into serverless architectures. It’s excellent at producing PDFs on the fly — but it lacks built-in reporting. That limitation became a launch point for this internal project: building a **middleman service layer** to integrate Carbone with Azure Logic Apps and a PostgreSQL database for rich reporting and cost tracking.

@@ -249,7 +249,7 @@ export default function ExperienceList({
         
         {/* Role Description Section - Clean header design */}
         <div className={`mb-10 transition-all duration-300 ${isTransitioning ? 'opacity-50' : 'opacity-100'}`}>
-          <div className="border-l-4 border-secondary pl-6 pr-4 py-6">
+          <div className="border-l-4 border-secondary pl-6 pr-4 py-6 px-4">
             <div className="flex items-center gap-3 mb-3">
               <h3 className="text-xl font-semibold text-text-light dark:text-text-dark">{currentRole.title}</h3>
               <span className="text-xs text-secondary dark:text-secondary font-bold px-2 py-1 bg-secondary/10 dark:bg-secondary/20 rounded-md">
@@ -260,11 +260,11 @@ export default function ExperienceList({
           </div>
         </div>
         {/* Centered note about ordering */}
-        <div className="text-center mb-6">
+        <div className="text-center mb-6 px-4">
           <p className="text-sm text-accent italic">{currentRole.order_description}</p>
         </div>
         {/* Experience List */}
-        <div className={`transition-all duration-300 ${isTransitioning ? 'opacity-50 translate-y-2' : 'opacity-100 translate-y-0'}`}>
+        <div className={`transition-all duration-300 px-4 ${isTransitioning ? 'opacity-50 translate-y-2' : 'opacity-100 translate-y-0'}`}>
           <div className="space-y-4">
           {experiences
             .sort((a, b) => {

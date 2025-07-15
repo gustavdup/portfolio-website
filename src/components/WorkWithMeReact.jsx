@@ -7,10 +7,27 @@ export default function WorkWithMe({
 }) {
   const [isClient, setIsClient] = useState(false);
   
-  // Memoize markdown conversion function
-  const convertMarkdownLinks = useCallback((text) => {
-    if (!text) return '';
-    return text.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" class="text-secondary hover:underline">$1</a>');
+  // Helper function to render text with links
+  const renderTextWithLinks = useCallback((text) => {
+    if (!text) return null;
+    
+    const parts = text.split(/(\[[^\]]+\]\([^)]+\))/);
+    
+    return parts.map((part, index) => {
+      const linkMatch = part.match(/\[([^\]]+)\]\(([^)]+)\)/);
+      if (linkMatch) {
+        return (
+          <a 
+            key={index}
+            href={linkMatch[2]} 
+            className="text-secondary hover:text-secondary-600 no-underline hover:underline transition-colors"
+          >
+            {linkMatch[1]}
+          </a>
+        );
+      }
+      return <span key={index}>{part}</span>;
+    });
   }, []);
   
   // Memoize valid anchors
@@ -163,6 +180,11 @@ export default function WorkWithMe({
           })}
         </div>
         
+        {/* Scroll hint text - below mobile pills, right aligned */}
+        <div className="flex justify-end px-4 mt-1 sm:hidden">
+          <span className="text-xs text-gray-500 dark:text-gray-400 italic">Swipe for more types →</span>
+        </div>
+        
         {/* Desktop: Flex wrap */}
         <div className="hidden sm:flex flex-wrap gap-2 px-4">
           {tabs.map((tab) => {
@@ -185,11 +207,11 @@ export default function WorkWithMe({
       </div>
 
       {/* Tab Content */}
-      <div className={`mb-6 transition-all duration-300 ${isTransitioning ? 'opacity-50' : 'opacity-100'}`}>
+      <div className={`mb-6 transition-all duration-300 px-4 ${isTransitioning ? 'opacity-50' : 'opacity-100'}`}>
         {currentTab && (
           <div className="py-3">
             <div 
-              className="prose prose-gray dark:prose-invert max-w-none"
+              className="prose-sm prose-gray dark:prose-invert max-w-none"
               dangerouslySetInnerHTML={{ __html: parseContent(currentTab.body) }}
             />
           </div>
@@ -198,7 +220,7 @@ export default function WorkWithMe({
 
       {/* Availability Note */}
       {availability?.data.showOnContact && (
-        <section className="mb-8">
+        <section className="mb-8 px-4">
           <div className="max-w-2xl mx-auto py-4">
             <div className={`px-3 py-2 border rounded-lg ${
               availability?.data.level === 'high' 
@@ -207,19 +229,16 @@ export default function WorkWithMe({
                 ? 'bg-accent/10 dark:bg-accent/15 border-accent/25'
                 : 'bg-red-800/10 dark:bg-red-800/15 border-red-800/25'
             }`}>
-              <div 
-                className="text-sm sm:text-base text-gray-600 dark:text-gray-300 leading-relaxed italic text-center"
-                dangerouslySetInnerHTML={{
-                  __html: convertMarkdownLinks(availability?.data.contactMessage || availability?.data.message)
-                }}
-              />
+              <p className="text-sm text-gray-800 dark:text-gray-200 leading-relaxed italic text-center m-0">
+                {renderTextWithLinks(availability?.data.contactMessage || availability?.data.message)}
+              </p>
             </div>
           </div>
         </section>
       )}
 
       {/* Contact Section */}
-      <section id="contact" className="text-center">
+      <section id="contact" className="text-center px-4">
         <div id="lets-connect" className="p-6 rounded-xl bg-white dark:bg-gray-900/40 border border-gray-200 dark:border-gray-800 transition-all duration-200 hover:shadow-md hover:border-gray-300 dark:hover:border-gray-700">
           <h2 className="text-xl sm:text-2xl font-bold text-text-light dark:text-text-dark mb-4">
             {contactEntry?.data.title}
