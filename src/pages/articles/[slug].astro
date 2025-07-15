@@ -25,7 +25,11 @@ const baseUrl = Astro.site?.toString() || 'https://gustavduplessis.com';
 const articleUrl = `${baseUrl}/articles/${article.slug}`;
 ---
 
-<Layout title={`${article.data.title} | Articles | Gustav du Plessis`} description={article.data.description}>
+<Layout 
+  title={`${article.data.title} | Articles | Gustav du Plessis`} 
+  description={article.data.description}
+  image={article.data.image}
+>
   <main class="min-h-screen px-4 pb-20">
     <div class="max-w-4xl mx-auto">
       <!-- Integrated breadcrumb header -->
