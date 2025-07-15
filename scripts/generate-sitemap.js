@@ -25,7 +25,7 @@ function getContentPages() {
   
   // Articles
   try {
-    const articlesDir = path.join(__dirname, 'src/content/articles');
+    const articlesDir = path.join(__dirname, '../src/content/articles');
     if (fs.existsSync(articlesDir)) {
       const articleFiles = fs.readdirSync(articlesDir)
         .filter(file => file.endsWith('.md') || file.endsWith('.mdx'))
@@ -45,7 +45,7 @@ function getContentPages() {
   
   // Projects
   try {
-    const projectsDir = path.join(__dirname, 'src/content/projects');
+    const projectsDir = path.join(__dirname, '../src/content/projects');
     if (fs.existsSync(projectsDir)) {
       const projectFiles = fs.readdirSync(projectsDir)
         .filter(file => file.endsWith('.md') || file.endsWith('.mdx'))
@@ -80,7 +80,14 @@ ${allPages.map(page => `  <url>
 </urlset>`;
 
   // Write to public directory
-  const sitemapPath = path.join(__dirname, 'public/sitemap.xml');
+  const publicDir = path.join(__dirname, '../public');
+  
+  // Ensure public directory exists
+  if (!fs.existsSync(publicDir)) {
+    fs.mkdirSync(publicDir, { recursive: true });
+  }
+  
+  const sitemapPath = path.join(publicDir, 'sitemap.xml');
   fs.writeFileSync(sitemapPath, sitemap);
   
   console.log(`✅ Sitemap generated with ${allPages.length} pages`);
