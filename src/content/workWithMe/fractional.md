@@ -15,6 +15,6 @@ I help product teams that need senior leadership at a critical point of growth o
 - Improving team alignment, delivery practices, and onboarding
 - Process improvement & product insights
 
-<div align="center"><br>
- <strong>I onboard quickly, create momentum early, and hand over with clarity.</strong>
+<div class="text-center mt-2 bt-0">
+<strong>I onboard quickly, create momentum early, and hand over with clarity.</strong>
 </div>
