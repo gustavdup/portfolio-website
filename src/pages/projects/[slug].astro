@@ -136,10 +136,56 @@ const projectUrl = `${Astro.site || 'https://gustavduplessis.com'}/projects/${pr
             />
           </div>
         )}
+        
+        <!-- Font Size Controls - Fourth Line -->
+        <div class="flex items-center gap-2">
+          <div class="w-4 h-4 flex items-center justify-center">
+            <span class="text-gray-500 text-xs font-medium">A</span>
+          </div>
+          <div class="relative">
+            <button 
+              id="fontSizeToggle"
+              class="text-sm text-gray-600 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 transition-colors"
+              title="Change font size"
+            >
+              Change font size
+            </button>
+            
+            <!-- Font Size Popup -->
+            <div 
+              id="fontSizePopup"
+              class="absolute left-0 top-full mt-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg p-2 hidden z-50"
+            >
+              <div class="flex items-center gap-1">
+                <button 
+                  id="fontSizeSmall" 
+                  class="p-1.5 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 rounded transition-colors"
+                  title="Small font"
+                >
+                  <span class="text-xs font-medium">A</span>
+                </button>
+                <button 
+                  id="fontSizeNormal" 
+                  class="p-1.5 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 rounded transition-colors"
+                  title="Normal font"
+                >
+                  <span class="text-sm font-medium">A</span>
+                </button>
+                <button 
+                  id="fontSizeLarge" 
+                  class="p-1.5 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 rounded transition-colors"
+                  title="Large font"
+                >
+                  <span class="text-base font-medium">A</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
-    <article class="prose prose-gray dark:prose-invert max-w-none mt-8">
+    <article id="articleContent" class="prose prose-gray dark:prose-invert max-w-none mt-8">
       <Content />
     </article>
     
@@ -193,5 +239,70 @@ const projectUrl = `${Astro.site || 'https://gustavduplessis.com'}/projects/${pr
         document.body.removeChild(textArea);
       }
     });
+
+    // Font size functionality
+    const articleContent = document.getElementById('articleContent');
+    const fontSizeToggle = document.getElementById('fontSizeToggle');
+    const fontSizePopup = document.getElementById('fontSizePopup');
+    const fontSizeSmall = document.getElementById('fontSizeSmall');
+    const fontSizeNormal = document.getElementById('fontSizeNormal');
+    const fontSizeLarge = document.getElementById('fontSizeLarge');
+
+    // Load saved font size preference
+    const savedFontSize = localStorage.getItem('articleFontSize') || 'normal';
+    setFontSize(savedFontSize);
+
+    // Toggle popup visibility
+    fontSizeToggle?.addEventListener('click', function(e) {
+      e.stopPropagation();
+      fontSizePopup.classList.toggle('hidden');
+    });
+
+    // Close popup when clicking outside
+    document.addEventListener('click', function(e) {
+      if (!fontSizeToggle.contains(e.target) && !fontSizePopup.contains(e.target)) {
+        fontSizePopup.classList.add('hidden');
+      }
+    });
+
+    function setFontSize(size) {
+      // Remove all prose size classes
+      articleContent.classList.remove('prose-sm', 'prose', 'prose-lg');
+      
+      // Reset all button states
+      [fontSizeSmall, fontSizeNormal, fontSizeLarge].forEach(btn => {
+        btn.classList.remove('text-primary', 'bg-primary/10');
+        btn.classList.add('text-gray-500', 'dark:text-gray-400');
+      });
+
+      // Add appropriate class and highlight active button
+      switch(size) {
+        case 'small':
+          articleContent.classList.add('prose-sm');
+          fontSizeSmall.classList.remove('text-gray-500', 'dark:text-gray-400');
+          fontSizeSmall.classList.add('text-primary', 'bg-primary/10');
+          break;
+        case 'large':
+          articleContent.classList.add('prose-lg');
+          fontSizeLarge.classList.remove('text-gray-500', 'dark:text-gray-400');
+          fontSizeLarge.classList.add('text-primary', 'bg-primary/10');
+          break;
+        default: // normal
+          articleContent.classList.add('prose');
+          fontSizeNormal.classList.remove('text-gray-500', 'dark:text-gray-400');
+          fontSizeNormal.classList.add('text-primary', 'bg-primary/10');
+      }
+      
+      // Save preference
+      localStorage.setItem('articleFontSize', size);
+      
+      // Close popup after selection
+      fontSizePopup.classList.add('hidden');
+    }
+
+    // Add event listeners
+    fontSizeSmall?.addEventListener('click', () => setFontSize('small'));
+    fontSizeNormal?.addEventListener('click', () => setFontSize('normal'));
+    fontSizeLarge?.addEventListener('click', () => setFontSize('large'));
   });
 </script>

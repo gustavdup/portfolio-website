@@ -160,15 +160,15 @@ body {
   }
   
   .prose code {
-    @apply bg-gray-100 dark:bg-gray-800 text-primary px-2 py-1 rounded text-sm font-mono;
+    @apply text-gray-900 dark:text-white px-2 py-1 rounded text-sm font-mono;
   }
   
   .prose pre {
-    @apply bg-gray-100 dark:bg-gray-800 p-6 rounded-lg overflow-x-auto mb-6;
+    @apply p-6 rounded-lg overflow-x-auto mb-6 border border-gray-200 dark:border-gray-700;
   }
   
   .prose pre code {
-    @apply bg-transparent p-0;
+    @apply bg-transparent p-0 text-gray-900 dark:text-white;
   }
   
   .prose a {
@@ -407,11 +407,11 @@ body {
 }
 
 .prose-xs code {
-  @apply bg-gray-100 dark:bg-gray-800 text-primary px-1.5 py-0.5 rounded text-xs font-mono;
+  @apply text-gray-900 dark:text-white px-1.5 py-0.5 rounded text-xs font-mono;
 }
 
 .prose-xs pre {
-  @apply bg-gray-100 dark:bg-gray-800 p-4 rounded-lg overflow-x-auto mb-4;
+  @apply p-4 rounded-lg overflow-x-auto mb-4 border border-gray-200 dark:border-gray-700;
 }
 
 .prose-xs a {
@@ -559,11 +559,11 @@ body {
 }
 
 .prose-sm code {
-  @apply bg-gray-100 dark:bg-gray-800 text-primary px-1.5 py-0.5 rounded text-sm font-mono;
+  @apply text-gray-900 dark:text-white px-1.5 py-0.5 rounded text-sm font-mono;
 }
 
 .prose-sm pre {
-  @apply bg-gray-100 dark:bg-gray-800 p-5 rounded-lg overflow-x-auto mb-5;
+  @apply p-5 rounded-lg overflow-x-auto mb-5 border border-gray-200 dark:border-gray-700;
 }
 
 .prose-sm a {
@@ -711,11 +711,11 @@ body {
 }
 
 .prose-lg code {
-  @apply bg-gray-100 dark:bg-gray-800 text-primary px-2 py-1 rounded text-lg font-mono;
+  @apply text-gray-900 dark:text-white px-2 py-1 rounded text-lg font-mono;
 }
 
 .prose-lg pre {
-  @apply bg-gray-100 dark:bg-gray-800 p-7 rounded-lg overflow-x-auto mb-7;
+  @apply p-7 rounded-lg overflow-x-auto mb-7 border border-gray-200 dark:border-gray-700;
 }
 
 .prose-lg a {
@@ -863,11 +863,11 @@ body {
 }
 
 .prose-xl code {
-  @apply bg-gray-100 dark:bg-gray-800 text-primary px-3 py-1 rounded text-xl font-mono;
+  @apply text-gray-900 dark:text-white px-3 py-1 rounded text-xl font-mono;
 }
 
 .prose-xl pre {
-  @apply bg-gray-100 dark:bg-gray-800 p-8 rounded-lg overflow-x-auto mb-8;
+  @apply p-8 rounded-lg overflow-x-auto mb-8 border border-gray-200 dark:border-gray-700;
 }
 
 .prose-xl a {
