@@ -8,5 +8,5 @@ featured: true
 order: 2
 ---
 
-- Co-authored and presented a peer-reviewed paper titled "The Diffusion of Innovation Experience".
-- Developed a prototype for an IoT solar product that optimises energy use for high-demand appliances.
+- Co-authored and presented peer-reviewed paper "The Diffusion of Innovation Experience".
+- Developed IoT solar prototype that optimizes energy use for high-demand appliances.

@@ -1,9 +1,14 @@
 ---
 import { getCollection } from 'astro:content';
+import { getEntryBySlug } from 'astro:content';
 import ProjectTags from './ProjectTags.jsx';
 
 const projects = await getCollection('projects');
 const sortedProjects = projects.sort((a, b) => (a.data.order || 999) - (b.data.order || 999));
+
+// Get bio data for portfolio card configuration
+const bio = await getEntryBySlug('bio', 'bio');
+const portfolioCard = bio?.data.portfolioCard || {};
 
 // Count featured projects
 const featuredProjects = sortedProjects.filter(project => project.data.featured);
@@ -194,5 +199,45 @@ const allCount = sortedProjects.length;
         </a>
       </li>
     ))}
+    
+    <!-- Coming Soon Card - Conditionally Rendered -->
+    {portfolioCard.show && (
+      <li class="coming-soon-card group transition-all duration-200">
+        <div class="block py-4 px-4 sm:py-5 sm:px-6 rounded-xl bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 border border-blue-200 dark:border-blue-800 transition-all duration-200">
+          <div class="flex items-start justify-between mb-2 gap-3">
+            <div class="flex items-center gap-2">
+              <svg class="w-5 h-5 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+              </svg>
+              <h3 class="font-medium text-sm sm:text-base text-blue-900 dark:text-blue-100 leading-snug">
+                {portfolioCard.title || "Portfolio Expanding Soon"}
+              </h3>
+            </div>
+            <div class="flex items-center gap-2 flex-shrink-0">
+              <span class="text-xs text-blue-600 dark:text-blue-400 whitespace-nowrap font-medium">
+                {portfolioCard.status || "Loading Content"}
+              </span>
+              <svg class="w-4 h-4 text-blue-500 dark:text-blue-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z" clip-rule="evenodd" />
+              </svg>
+            </div>
+          </div>
+          <p class="text-xs sm:text-sm text-blue-800 dark:text-blue-200 mb-3 leading-relaxed">
+            {portfolioCard.description || "This is a new section! I'm currently adding detailed case studies from my past projects and will continue updating with new work."}
+          </p>
+          
+          <!-- Tags-style indicators -->
+          {portfolioCard.tags && portfolioCard.tags.length > 0 && (
+            <div class="flex flex-wrap gap-1.5">
+              {portfolioCard.tags.map(tag => (
+                <span class="inline-flex items-center px-2 py-1 rounded-md text-xs font-medium bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-200">
+                  {tag}
+                </span>
+              ))}
+            </div>
+          )}
+        </div>
+      </li>
+    )}
   </ul>
 </section>

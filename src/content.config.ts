@@ -25,6 +25,13 @@ const bio = defineCollection({
     showProjects: z.boolean().default(true),
     showExperience: z.boolean().default(true),
     linkedinUrl: z.string().optional(),
+    portfolioCard: z.object({
+      show: z.boolean().default(false),
+      title: z.string().optional(),
+      status: z.string().optional(),
+      description: z.string().optional(),
+      tags: z.array(z.string()).optional(),
+    }).optional(),
   }),
 });
 

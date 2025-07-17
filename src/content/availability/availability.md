@@ -1,6 +1,6 @@
 ---
-homeMessage: "I'm currently available for new consulting projects and product leadership roles, and open to collaborating on meaningful, outcome-driven work. [Let's Connect](/lets-work-together#contact)"
-contactMessage: "I'm currently available for new consulting projects and product leadership roles, and open to collaborating on meaningful, outcome-driven work."
+homeMessage: "Planning ahead for upcoming availability. Whether consulting, project work, or long-term engagements—[reach out](/lets-work-together#contact) to discuss possibilities."
+contactMessage: "Planning ahead for upcoming availability. Whether consulting, project work, or long-term engagements—reach out to discuss possibilities."
 level: "high"
 showOnAbout: true
 showOnContact: true

@@ -154,11 +154,10 @@ const sortedCurrentRoles = currentRoles
             ? 'bg-accent/10 dark:bg-accent/15 border-accent/25'
             : 'bg-red-800/10 dark:bg-red-800/15 border-red-800/25'
         }`}>
-          <p class="text-sm text-gray-800 dark:text-gray-200 leading-relaxed italic text-center m-0">
-            I'm currently available for new consulting projects and product leadership roles, and open to collaborating on meaningful, outcome-driven work. 
-            <a href="/lets-work-together#contact" class="text-secondary hover:text-secondary-600 no-underline hover:underline transition-colors">
-              Let's Connect
-            </a>
+          <p class="text-sm text-gray-800 dark:text-gray-200 leading-relaxed italic text-center m-0" set:html={
+            (availability?.data.homeMessage || "I'm currently available for new consulting projects and product leadership roles, and open to collaborating on meaningful, outcome-driven work. <a href='/lets-work-together#contact' class='text-secondary hover:text-secondary-600 no-underline hover:underline transition-colors'>Let's Connect</a>")
+              .replace(/\[([^\]]+)\]\(([^)]+)\)/g, "<a href='$2' class='text-secondary hover:text-secondary-600 no-underline hover:underline transition-colors'>$1</a>")
+          }>
           </p>
         </div>
       </div>
