@@ -6,7 +6,7 @@ email: "gustavdup90@gmail.com"
 description: "Product leader and entrepreneur with 10+ years of experience delivering impactful SaaS products across edtech, healthcare, field service, mining, and more. Led global teams across startups and enterprises, driving user-focused, scalable solutions. Skilled in strategy, stakeholder alignment, and execution. Holds a Master's in ICT Management and is completing a doctorate in enterprise software change."
 image: "/profile.jpg"
 showArticles: true
-showProjects: false
+showProjects: true
 showExperience: true
 linkedinUrl: "https://www.linkedin.com/in/gustavdup"
 
