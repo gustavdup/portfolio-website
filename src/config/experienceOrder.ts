@@ -56,10 +56,10 @@ export const experienceOrder = {
 
   // Digital Enabler: Ordered by relevance to platform/tooling work
   digitalEnabler: {
-    "medici_digital_enabler": 1,                      // Analytics stack, experimentation, full-funnel tracking infrastructure
-    "edublox_clinic_it_manager_digital_enabler": 2,   // System development, process automation, BI, operational tools
-    "britehouse_mobility_digital_enabler": 3,         // Internal platforms, automation systems, reporting infrastructure
-    "edublox_clinic_digital_enabler": 4,              // Internal systems, franchise enablement, operational automation
+    "britehouse_mobility_digital_enabler": 1,         // Document automation, governance workflows, 80% overhead reduction
+    "edublox_clinic_it_manager_digital_enabler": 2,   // Business management system, process automation, BI, operational tools
+    "edublox_clinic_digital_enabler": 3,              // Internal systems, franchise enablement, CRM, operational automation
+    "medici_digital_enabler": 4,                      // Analytics stack, experimentation infrastructure (customer-facing focus)
     "edublox_clinic_it_support_digital_enabler": 5,   // IT operations, support systems, infrastructure building
   } as ExperienceOrder,
 
