@@ -1,9 +1,6 @@
 ---
-company: "Edublox Reading and Learning Clinic"
-title: "IT Support Administrator"
-timeframe: "2010 – 2012"
+roleId: "edublox_clinic_it_support"
 visible: true
-order: 8
 context: ["Early Career", "Technical Foundation", "Support Operations", "Infrastructure Development"]
 responsibilities:
   - Provided comprehensive IT support across franchise network, including desktop support, software troubleshooting, and educational software assistance.

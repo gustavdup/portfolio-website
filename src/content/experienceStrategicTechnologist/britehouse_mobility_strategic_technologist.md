@@ -1,9 +1,6 @@
 ---
-company: "Britehouse Mobility"
-title: "Product Manager | Product Owner"
-timeframe: "Jan 2023 – Jul 2025"
+roleId: "britehouse_mobility"
 visible: true
-order: 3
 context: ["Platform Architecture", "Enterprise Integration", "Technical Strategy", "System Scalability", "Infrastructure Planning"]
 responsibilities:
   - Guided platform architecture evolution across multiple B2B verticals, making strategic technology decisions that balanced scalability requirements with performance constraints.

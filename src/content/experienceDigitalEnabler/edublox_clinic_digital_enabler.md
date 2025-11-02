@@ -1,9 +1,6 @@
 ---
-company: "Edublox Reading and Learning Clinic"
-title: "Chief Information Officer | Co-Owner"
-timeframe: "2016 – Present"
+roleId: "edublox_clinic"
 visible: true
-order: 1
 context: ["Internal Systems", "Franchise Enablement", "Operational Automation", "Data Integration", "Process Digitalisation"]
 responsibilities:
   - Designed in-house systems to support franchisees, standardise delivery, and reduce reliance on manual processes, improving operational efficiency across 40+ locations.

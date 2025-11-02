@@ -1,9 +1,6 @@
 ---
-company: "Britehouse Mobility"
-title: "Product Manager | Product Owner"
-timeframe: "Jan 2023 – Jul 2025"
+roleId: "britehouse_mobility"
 visible: true
-order: 1
 context: ["Platform Delivery", "Performance Optimisation", "System Integration", "Release Management", "Operational Excellence"]
 responsibilities:
   - Delivered major field services platform launch on time, coordinating technical debt resolution, scalability improvements, and feature rollout that reduced system load times by over 50%.

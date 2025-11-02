@@ -1,9 +1,6 @@
 ---
-company: "iScann Group"
-title: "Product Manager"
-timeframe: "Aug 2021 - Sep 2021"
+roleId: "iscann_group"
 visible: true
-order: 6
 context: ["Freelance Engagement", "Rapid Turnaround", "Process Implementation", "Stakeholder Alignment", "MVP Delivery"]
 responsibilities:
   - Enhanced product development coordination between client organisation and development team, optimising project approach and refining product roadmap for successful delivery.

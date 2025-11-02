@@ -1,9 +1,6 @@
 ---
-company: "MURAL"
-title: "Interim Senior Product Manager"
-timeframe: "Nov 2021 – Jul 2022"
+roleId: "mural"
 visible: true
-order: 4
 context: ["Strategic Alignment", "Product Vision", "Market Positioning", "Integration Strategy", "User Experience"]
 responsibilities:
   - Ensured feature development maintained strategic alignment with company vision, connecting product decisions to broader business objectives and competitive positioning.

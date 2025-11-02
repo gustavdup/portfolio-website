@@ -1,9 +1,6 @@
 ---
-company: "Edublox Reading and Learning Clinic"
-title: "IT Manager and Business Coach"
-timeframe: "2012 – 2015"
+roleId: "edublox_clinic_it_manager"
 visible: true
-order: 5
 context: ["Business Coaching", "Franchisee Development", "Cross-Functional Collaboration", "Performance Management", "Stakeholder Alignment"]
 responsibilities:
   - Facilitated monthly coaching sessions with 15+ franchisees, providing business guidance, performance analysis, and profitability recommendations to drive consistent growth across network.

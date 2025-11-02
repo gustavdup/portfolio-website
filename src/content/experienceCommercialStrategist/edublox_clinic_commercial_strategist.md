@@ -1,9 +1,6 @@
 ---
-company: "Edublox Reading and Learning Clinic"
-title: "Chief Information Officer | Co-Owner"
-timeframe: "2016 – Present"
+roleId: "edublox_clinic"
 visible: true
-order: 1
 context: ["Revenue Diversification", "Business Model Innovation", "Market Expansion", "Subscription Strategy", "Franchise Monetisation"]
 responsibilities:
   - Co-led business strategy that scaled regional education company into 40+ location franchise network, establishing multiple revenue streams and market presence across Southern Africa.

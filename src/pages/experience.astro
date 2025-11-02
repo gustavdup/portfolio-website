@@ -2,6 +2,8 @@
 import Layout from '../layouts/Layout.astro';
 import ExperienceListReact from '../components/ExperienceListReact.jsx';
 import { getCollection, getEntryBySlug } from 'astro:content';
+import { sortExperiencesByOrder } from '../config/experienceOrder';
+import { loadExperienceRoles } from '../config/experienceRolesLoader';
 
 // Check if experience page should be shown
 const bio = await getEntryBySlug('bio', 'bio');
@@ -12,15 +14,46 @@ const linkedinUrl = bio?.data.linkedinUrl || 'https://linkedin.com/in/gustavdupl
 if (!showExperience) {
   // We'll show the coming soon content instead of redirecting
 } else {
-  // Load experience data only if showing, and filter by visibility
-  var experienceOverviewExperiences = (await getCollection('experienceOverview')).filter(exp => exp.data.visible !== false);
-  var experienceProductStrategistExperiences = (await getCollection('experienceProductStrategist')).filter(exp => exp.data.visible !== false);
-  var experienceExecutionLeadExperiences = (await getCollection('experienceExecutionLead')).filter(exp => exp.data.visible !== false);
-  var experienceDigitalEnablerExperiences = (await getCollection('experienceDigitalEnabler')).filter(exp => exp.data.visible !== false);
-  var experienceFractionalPmExperiences = (await getCollection('experienceFractionalPm')).filter(exp => exp.data.visible !== false);
-  var experienceCollaborativeLeaderExperiences = (await getCollection('experienceCollaborativeLeader')).filter(exp => exp.data.visible !== false);
-  var experienceCommercialStrategistExperiences = (await getCollection('experienceCommercialStrategist')).filter(exp => exp.data.visible !== false);
-  var experienceStrategicTechnologistExperiences = (await getCollection('experienceStrategicTechnologist')).filter(exp => exp.data.visible !== false);
+  // Load all role definitions from config folder
+  var experienceRoles = await loadExperienceRoles();
+  
+  // Load experience data, filter by visibility, and sort using central config
+  var experienceOverviewExperiences = sortExperiencesByOrder(
+    (await getCollection('experienceOverview')).filter(exp => exp.data.visible !== false),
+    'overview'
+  );
+  var experienceProductStrategistExperiences = sortExperiencesByOrder(
+    (await getCollection('experienceProductStrategist')).filter(exp => exp.data.visible !== false),
+    'productStrategist'
+  );
+  var experienceExecutionLeadExperiences = sortExperiencesByOrder(
+    (await getCollection('experienceExecutionLead')).filter(exp => exp.data.visible !== false),
+    'executionLead'
+  );
+  var experienceDigitalEnablerExperiences = sortExperiencesByOrder(
+    (await getCollection('experienceDigitalEnabler')).filter(exp => exp.data.visible !== false),
+    'digitalEnabler'
+  );
+  var experienceFractionalPmExperiences = sortExperiencesByOrder(
+    (await getCollection('experienceFractionalPm')).filter(exp => exp.data.visible !== false),
+    'fractionalPm'
+  );
+  var experienceCollaborativeLeaderExperiences = sortExperiencesByOrder(
+    (await getCollection('experienceCollaborativeLeader')).filter(exp => exp.data.visible !== false),
+    'collaborativeLeader'
+  );
+  var experienceCommercialStrategistExperiences = sortExperiencesByOrder(
+    (await getCollection('experienceCommercialStrategist')).filter(exp => exp.data.visible !== false),
+    'commercialStrategist'
+  );
+  var experienceStrategicTechnologistExperiences = sortExperiencesByOrder(
+    (await getCollection('experienceStrategicTechnologist')).filter(exp => exp.data.visible !== false),
+    'strategicTechnologist'
+  );
+  var experienceGrowthAndBDExperiences = sortExperiencesByOrder(
+    (await getCollection('experienceGrowthAndBD')).filter(exp => exp.data.visible !== false),
+    'growthAndBD'
+  );
 }
 ---
 
@@ -30,6 +63,7 @@ if (!showExperience) {
       <div class="max-w-4xl mx-auto">
         <ExperienceListReact 
           client:load 
+          experienceRoles={experienceRoles}
           experienceOverviewExperiences={experienceOverviewExperiences}
           experienceProductStrategistExperiences={experienceProductStrategistExperiences}
           experienceExecutionLeadExperiences={experienceExecutionLeadExperiences}
@@ -38,6 +72,7 @@ if (!showExperience) {
           experienceCollaborativeLeaderExperiences={experienceCollaborativeLeaderExperiences}
           experienceCommercialStrategistExperiences={experienceCommercialStrategistExperiences}
           experienceStrategicTechnologistExperiences={experienceStrategicTechnologistExperiences}
+          experienceGrowthAndBDExperiences={experienceGrowthAndBDExperiences}
         />
       </div>
     </main>
@@ -94,3 +129,4 @@ if (!showExperience) {
     </main>
   </Layout>
 )}
+<div cl

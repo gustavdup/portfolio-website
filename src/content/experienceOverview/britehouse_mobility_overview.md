@@ -1,9 +1,6 @@
 ---
-company: "Britehouse Mobility"
-title: "Product Manager | Product Owner"
-timeframe: "Jan 2023 – Jul 2025"
+roleId: "britehouse_mobility"
 visible: true
-order: 4
 context: ["Product Leadership", "B2B SaaS", "Cross-Functional Management", "Platform Development", "Enterprise Solutions"]
 responsibilities:
   - Led product strategy and delivery across healthcare, logistics, mining, retail, and field services verticals, building remote-first team culture while managing complex B2B client requirements.

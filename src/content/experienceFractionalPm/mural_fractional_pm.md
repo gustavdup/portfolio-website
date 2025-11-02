@@ -1,9 +1,6 @@
 ---
-company: "MURAL"
-title: "Interim Senior Product Manager"
-timeframe: "Nov 2021 – Jul 2022"
+roleId: "mural"
 visible: true
-order: 2
 context: ["Rapid Onboarding", "Interim Leadership", "Client Adaptation", "Short-Term Delivery", "Stakeholder Management"]
 responsibilities:
   - Rapidly onboarded into unfamiliar high-growth SaaS environment, quickly understanding business context and team dynamics to begin contributing within first sprint.

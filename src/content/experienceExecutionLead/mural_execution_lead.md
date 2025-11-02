@@ -1,9 +1,6 @@
 ---
-company: "MURAL"
-title: "Interim Senior Product Manager"
-timeframe: "Nov 2021 – Jul 2022"
+roleId: "mural"
 visible: true
-order: 4
 context: ["Feature Delivery", "MVP Development", "Release Management", "Quality Assurance", "Technical Validation"]
 responsibilities:
   - Shipped in-product help and learning feature from concept to production, managing development lifecycle and ensuring quality standards throughout delivery process.

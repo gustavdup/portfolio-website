@@ -1,9 +1,6 @@
 ---
-company: "MURAL"
-title: "Interim Senior Product Manager"
-timeframe: "Nov 2021 – Jul 2022"
+roleId: "mural"
 visible: true
-order: 4
 context: ["Technical Feasibility", "Solution Architecture", "Engineering Collaboration", "Technology Evaluation", "Integration Planning"]
 responsibilities:
   - Prototyped in-whiteboard template insertion using Postman scripts, demonstrating technical approach and validating API capabilities for complex feature implementation.

@@ -90,18 +90,13 @@ const currentRoles = defineCollection({
   }),
 });
 
-// New experience collections
+// New experience collections - Reference experienceRoles for metadata
 const experienceProductStrategist = defineCollection({
   type: 'content',
   schema: z.object({
-    company: z.string(),
-    title: z.string(),
-    timeframe: z.string(),
-    location: z.string().optional(),
-    context: z.array(z.string()).optional(),
-    header: z.string().optional(),
+    roleId: z.string(), // References a file in experienceRoles collection
+    context: z.array(z.string()).optional(), // Context tags specific to this category
     responsibilities: z.array(z.string()).optional(),
-    footer: z.string().optional(),
     visible: z.boolean().default(true),
     order: z.number().optional(),
   }),
@@ -110,14 +105,9 @@ const experienceProductStrategist = defineCollection({
 const experienceExecutionLead = defineCollection({
   type: 'content',
   schema: z.object({
-    company: z.string(),
-    title: z.string(),
-    timeframe: z.string(),
-    location: z.string().optional(),
+    roleId: z.string(),
     context: z.array(z.string()).optional(),
-    header: z.string().optional(),
     responsibilities: z.array(z.string()).optional(),
-    footer: z.string().optional(),
     visible: z.boolean().default(true),
     order: z.number().optional(),
   }),
@@ -126,14 +116,9 @@ const experienceExecutionLead = defineCollection({
 const experienceDigitalEnabler = defineCollection({
   type: 'content',
   schema: z.object({
-    company: z.string(),
-    title: z.string(),
-    timeframe: z.string(),
-    location: z.string().optional(),
+    roleId: z.string(),
     context: z.array(z.string()).optional(),
-    header: z.string().optional(),
     responsibilities: z.array(z.string()).optional(),
-    footer: z.string().optional(),
     visible: z.boolean().default(true),
     order: z.number().optional(),
   }),
@@ -142,14 +127,9 @@ const experienceDigitalEnabler = defineCollection({
 const experienceFractionalPm = defineCollection({
   type: 'content',
   schema: z.object({
-    company: z.string(),
-    title: z.string(),
-    timeframe: z.string(),
-    location: z.string().optional(),
+    roleId: z.string(),
     context: z.array(z.string()).optional(),
-    header: z.string().optional(),
     responsibilities: z.array(z.string()).optional(),
-    footer: z.string().optional(),
     visible: z.boolean().default(true),
     order: z.number().optional(),
   }),
@@ -158,14 +138,9 @@ const experienceFractionalPm = defineCollection({
 const experienceCollaborativeLeader = defineCollection({
   type: 'content',
   schema: z.object({
-    company: z.string(),
-    title: z.string(),
-    timeframe: z.string(),
-    location: z.string().optional(),
+    roleId: z.string(),
     context: z.array(z.string()).optional(),
-    header: z.string().optional(),
     responsibilities: z.array(z.string()).optional(),
-    footer: z.string().optional(),
     visible: z.boolean().default(true),
     order: z.number().optional(),
   }),
@@ -174,14 +149,9 @@ const experienceCollaborativeLeader = defineCollection({
 const experienceCommercialStrategist = defineCollection({
   type: 'content',
   schema: z.object({
-    company: z.string(),
-    title: z.string(),
-    timeframe: z.string(),
-    location: z.string().optional(),
+    roleId: z.string(),
     context: z.array(z.string()).optional(),
-    header: z.string().optional(),
     responsibilities: z.array(z.string()).optional(),
-    footer: z.string().optional(),
     visible: z.boolean().default(true),
     order: z.number().optional(),
   }),
@@ -190,14 +160,20 @@ const experienceCommercialStrategist = defineCollection({
 const experienceStrategicTechnologist = defineCollection({
   type: 'content',
   schema: z.object({
-    company: z.string(),
-    title: z.string(),
-    timeframe: z.string(),
-    location: z.string().optional(),
+    roleId: z.string(),
     context: z.array(z.string()).optional(),
-    header: z.string().optional(),
     responsibilities: z.array(z.string()).optional(),
-    footer: z.string().optional(),
+    visible: z.boolean().default(true),
+    order: z.number().optional(),
+  }),
+});
+
+const experienceGrowthAndBD = defineCollection({
+  type: 'content',
+  schema: z.object({
+    roleId: z.string(),
+    context: z.array(z.string()).optional(),
+    responsibilities: z.array(z.string()).optional(),
     visible: z.boolean().default(true),
     order: z.number().optional(),
   }),
@@ -206,14 +182,9 @@ const experienceStrategicTechnologist = defineCollection({
 const experienceOverview = defineCollection({
   type: 'content',
   schema: z.object({
-    company: z.string(),
-    title: z.string(),
-    timeframe: z.string(),
-    location: z.string().optional(),
+    roleId: z.string(),
     context: z.array(z.string()).optional(),
-    header: z.string().optional(),
     responsibilities: z.array(z.string()).optional(),
-    footer: z.string().optional(),
     visible: z.boolean().default(true),
     order: z.number().optional(),
   }),
@@ -256,6 +227,7 @@ export const collections = {
   experienceCollaborativeLeader,
   experienceCommercialStrategist,
   experienceStrategicTechnologist,
+  experienceGrowthAndBD,
   education,
   currentRoles,
   workWithMe,

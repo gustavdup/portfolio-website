@@ -1,9 +1,6 @@
 ---
-company: "Edublox Reading and Learning Clinic"
-title: "Chief Information Officer | Co-Owner"
-timeframe: "2016 – Present"
+roleId: "edublox_clinic"
 visible: true
-order: 3
 context: ["System Implementation", "Infrastructure Delivery", "Process Deployment", "Quality Assurance", "Operational Rollout"]
 responsibilities:
   - Delivered comprehensive digital transformation across 40+ franchise locations, implementing standardised systems, workflows, and quality assurance processes.

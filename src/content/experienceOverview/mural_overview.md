@@ -1,9 +1,6 @@
 ---
-company: "MURAL"
-title: "Interim Senior Product Manager"
-timeframe: "Nov 2021 – Jul 2022"
+roleId: "mural"
 visible: true
-order: 5
 context: ["Interim Leadership", "Product Delivery", "Remote Collaboration", "Strategic Integration", "Technical Validation"]
 responsibilities:
   - Stepped in as interim product leader at global visual collaboration platform, rapidly adapting to company culture while maintaining delivery momentum across remote teams.

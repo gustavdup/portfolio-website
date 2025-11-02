@@ -1,9 +1,6 @@
 ---
-company: "Edublox Reading and Learning Clinic"
-title: "IT Support Administrator"
-timeframe: "2010 – 2012"
+roleId: "edublox_clinic_it_support"
 visible: true
-order: 4
 context: ["IT Operations", "Support Systems", "Digital Transition", "Infrastructure Building"]
 responsibilities:
   - Implemented cost-saving email infrastructure using Google accounts and SMTP server configuration, establishing reliable communication system while reducing operational expenses.

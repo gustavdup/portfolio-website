@@ -1,9 +1,6 @@
 ---
-company: "iScann Group"
-title: "Product Manager"
-timeframe: "Aug 2021 - Sep 2021"
+roleId: "iscann_group"
 visible: true
-order: 3
 context: ["Team Realignment", "Stakeholder Bridging", "Communication Enhancement", "Trust Building", "Cross-Cultural Coordination"]
 responsibilities:
   - Strengthened collaboration between client organisation and development team, establishing effective communication protocols and productive working partnerships.

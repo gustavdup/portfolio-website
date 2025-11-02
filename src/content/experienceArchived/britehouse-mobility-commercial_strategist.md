@@ -1,9 +1,6 @@
 ---
-company: "Britehouse Mobility"
-title: "Product Manager | Product Owner"
-timeframe: "Jan 2023 – Jul 2025"
+roleId: "britehouse_mobility"
 visible: false
-order: 4
 context: ["Commercial Strategist", "Platform Positioning", "Client Proposals"]
 responsibilities:
   - Scoped and priced multiple workstreams across clients and verticals—balancing feasibility with client value to support sales and proposal processes.

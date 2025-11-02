@@ -1,9 +1,6 @@
 ---
-company: "Britehouse Mobility"
-title: "Product Manager | Product Owner"
-timeframe: "Jan 2023 – Jul 2025"
+roleId: "britehouse_mobility"
 visible: true
-order: 3
 context: ["Product Discovery", "Roadmap Planning", "Market Alignment", "Strategic Prioritisation", "Cross-Vertical Strategy"]
 responsibilities:
   - Defined product vision and strategic direction across four distinct B2B software verticals, ensuring roadmap alignment with market needs and competitive positioning.

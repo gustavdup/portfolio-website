@@ -1,9 +1,6 @@
 ---
-company: "iScann Group"
-title: "Product Manager"
-timeframe: "Aug 2021 - Sep 2021"
+roleId: "iscann_group"
 visible: true
-order: 3
 context: ["Rapid Engagement", "Client Realignment", "Problem Identification", "Short-Term Delivery", "Stakeholder Management"]
 responsibilities:
   - Joined ongoing product development initiative, quickly assessing project status and optimising development approach to accelerate progress toward MVP delivery.

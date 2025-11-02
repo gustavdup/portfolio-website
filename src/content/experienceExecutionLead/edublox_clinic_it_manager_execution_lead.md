@@ -1,9 +1,6 @@
 ---
-company: "Edublox Reading and Learning Clinic"
-title: "IT Manager and Business Coach"
-timeframe: "2012 – 2015"
+roleId: "edublox_clinic_it_manager"
 visible: true
-order: 6
 context: ["System Implementation", "Project Delivery", "Infrastructure Rollout", "Change Management", "Quality Assurance"]
 responsibilities:
   - Delivered comprehensive Excel VBA business management solution within eight weeks, implementing budgeting, financial tracking, marketing planning, and automated reporting capabilities.

@@ -1,9 +1,6 @@
 ---
-company: "Britehouse Mobility"
-title: "Product Manager | Product Owner"
-timeframe: "Jan 2023 – Jul 2025"
+roleId: "britehouse_mobility"
 visible: true
-order: 1
 context: ["Remote Team Building", "Cross-Functional Leadership", "Stakeholder Alignment", "Culture Development", "Process Improvement"]
 responsibilities:
   - Transformed distributed team culture by establishing async-first communication standards, shared documentation practices, and transparent decision-making processes that reduced onboarding time.

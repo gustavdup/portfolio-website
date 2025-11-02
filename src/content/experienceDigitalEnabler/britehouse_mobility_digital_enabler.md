@@ -1,9 +1,6 @@
 ---
-company: "Britehouse Mobility"
-title: "Product Manager | Product Owner"
-timeframe: "Jan 2023 – Jul 2025"
+roleId: "britehouse_mobility"
 visible: true
-order: 2
 context: ["Internal Platforms", "Automation Systems", "Reporting Infrastructure", "Workflow Optimisation", "Data Integration"]
 responsibilities:
   - Created comprehensive document automation platform using middleware architecture, enabling teams to generate PDFs with cost tracking, usage monitoring, and centralised logging across projects.

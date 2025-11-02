@@ -1,9 +1,6 @@
 ---
-company: "MURAL"
-title: "Interim Senior Product Manager"
-timeframe: "Nov 2021 – Jul 2022"
+roleId: "mural"
 visible: true
-order: 2
 context: ["Remote Team Leadership", "Cross-Functional Coordination", "Stakeholder Integration", "Knowledge Transfer", "Cultural Adaptation"]
 responsibilities:
   - Built trust and rapport with distributed squad members across design, engineering, and product functions, establishing psychological safety for open communication.

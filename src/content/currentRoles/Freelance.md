@@ -1,10 +1,10 @@
 ---
-title: "Freelance Product Manager & Consultant"
-company: "Direct & via Toptal"
+title: "Product Strategy & Management Consultant"
+company: "GDP Consulting"
 roleType: "Project Based"
 timeframe: "2021 - Present" 
 location: "Remote"
 visible: true
-order: 1
+order: 2
 ---
 

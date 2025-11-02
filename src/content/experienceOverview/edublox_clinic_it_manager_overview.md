@@ -1,9 +1,6 @@
 ---
-company: "Edublox Reading and Learning Clinic"
-title: "IT Manager and Business Coach"
-timeframe: "2012 – 2015"
+roleId: "edublox_clinic_it_manager"
 visible: true
-order: 7
 context: ["Technology Management", "Business Coaching", "Strategic Contribution", "System Development", "Franchise Support"]
 responsibilities:
   - Contributed to strategic decisions that supported franchise network growth to 40+ locations across Southern Africa over 10-year period, combining technology leadership with business coaching expertise.

@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useMemo, useCallback } from "react";
 import ResponsiveTags from './ResponsiveTags.jsx';
+import { experienceProfiles } from '../config/experienceProfiles';
 
 export default function ExperienceList({ 
+  experienceRoles,
   experienceOverviewExperiences,
   experienceProductStrategistExperiences,
   experienceExecutionLeadExperiences,
@@ -9,69 +11,58 @@ export default function ExperienceList({
   experienceFractionalPmExperiences,
   experienceCollaborativeLeaderExperiences,
   experienceCommercialStrategistExperiences,
-  experienceStrategicTechnologistExperiences
+  experienceStrategicTechnologistExperiences,
+  experienceGrowthAndBDExperiences
 }) {
   const [isClient, setIsClient] = useState(false);
   
-  // Memoize role descriptions with full data
-  const roleDescriptions = useMemo(() => ({
-    Overview: {
-      title: "Overview",
-      anchor: "overview",
-      description: "A comprehensive view of my career journey, highlighting key experiences, achievements, and the evolution of my expertise across product strategy, execution, and technology leadership.",
-      order_description: "Roles ordered chronologically.",
-      skills: []
-    },
-    ProductStrategist: {
-      title: "Product Strategist",
-      anchor: "product-strategist",
-      description: "Defines product vision, market alignment, and growth priorities—balancing user needs, business value, and feasibility to create long-term impact.",
-      order_description: "Roles ordered by relevance, not chronologically.",
-      skills: []
-    },
-    ExecutionLead: {
-      title: "Execution Lead",
-      anchor: "execution-lead",
-      description: "Turns plans into shipped outcomes—leading delivery across complex environments while balancing speed, quality, and strategic trade-offs to stay aligned with product goals.",
-      order_description: "Roles ordered by relevance, not chronologically.",
-      skills: []
-    },
-    DigitalEnabler: {
-      title: "Digital Enabler",
-      anchor: "digital-enabler",
-      description: "Builds and refines internal platforms, tools, and automation—improving operational visibility, team efficiency, and cross-system data flows.",
-      order_description: "Roles ordered by relevance, not chronologically.",
-      skills: []
-    },
-    FractionalPm: {
-      title: "Fractional PM",
-      anchor: "fractional-pm",
-      description: "Rapidly adapts to client needs—jumping into high-context environments to scope, align, and deliver as a flexible and experienced product partner.",
-      order_description: "Roles ordered by relevance, not chronologically.",
-      skills: []
-    },
-    CollaborativeLeader: {
-      title: "Collaborative Leader",
-      anchor: "collaborative-leader",
-      description: "Shapes open, outcome-focused team culture—championing transparency, psychological safety, and shared ownership to unlock high performance.",
-      order_description: "Roles ordered by relevance, not chronologically.",
-      skills: []
-    },
-    CommercialStrategist: {
-      title: "Commercial Strategist",
-      anchor: "commercial-strategist",
-      description: "Connects product thinking with business outcomes—building scalable models, pricing, market narratives, and systems that drive adoption and growth.",
-      order_description: "Roles ordered by relevance, not chronologically.",
-      skills: []
-    },
-    StrategicTechnologist: {
-      title: "Technology Strategist",
-      anchor: "technology-strategist",
-      description: "Bridges product, architecture, and platform evolution—collaborating with engineers and domain experts to make informed, sustainable technology decisions.",
-      order_description: "Roles ordered by relevance, not chronologically.",
-      skills: []
+  // Create a lookup map for experienceRoles for quick access by roleId
+  const rolesMap = useMemo(() => {
+    const map = {};
+    experienceRoles?.forEach(role => {
+      map[role.slug] = role.data;
+    });
+    return map;
+  }, [experienceRoles]);
+  
+  // Helper function to merge experience with role data
+  const mergeExperienceWithRole = useCallback((exp) => {
+    // If experience has roleId, merge with role data
+    if (exp.data.roleId) {
+      const roleData = rolesMap[exp.data.roleId] || {};
+      return {
+        ...exp,
+        data: {
+          ...roleData,
+          ...exp.data,
+          // Ensure roleId, context, and responsibilities from experience take precedence
+          roleId: exp.data.roleId,
+          context: exp.data.context,
+          responsibilities: exp.data.responsibilities,
+        }
+      };
     }
-  }), []);
+    // Otherwise, return as-is (legacy format with all data in experience file)
+    return exp;
+  }, [rolesMap]);
+  
+  // Memoize role descriptions from config file
+  const roleDescriptions = useMemo(() => {
+    const descriptions = {};
+    experienceProfiles
+      .filter(profile => profile.visible)
+      .forEach(profile => {
+        descriptions[profile.key] = {
+          title: profile.title,
+          anchor: profile.anchor,
+          description: profile.description,
+          order_description: profile.order_description,
+          order: profile.order,
+          skills: []
+        };
+      });
+    return descriptions;
+  }, []);
   
   // Get initial role from URL hash immediately
   const getInitialRole = useCallback(() => {
@@ -97,6 +88,7 @@ export default function ExperienceList({
     Overview: experienceOverviewExperiences,
     ProductStrategist: experienceProductStrategistExperiences,
     ExecutionLead: experienceExecutionLeadExperiences,
+    GrowthAndBD: experienceGrowthAndBDExperiences,
     DigitalEnabler: experienceDigitalEnablerExperiences,
     FractionalPm: experienceFractionalPmExperiences,
     CollaborativeLeader: experienceCollaborativeLeaderExperiences,
@@ -104,10 +96,10 @@ export default function ExperienceList({
     StrategicTechnologist: experienceStrategicTechnologistExperiences,
   };
   
-  // Filter out roles that have no visible experiences
-  const visibleRoles = Object.keys(experienceCollections).filter(role => 
-    experienceCollections[role] && experienceCollections[role].length > 0
-  );
+  // Filter out roles that have no visible experiences and sort by order from config
+  const visibleRoles = Object.keys(roleDescriptions)
+    .filter(role => experienceCollections[role] && experienceCollections[role].length > 0)
+    .sort((a, b) => (roleDescriptions[a].order || 999) - (roleDescriptions[b].order || 999));
   
   const experiences = experienceCollections[selectedRole];
 
@@ -266,48 +258,44 @@ export default function ExperienceList({
         {/* Experience List */}
         <div className={`transition-all duration-300 px-4 ${isTransitioning ? 'opacity-50 translate-y-2' : 'opacity-100 translate-y-0'}`}>
           <div className="space-y-4">
-          {experiences
-            .sort((a, b) => {
-              // Primary sort by order (if specified), secondary by timeframe
-              if (a.data.order !== undefined && b.data.order !== undefined) {
-                return a.data.order - b.data.order;
-              }
-              if (a.data.order !== undefined) return -1;
-              if (b.data.order !== undefined) return 1;
-              // Fallback to timeframe sorting (most recent first)
-              return b.data.timeframe > a.data.timeframe ? 1 : -1;
-            })
-            .map(exp => (
+          {experiences.map(exp => {
+            const mergedExp = mergeExperienceWithRole(exp);
+            return (
               <div
                 className="exp-card p-4 md:p-6 rounded-xl bg-white dark:bg-gray-900/40 border border-gray-200 dark:border-gray-800 transition-all duration-200 hover:shadow-md hover:border-gray-300 dark:hover:border-gray-700 hover:-translate-y-0.5"
-                key={exp.id}
+                key={mergedExp.id}
               >
                 <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-3 gap-2 sm:gap-4">
                   <div className="flex-1 min-w-0">
                     <h4 className="font-medium text-base sm:text-lg text-gray-900 dark:text-gray-100 mb-1 leading-tight">
-                      {exp.data.title}
+                      {mergedExp.data.title}
                     </h4>
                     <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 font-medium">
-                      {exp.data.company}
+                      {mergedExp.data.company}
                     </p>
                   </div>
                   <div className="text-left sm:text-right flex-shrink-0 sm:min-w-0">
-                    <span className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 font-medium block">{exp.data.timeframe}</span>
-                    {exp.data.location && (
+                    <span className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 font-medium block">{mergedExp.data.timeframe}</span>
+                    {(mergedExp.data.engagement_type || mergedExp.data.type_location) && (
+                      <div className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                        {[mergedExp.data.engagement_type, mergedExp.data.type_location].filter(Boolean).join(' | ')}
+                      </div>
+                    )}
+                    {mergedExp.data.location && (
                       <div className="text-xs text-gray-500 dark:text-gray-400 flex items-center gap-1 mt-1 sm:justify-end">
                         <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
                           <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
                         </svg>
-                        {exp.data.location}
+                        {mergedExp.data.location}
                       </div>
                     )}
                   </div>
                 </div>
                 
                 {/* Context Tags */}
-                {exp.data.context && exp.data.context.length > 0 && (
+                {mergedExp.data.context && mergedExp.data.context.length > 0 && (
                   <ResponsiveTags 
-                    tags={exp.data.context}
+                    tags={mergedExp.data.context}
                     tagType="context"
                     maxRowsMobile={2}
                     maxRowsDesktop={3}
@@ -316,18 +304,18 @@ export default function ExperienceList({
                 )}
                 
                 {/* Optional Header */}
-                {exp.data.header && (
+                {mergedExp.data.header && (
                   <div className="mb-3">
                     <p className="text-sm text-text-light dark:text-text-dark leading-relaxed">
-                      {exp.data.header}
+                      {mergedExp.data.header}
                     </p>
                   </div>
                 )}
                 
                 {/* Responsibilities */}
-                {exp.data.responsibilities && exp.data.responsibilities.length > 0 && (
+                {mergedExp.data.responsibilities && mergedExp.data.responsibilities.length > 0 && (
                   <ul className="space-y-2 pl-6 list-disc">
-                    {exp.data.responsibilities.map((item, idx) => (
+                    {mergedExp.data.responsibilities.map((item, idx) => (
                       <li key={idx} className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed ml-0" style={{listStylePosition: 'outside'}}>
                         {item}
                       </li>
@@ -336,15 +324,16 @@ export default function ExperienceList({
                 )}
                 
                 {/* Optional Footer */}
-                {exp.data.footer && (
+                {mergedExp.data.footer && (
                   <div className="mt-4 text-center">
                     <p className="text-sm text-secondary dark:text-secondary italic">
-                      {exp.data.footer}
+                      {mergedExp.data.footer}
                     </p>
                   </div>
                 )}
               </div>
-            ))}
+            );
+          })}
           </div>
         </div>
     </section>
