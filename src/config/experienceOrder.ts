@@ -65,8 +65,8 @@ export const experienceOrder = {
 
   // Fractional PM: Ordered by relevance to consulting/fractional work
   fractionalPm: {
-    "lvlup_fractional_pm": 1,                         // Fractional product partner, rapid strategic engagement
-    "mural_fractional_pm": 2,                         // Interim leadership, rapid onboarding, short-term delivery
+    "lvlup_fractional_pm": 2,                         // Fractional product partner, rapid strategic engagement
+    "mural_fractional_pm": 1,                         // Interim leadership, rapid onboarding, short-term delivery
     "iscann_group_fractional_pm": 3,                  // Short-term consulting engagement
   } as ExperienceOrder,
 
