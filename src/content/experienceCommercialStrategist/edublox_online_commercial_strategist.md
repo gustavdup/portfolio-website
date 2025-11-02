@@ -8,5 +8,5 @@ responsibilities:
   - Designed and validated pricing tiers across regions, aligning value propositions with market affordability and operational scalability requirements.
   - Designed targeted landing pages and booking funnels to capture consultation leads, creating measurable conversion pathways that supported revenue growth strategy.
   - Established product-market fit through lean experimentation and user research, creating foundation for sustained growth and market penetration.
-footer: "Role consolidated into Edublox CIO responsibilities after the online platform was integrated into the core business."
+footer: "Engagement consolidated into Edublox CIO responsibilities after the online platform was integrated into the core business."
 ---

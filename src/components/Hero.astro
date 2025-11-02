@@ -105,7 +105,7 @@ const sortedCurrentRoles = currentRoles
   <!-- Work Section -->
   <section class="mb-16">
     <div class="flex items-center justify-between mb-6 px-4">
-      <h2 class="text-lg font-medium text-text-light dark:text-text-dark tracking-wide uppercase">Ongoing Roles</h2>
+      <h2 class="text-lg font-medium text-text-light dark:text-text-dark tracking-wide uppercase">Ongoing Engagements</h2>
       <a 
         href={showExperience ? "/experience" : linkedinUrl} 
         target={showExperience ? "_self" : "_blank"}
@@ -155,7 +155,7 @@ const sortedCurrentRoles = currentRoles
             : 'bg-red-800/10 dark:bg-red-800/15 border-red-800/25'
         }`}>
           <p class="text-sm text-gray-800 dark:text-gray-200 leading-relaxed italic text-center m-0" set:html={
-            (availability?.data.homeMessage || "I'm currently available for new consulting projects and product leadership roles, and open to collaborating on meaningful, outcome-driven work. <a href='/lets-work-together#contact' class='text-secondary hover:text-secondary-600 no-underline hover:underline transition-colors'>Let's Connect</a>")
+            (availability?.data.homeMessage || "I'm currently available for new consulting projects and product leadership engagements, and open to collaborating on meaningful, outcome-driven work. <a href='/lets-work-together#contact' class='text-secondary hover:text-secondary-600 no-underline hover:underline transition-colors'>Let's Connect</a>")
               .replace(/\[([^\]]+)\]\(([^)]+)\)/g, "<a href='$2' class='text-secondary hover:text-secondary-600 no-underline hover:underline transition-colors'>$1</a>")
           }>
           </p>

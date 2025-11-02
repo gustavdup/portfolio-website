@@ -8,5 +8,5 @@ responsibilities:
   - Defined long-term product vision balancing educational outcomes with technical feasibility, establishing sustainable framework for international market entry and growth.
   - Shaped platform architecture strategy including Azure infrastructure migration, integrated CRM and analytics stack, and multi-service product ecosystem to support scale.
   - Directed product roadmap evolution using user research insights and market validation to drive 50%+ activation improvements and 30%+ retention gains across global user base.
-footer: "Role consolidated into Edublox CIO responsibilities after the online platform was integrated into the core business."
+footer: "Engagement consolidated into Edublox CIO responsibilities after the online platform was integrated into the core business."
 ---

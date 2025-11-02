@@ -9,5 +9,5 @@ responsibilities:
   - Built targeted landing pages with integrated booking systems and CRM automation, implementing technical solutions to streamline lead capture and consultation workflows.
   - Collaborated with engineering teams to assess technical feasibility of new features, balancing product requirements with platform constraints and development timelines.
   - Established technology foundation enabling rapid service expansion, including live tutoring integration and real-time learning management system capabilities.
-footer: "Role consolidated into Edublox CIO responsibilities after the online platform was integrated into the core business."
+footer: "Engagement consolidated into Edublox CIO responsibilities after the online platform was integrated into the core business."
 ---

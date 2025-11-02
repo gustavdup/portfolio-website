@@ -8,5 +8,5 @@ responsibilities:
   - Established shared product vision and roadmap process, aligning diverse stakeholders including educators, technical teams, and business leadership on common goals.
   - Created feedback-driven development culture using continuous user research, A/B testing, and data-informed decision making to guide team priorities.
   - Facilitated knowledge sharing and best practices across teams, resulting in accelerated delivery cycles and improved product quality outcomes.
-footer: "Role consolidated into Edublox CIO responsibilities after the online platform was integrated into the core business."
+footer: "Engagement consolidated into Edublox CIO responsibilities after the online platform was integrated into the core business."
 ---

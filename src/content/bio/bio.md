@@ -33,6 +33,6 @@ I am a product and technology leader with more than a decade of experience build
 
 I have led cross-functional teams in startups, scale-ups, and global enterprises, delivering products across EdTech, collaboration software, health, and field services in B2C, B2B, and platform environments. My experience includes AI-enabled product innovation, platform-level product architecture, and data-informed product leadership that connects user insight with business strategy.
 
-I hold a Master’s in ICT Management and am completing a doctorate focused on improving user adoption and change readiness in enterprise software transitions by integrating change management and behavioural design principles.
+I hold a Master's in ICT Management and am completing a doctorate focused on improving user adoption and change readiness in enterprise software transitions by integrating change management and behavioural design principles.
 
-Alongside long-term roles, I take on select strategic consulting and advisory engagements when capacity and the right opportunity align.
+Alongside long-term engagements, I take on select strategic consulting and advisory projects when capacity and the right opportunity align.

@@ -9,5 +9,5 @@ responsibilities:
   - Implemented comprehensive CRM and analytics stack (Segment, Mixpanel, ActiveCampaign) with A/B testing capabilities to enable continuous optimisation.
   - Designed and built targeted landing pages with integrated booking systems, connecting CRM automation and drip campaigns to convert consultation traffic into qualified leads.
   - Led quality assurance processes across multiple software releases, ensuring stable deployments and consistent platform performance at scale.
-footer: "Role consolidated into Edublox CIO responsibilities after the online platform was integrated into the core business."
+footer: "Engagement consolidated into Edublox CIO responsibilities after the online platform was integrated into the core business."
 ---

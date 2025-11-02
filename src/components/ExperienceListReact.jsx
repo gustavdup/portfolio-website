@@ -245,7 +245,7 @@ export default function ExperienceList({
             <div className="flex items-center gap-3 mb-3">
               <h3 className="text-xl font-semibold text-text-light dark:text-text-dark">{currentRole.title}</h3>
               <span className="text-xs text-secondary dark:text-secondary font-bold px-2 py-1 bg-secondary/10 dark:bg-secondary/20 rounded-md">
-                {experiences.length} {experiences.length === 1 ? 'role' : 'roles'}
+                {experiences.length} {experiences.length === 1 ? 'engagement' : 'engagements'}
               </span>
             </div>
             <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">{currentRole.description}</p>
