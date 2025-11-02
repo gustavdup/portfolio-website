@@ -45,8 +45,8 @@ export const experienceOrder = {
   // Execution Lead: Ordered by relevance to delivery/execution
   executionLead: {
     "edublox_online_execution_lead": 1,               // MVP delivery, infrastructure migration, launch management, scale delivery
-    "medici_execution_lead": 2,                       // Experimentation, A/B testing, measurable onboarding improvements (50%→80%)
-    "britehouse_mobility_execution_lead": 3,          // Platform delivery, performance optimization, release management
+    "medici_execution_lead": 3,                       // Experimentation, A/B testing, measurable onboarding improvements (50%→80%)
+    "britehouse_mobility_execution_lead": 2,          // Platform delivery, performance optimization, release management
     "mural_execution_lead": 4,                        // Feature delivery, MVP development, release management
     "edublox_clinic_execution_lead": 5,               // System implementation, infrastructure delivery
     "edublox_clinic_it_manager_execution_lead": 6,    // Project delivery, infrastructure rollout
