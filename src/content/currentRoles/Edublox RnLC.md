@@ -1,5 +1,5 @@
 ---
-title: "Co-Owner | CIO"
+title: "Co-Owner & Chief Information Officer"
 company: "Edublox Reading and Learning Clinic"
 roleType: "Strategic Consultant"
 timeframe: "2016 - Present"
