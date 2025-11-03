@@ -24,7 +24,7 @@ const isActive = (path: string) => {
 // Function to get current page name for mobile menu
 const getCurrentPageName = (path: string) => {
   if (path === '/') return 'About';
-  if (path.startsWith('/projects')) return 'Portfolio';
+  if (path.startsWith('/projects')) return 'Projects';
   if (path.startsWith('/experience')) return 'Experience';
   if (path.startsWith('/articles')) return 'Articles';
   if (path.startsWith('/lets-work-together')) return 'Let\'s Collaborate';
