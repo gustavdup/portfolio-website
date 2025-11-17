@@ -1,7 +1,7 @@
 ---
-homeMessage: "Currently focused on existing product engagements. Open to one-off advisory sessions and strategic conversations—[reach out](/lets-work-together#contact) if you'd like to connect."
-contactMessage: "Focused on current engagements, but open to one-off advisory sessions and strategic conversations."
-level: "low"
+homeMessage: "Exploring new product opportunities and open to conversations about upcoming roles, strategic engagements, or full-time positions—[reach out](/lets-work-together#contact) if you'd like to connect."
+contactMessage: "Open to exploring new roles and strategic engagements. Happy to connect about upcoming opportunities."
+level: "medium"
 showOnAbout: true
 showOnContact: true
 ---
